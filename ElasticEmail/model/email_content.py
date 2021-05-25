@@ -1,7 +1,7 @@
 """
     Elastic Email REST API
 
-    This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    To start using this API, you will need your Access Token (available <a href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    This is the documentation for REST API. If you’d like to read our legacy documentation regarding Web API v2 click <a href=\"https://api.elasticemail.com/public/help\">here</a>.  # noqa: E501
+    This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    This is the documentation for REST API. If you’d like to read our legacy documentation regarding Web API v2 click <a target=\"_blank\" href=\"https://api.elasticemail.com/public/help\">here</a>.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>  # noqa: E501
 
     The version of the OpenAPI document: 4.0.0
     Contact: support@elasticemail.com
@@ -85,6 +85,7 @@ class EmailContent(ModelNormal):
             'attachments': ([MessageAttachment],),  # noqa: E501
             'headers': ({str: (str,)},),  # noqa: E501
             'postback': (str,),  # noqa: E501
+            'envelope_from': (str,),  # noqa: E501
             '_from': (str,),  # noqa: E501
             'reply_to': (str,),  # noqa: E501
             'subject': (str,),  # noqa: E501
@@ -104,6 +105,7 @@ class EmailContent(ModelNormal):
         'attachments': 'Attachments',  # noqa: E501
         'headers': 'Headers',  # noqa: E501
         'postback': 'Postback',  # noqa: E501
+        'envelope_from': 'EnvelopeFrom',  # noqa: E501
         '_from': 'From',  # noqa: E501
         'reply_to': 'ReplyTo',  # noqa: E501
         'subject': 'Subject',  # noqa: E501
@@ -163,6 +165,7 @@ class EmailContent(ModelNormal):
             attachments ([MessageAttachment]): Attachments provided by sending binary data. [optional]  # noqa: E501
             headers ({str: (str,)}): A key-value collection of custom e-mail headers.. [optional]  # noqa: E501
             postback (str): Postback header.. [optional]  # noqa: E501
+            envelope_from (str): E-mail with an optional name to be used as the envelope from address (e.g.: John Doe <email@domain.com>). [optional]  # noqa: E501
             _from (str): Your e-mail with an optional name (e.g.: John Doe <email@domain.com>). [optional]  # noqa: E501
             reply_to (str): To what address should the recipients reply to (e.g. John Doe <email@domain.com>). [optional]  # noqa: E501
             subject (str): Default subject of email.. [optional]  # noqa: E501

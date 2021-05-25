@@ -258,9 +258,9 @@ Returns a list of templates for the specified type. Required Access Level: ViewT
 import time
 import ElasticEmail
 from ElasticEmail.api import templates_api
-from ElasticEmail.model.template_scope_type import TemplateScopeType
 from ElasticEmail.model.template import Template
 from ElasticEmail.model.template_type import TemplateType
+from ElasticEmail.model.template_scope import TemplateScope
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
 # See configuration.py for a list of all supported configuration parameters.
@@ -284,8 +284,8 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = templates_api.TemplatesApi(api_client)
     scope_type = [
-        TemplateScopeType("Personal"),
-    ] # [TemplateScopeType] | Return templates with specified scope only
+        TemplateScope("Personal"),
+    ] # [TemplateScope] | Return templates with specified scope only
     template_types = [
         TemplateType("RawHTML"),
     ] # [TemplateType] | Return templates with specified type only (optional)
@@ -314,7 +314,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **scope_type** | [**[TemplateScopeType]**](TemplateScopeType.md)| Return templates with specified scope only |
+ **scope_type** | [**[TemplateScope]**](TemplateScope.md)| Return templates with specified scope only |
  **template_types** | [**[TemplateType]**](TemplateType.md)| Return templates with specified type only | [optional]
  **limit** | **int**| Maximum number of returned items. | [optional]
  **offset** | **int**| How many items should be returned ahead. | [optional]

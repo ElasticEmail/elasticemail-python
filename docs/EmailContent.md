@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **attachments** | [**[MessageAttachment]**](MessageAttachment.md) | Attachments provided by sending binary data | [optional] 
 **headers** | **{str: (str,)}** | A key-value collection of custom e-mail headers. | [optional] 
 **postback** | **str** | Postback header. | [optional] 
+**envelope_from** | **str** | E-mail with an optional name to be used as the envelope from address (e.g.: John Doe &lt;email@domain.com&gt;) | [optional] 
 **_from** | **str** | Your e-mail with an optional name (e.g.: John Doe &lt;email@domain.com&gt;) | [optional] 
 **reply_to** | **str** | To what address should the recipients reply to (e.g. John Doe &lt;email@domain.com&gt;) | [optional] 
 **subject** | **str** | Default subject of email. | [optional] 

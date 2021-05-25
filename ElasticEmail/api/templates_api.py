@@ -1,7 +1,7 @@
 """
     Elastic Email REST API
 
-    This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    To start using this API, you will need your Access Token (available <a href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    This is the documentation for REST API. If you’d like to read our legacy documentation regarding Web API v2 click <a href=\"https://api.elasticemail.com/public/help\">here</a>.  # noqa: E501
+    This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    This is the documentation for REST API. If you’d like to read our legacy documentation regarding Web API v2 click <a target=\"_blank\" href=\"https://api.elasticemail.com/public/help\">here</a>.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>  # noqa: E501
 
     The version of the OpenAPI document: 4.0.0
     Contact: support@elasticemail.com
@@ -24,7 +24,7 @@ from ElasticEmail.model_utils import (  # noqa: F401
 )
 from ElasticEmail.model.template import Template
 from ElasticEmail.model.template_payload import TemplatePayload
-from ElasticEmail.model.template_scope_type import TemplateScopeType
+from ElasticEmail.model.template_scope import TemplateScope
 from ElasticEmail.model.template_type import TemplateType
 
 
@@ -421,7 +421,7 @@ class TemplatesApi(object):
             >>> result = thread.get()
 
             Args:
-                scope_type ([TemplateScopeType]): Return templates with specified scope only
+                scope_type ([TemplateScope]): Return templates with specified scope only
 
             Keyword Args:
                 template_types ([TemplateType]): Return templates with specified type only. [optional]
@@ -510,7 +510,7 @@ class TemplatesApi(object):
                 },
                 'openapi_types': {
                     'scope_type':
-                        ([TemplateScopeType],),
+                        ([TemplateScope],),
                     'template_types':
                         ([TemplateType],),
                     'limit':

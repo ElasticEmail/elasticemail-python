@@ -86,7 +86,7 @@ from ElasticEmail.model.subaccount_settings_info_payload import SubaccountSettin
 from ElasticEmail.model.suppression import Suppression
 from ElasticEmail.model.template import Template
 from ElasticEmail.model.template_payload import TemplatePayload
-from ElasticEmail.model.template_scope_type import TemplateScopeType
+from ElasticEmail.model.template_scope import TemplateScope
 from ElasticEmail.model.template_type import TemplateType
 from ElasticEmail.model.transactional_recipient import TransactionalRecipient
 from ElasticEmail.model.utm import Utm

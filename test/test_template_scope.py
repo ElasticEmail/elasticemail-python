@@ -1,5 +1,3 @@
-# flake8: noqa
-
 """
     Elastic Email REST API
 
@@ -11,18 +9,28 @@
 """
 
 
-__version__ = "4.0.11"
+import sys
+import unittest
 
-# import ApiClient
-from ElasticEmail.api_client import ApiClient
+import ElasticEmail
+from ElasticEmail.model.template_scope import TemplateScope
 
-# import Configuration
-from ElasticEmail.configuration import Configuration
 
-# import exceptions
-from ElasticEmail.exceptions import OpenApiException
-from ElasticEmail.exceptions import ApiAttributeError
-from ElasticEmail.exceptions import ApiTypeError
-from ElasticEmail.exceptions import ApiValueError
-from ElasticEmail.exceptions import ApiKeyError
-from ElasticEmail.exceptions import ApiException
+class TestTemplateScope(unittest.TestCase):
+    """TemplateScope unit test stubs"""
+
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        pass
+
+    def testTemplateScope(self):
+        """Test TemplateScope"""
+        # FIXME: construct object with mandatory attributes with example values
+        # model = TemplateScope()  # noqa: E501
+        pass
+
+
+if __name__ == '__main__':
+    unittest.main()
