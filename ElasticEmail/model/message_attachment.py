@@ -135,9 +135,9 @@ class MessageAttachment(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            binary_content (str): [optional]  # noqa: E501
-            name (str): Filename. [optional]  # noqa: E501
-            content_type (str): [optional]  # noqa: E501
+            binary_content (str): File's content as byte array (or a Base64 string). [optional]  # noqa: E501
+            name (str): Display name of the file. [optional]  # noqa: E501
+            content_type (str): MIME content type. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

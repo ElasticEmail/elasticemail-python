@@ -10,8 +10,9 @@ Method | HTTP request | Description
 [**verifications_files_by_id_delete**](VerificationsApi.md#verifications_files_by_id_delete) | **DELETE** /verifications/files/{id} | Delete File Verification Result
 [**verifications_files_by_id_result_download_get**](VerificationsApi.md#verifications_files_by_id_result_download_get) | **GET** /verifications/files/{id}/result/download | Download File Verification Result
 [**verifications_files_by_id_result_get**](VerificationsApi.md#verifications_files_by_id_result_get) | **GET** /verifications/files/{id}/result | Get Detailed File Verification Result
-[**verifications_files_post**](VerificationsApi.md#verifications_files_post) | **POST** /verifications/files | Verify From File
-[**verifications_files_result_get**](VerificationsApi.md#verifications_files_result_get) | **GET** /verifications/files/result | Get Simple Files Verification Results
+[**verifications_files_by_id_verification_post**](VerificationsApi.md#verifications_files_by_id_verification_post) | **POST** /verifications/files/{id}/verification | Start verification
+[**verifications_files_post**](VerificationsApi.md#verifications_files_post) | **POST** /verifications/files | Upload File with Emails
+[**verifications_files_result_get**](VerificationsApi.md#verifications_files_result_get) | **GET** /verifications/files/result | Get Files Verification Results
 [**verifications_get**](VerificationsApi.md#verifications_get) | **GET** /verifications | Get Emails Verification Results
 
 
@@ -467,12 +468,84 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **verifications_files_by_id_verification_post**
+> verifications_files_by_id_verification_post(id)
+
+Start verification
+
+Start a verification of the previously uploaded file with emails. Required Access Level: VerifyEmails
+
+### Example
+
+* Api Key Authentication (apikey):
+```python
+import time
+import ElasticEmail
+from ElasticEmail.api import verifications_api
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.elasticemail.com/v4
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ElasticEmail.Configuration(
+    host = "https://api.elasticemail.com/v4"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with ElasticEmail.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = verifications_api.VerificationsApi(api_client)
+    id = "id_example" # str | File ID to start verification
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Start verification
+        api_instance.verifications_files_by_id_verification_post(id)
+    except ElasticEmail.ApiException as e:
+        print("Exception when calling VerificationsApi->verifications_files_by_id_verification_post: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| File ID to start verification |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[apikey](../README.md#apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **verifications_files_post**
 > VerificationFileResult verifications_files_post()
 
-Verify From File
+Upload File with Emails
 
-Uploads a CSV file with list of emails to verify. An 'email' column is required. Required Access Level: VerifyEmails
+Uploads a CSV file with list of emails that can then be triggered for verification. An 'email' column is required. Required Access Level: VerifyEmails
 
 ### Example
 
@@ -509,7 +582,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # Verify From File
+        # Upload File with Emails
         api_response = api_instance.verifications_files_post(file=file)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
@@ -545,7 +618,7 @@ Name | Type | Description  | Notes
 # **verifications_files_result_get**
 > [VerificationFileResult] verifications_files_result_get()
 
-Get Simple Files Verification Results
+Get Files Verification Results
 
 Returns a list of uploaded files, their statuses and results. Required Access Level: ViewEmailVerifications
 
@@ -582,7 +655,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 
     # example, this endpoint has no required or optional parameters
     try:
-        # Get Simple Files Verification Results
+        # Get Files Verification Results
         api_response = api_instance.verifications_files_result_get()
         pprint(api_response)
     except ElasticEmail.ApiException as e:
