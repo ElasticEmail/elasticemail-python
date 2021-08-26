@@ -1,7 +1,7 @@
 """
     Elastic Email REST API
 
-    This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    This is the documentation for REST API. If you’d like to read our legacy documentation regarding Web API v2 click <a target=\"_blank\" href=\"https://api.elasticemail.com/public/help\">here</a>.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>  # noqa: E501
+    This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    This is the documentation for REST API. If you’d like to read our legacy documentation regarding Web API v2 click <a target=\"_blank\" href=\"https://api.elasticemail.com/public/help\">here</a>.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>  # noqa: E501
 
     The version of the OpenAPI document: 4.0.0
     Contact: support@elasticemail.com
@@ -12,7 +12,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "ElasticEmail"
-VERSION = "4.0.12"
+VERSION = "4.0.13"
 # To install the library, run the following
 #
 # python setup.py install
@@ -39,6 +39,6 @@ setup(
     include_package_data=True,
     license="MIT",
     long_description="""\
-    This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    To start using this API, you will need your Access Token (available &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://elasticemail.com/account#/settings/new/manage-api\&quot;&gt;here&lt;/a&gt;). Remember to keep it safe. Required access levels are listed in the given request’s description.    This is the documentation for REST API. If you’d like to read our legacy documentation regarding Web API v2 click &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://api.elasticemail.com/public/help\&quot;&gt;here&lt;/a&gt;.    Downloadable library clients can be found in our Github repository &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://github.com/ElasticEmail?tab&#x3D;repositories&amp;q&#x3D;%22rest+api%22+in%3Areadme\&quot;&gt;here&lt;/a&gt;  # noqa: E501
+    This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://elasticemail.com/account#/settings/new/manage-api\&quot;&gt;here&lt;/a&gt;). Remember to keep it safe. Required access levels are listed in the given request’s description.    This is the documentation for REST API. If you’d like to read our legacy documentation regarding Web API v2 click &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://api.elasticemail.com/public/help\&quot;&gt;here&lt;/a&gt;.    Downloadable library clients can be found in our Github repository &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://github.com/ElasticEmail?tab&#x3D;repositories&amp;q&#x3D;%22rest+api%22+in%3Areadme\&quot;&gt;here&lt;/a&gt;  # noqa: E501
     """
 )

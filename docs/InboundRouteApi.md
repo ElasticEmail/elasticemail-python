@@ -58,6 +58,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling InboundRouteApi->inboundroute_by_id_delete: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -76,6 +77,7 @@ void (empty response body)
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -132,6 +134,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling InboundRouteApi->inboundroute_by_id_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -150,6 +153,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -215,6 +219,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling InboundRouteApi->inboundroute_by_id_put: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -234,6 +239,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -289,6 +295,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling InboundRouteApi->inboundroute_get: %s\n" % e)
 ```
 
+
 ### Parameters
 This endpoint does not need any parameter.
 
@@ -304,6 +311,7 @@ This endpoint does not need any parameter.
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -366,6 +374,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling InboundRouteApi->inboundroute_order_put: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -384,6 +393,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -448,6 +458,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling InboundRouteApi->inboundroute_post: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -466,6 +477,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

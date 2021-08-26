@@ -57,6 +57,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling TemplatesApi->templates_by_name_delete: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -76,6 +77,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -84,7 +86,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **templates_by_name_get**
-> object templates_by_name_get(name)
+> dict templates_by_name_get(name)
 
 Load Template
 
@@ -130,6 +132,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling TemplatesApi->templates_by_name_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -138,7 +141,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+**dict**
 
 ### Authorization
 
@@ -148,6 +151,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -217,6 +221,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling TemplatesApi->templates_by_name_put: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -236,6 +241,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -310,6 +316,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling TemplatesApi->templates_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -332,6 +339,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -340,7 +348,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **templates_post**
-> object templates_post(template_payload)
+> dict templates_post(template_payload)
 
 Add Template
 
@@ -398,6 +406,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling TemplatesApi->templates_post: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -406,7 +415,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+**dict**
 
 ### Authorization
 
@@ -416,6 +425,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

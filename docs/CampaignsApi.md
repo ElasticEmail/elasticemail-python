@@ -57,6 +57,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling CampaignsApi->campaigns_by_name_delete: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -75,6 +76,7 @@ void (empty response body)
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -131,6 +133,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling CampaignsApi->campaigns_by_name_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -149,6 +152,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -204,7 +208,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
                 subject="Hello!",
                 template_name="Template01",
                 attach_files=[
-                    "attach_files_example",
+                    "[ "preuploaded.jpg" ]",
                 ],
                 utm=,
             ),
@@ -223,6 +227,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     except ElasticEmail.ApiException as e:
         print("Exception when calling CampaignsApi->campaigns_by_name_put: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -243,6 +248,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -302,6 +308,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling CampaignsApi->campaigns_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -322,6 +329,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -376,7 +384,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
                 subject="Hello!",
                 template_name="Template01",
                 attach_files=[
-                    "attach_files_example",
+                    "[ "preuploaded.jpg" ]",
                 ],
                 utm=,
             ),
@@ -396,6 +404,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling CampaignsApi->campaigns_post: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -414,6 +423,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

@@ -1,6 +1,7 @@
 # EmailContent
 
 Proper e-mail content
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -15,7 +16,8 @@ Name | Type | Description | Notes
 **subject** | **str** | Default subject of email. | [optional] 
 **template_name** | **str** | Name of template. | [optional] 
 **attach_files** | **[str]** | Names of previously uploaded files that should be sent as downloadable attachments | [optional] 
-**utm** | **object** | Utm marketing data to be attached to every link in this e-mail. | [optional] 
+**utm** | **dict** | Utm marketing data to be attached to every link in this e-mail. | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

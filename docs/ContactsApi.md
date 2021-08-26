@@ -62,6 +62,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling ContactsApi->contacts_by_email_delete: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -80,6 +81,7 @@ void (empty response body)
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -136,6 +138,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling ContactsApi->contacts_by_email_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -154,6 +157,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -221,6 +225,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling ContactsApi->contacts_by_email_history_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -241,6 +246,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -305,6 +311,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling ContactsApi->contacts_by_email_put: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -324,6 +331,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -372,7 +380,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     emails_payload = EmailsPayload(
         rule="rule_example",
         emails=[
-            "emails_example",
+            "[ "john.doe@sample.com" ]",
         ],
     ) # EmailsPayload | Provide either rule or a list of emails, not both.
 
@@ -383,6 +391,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     except ElasticEmail.ApiException as e:
         print("Exception when calling ContactsApi->contacts_delete_post: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -402,6 +411,7 @@ void (empty response body)
 
  - **Content-Type**: application/json
  - **Accept**: Not defined
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -458,6 +468,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling ContactsApi->contacts_export_by_id_status_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -476,6 +487,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -521,12 +533,12 @@ configuration.api_key['apikey'] = 'YOUR_API_KEY'
 with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = contacts_api.ContactsApi(api_client)
-    file_format =  # object | Format of the exported file (optional)
+    file_format =  # dict | Format of the exported file (optional)
     rule = "Status%20=%20Engaged" # str | Query used for filtering. (optional)
     emails = [
-        "emails_example",
+        "mail@contact.com,mail1@contact.com,mail2@contact.com",
     ] # [str] | Comma delimited list of contact emails (optional)
-    compression_format =  # object | FileResponse compression format. None or Zip. (optional)
+    compression_format =  # dict | FileResponse compression format. None or Zip. (optional)
     file_name = "filename.txt" # str | Name of your file including extension. (optional)
 
     # example passing only required values which don't have defaults set
@@ -539,14 +551,15 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling ContactsApi->contacts_export_post: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **file_format** | **object**| Format of the exported file | [optional]
+ **file_format** | **dict**| Format of the exported file | [optional]
  **rule** | **str**| Query used for filtering. | [optional]
  **emails** | **[str]**| Comma delimited list of contact emails | [optional]
- **compression_format** | **object**| FileResponse compression format. None or Zip. | [optional]
+ **compression_format** | **dict**| FileResponse compression format. None or Zip. | [optional]
  **file_name** | **str**| Name of your file including extension. | [optional]
 
 ### Return type
@@ -561,6 +574,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -619,6 +633,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling ContactsApi->contacts_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -638,6 +653,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -695,6 +711,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling ContactsApi->contacts_import_post: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -715,6 +732,7 @@ void (empty response body)
 
  - **Content-Type**: multipart/form-data
  - **Accept**: Not defined
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -799,6 +817,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling ContactsApi->contacts_post: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -818,6 +837,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

@@ -62,6 +62,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling VerificationsApi->verifications_by_email_delete: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -80,6 +81,7 @@ void (empty response body)
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -136,6 +138,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling VerificationsApi->verifications_by_email_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -154,6 +157,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -210,6 +214,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling VerificationsApi->verifications_by_email_post: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -228,6 +233,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -282,6 +288,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling VerificationsApi->verifications_files_by_id_delete: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -300,6 +307,7 @@ void (empty response body)
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -355,6 +363,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling VerificationsApi->verifications_files_by_id_result_download_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -373,6 +382,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/*
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -440,6 +450,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling VerificationsApi->verifications_files_by_id_result_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -460,6 +471,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -514,6 +526,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling VerificationsApi->verifications_files_by_id_verification_post: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -532,6 +545,7 @@ void (empty response body)
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -589,6 +603,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling VerificationsApi->verifications_files_post: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -607,6 +622,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: multipart/form-data
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -662,6 +678,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling VerificationsApi->verifications_files_result_get: %s\n" % e)
 ```
 
+
 ### Parameters
 This endpoint does not need any parameter.
 
@@ -677,6 +694,7 @@ This endpoint does not need any parameter.
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -735,6 +753,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling VerificationsApi->verifications_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -754,6 +773,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

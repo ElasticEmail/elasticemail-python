@@ -71,6 +71,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling SecurityApi->security_apikeys_by_name_delete: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -90,6 +91,7 @@ void (empty response body)
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -156,6 +158,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling SecurityApi->security_apikeys_by_name_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -175,6 +178,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -243,6 +247,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling SecurityApi->security_apikeys_by_name_put: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -262,6 +267,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -319,6 +325,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling SecurityApi->security_apikeys_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -337,6 +344,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -404,6 +412,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling SecurityApi->security_apikeys_post: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -422,6 +431,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -485,6 +495,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling SecurityApi->security_smtp_by_name_delete: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -504,6 +515,7 @@ void (empty response body)
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -570,6 +582,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling SecurityApi->security_smtp_by_name_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -589,6 +602,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -654,6 +668,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling SecurityApi->security_smtp_by_name_put: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -673,6 +688,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -730,6 +746,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling SecurityApi->security_smtp_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -748,6 +765,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -812,6 +830,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling SecurityApi->security_smtp_post: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -830,6 +849,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

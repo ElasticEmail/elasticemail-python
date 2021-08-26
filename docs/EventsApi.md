@@ -53,7 +53,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     transactionid = "TransactionID" # str | ID number of transaction
     _from = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
     to = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    order_by =  # object |  (optional)
+    order_by =  # dict |  (optional)
     limit = 100 # int | Maximum number of returned items. (optional)
     offset = 20 # int | How many items should be returned ahead. (optional)
 
@@ -75,6 +75,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling EventsApi->events_by_transactionid_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -82,7 +83,7 @@ Name | Type | Description  | Notes
  **transactionid** | **str**| ID number of transaction |
  **_from** | **datetime, none_type**| Starting date for search in YYYY-MM-DDThh:mm:ss format. | [optional]
  **to** | **datetime, none_type**| Ending date for search in YYYY-MM-DDThh:mm:ss format. | [optional]
- **order_by** | **object**|  | [optional]
+ **order_by** | **dict**|  | [optional]
  **limit** | **int**| Maximum number of returned items. | [optional]
  **offset** | **int**| How many items should be returned ahead. | [optional]
 
@@ -98,6 +99,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -150,8 +152,8 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     ] # [EventType] | Types of Events to return (optional)
     _from = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
     to = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    file_format =  # object | Format of the exported file (optional)
-    compression_format =  # object | FileResponse compression format. None or Zip. (optional)
+    file_format =  # dict | Format of the exported file (optional)
+    compression_format =  # dict | FileResponse compression format. None or Zip. (optional)
     file_name = "filename.txt" # str | Name of your file including extension. (optional)
 
     # example passing only required values which don't have defaults set
@@ -172,6 +174,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling EventsApi->events_channels_by_name_export_post: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -180,8 +183,8 @@ Name | Type | Description  | Notes
  **event_types** | [**[EventType]**](EventType.md)| Types of Events to return | [optional]
  **_from** | **datetime, none_type**| Starting date for search in YYYY-MM-DDThh:mm:ss format. | [optional]
  **to** | **datetime, none_type**| Ending date for search in YYYY-MM-DDThh:mm:ss format. | [optional]
- **file_format** | **object**| Format of the exported file | [optional]
- **compression_format** | **object**| FileResponse compression format. None or Zip. | [optional]
+ **file_format** | **dict**| Format of the exported file | [optional]
+ **compression_format** | **dict**| FileResponse compression format. None or Zip. | [optional]
  **file_name** | **str**| Name of your file including extension. | [optional]
 
 ### Return type
@@ -196,6 +199,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -248,7 +252,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     ] # [EventType] | Types of Events to return (optional)
     _from = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
     to = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    order_by =  # object |  (optional)
+    order_by =  # dict |  (optional)
     limit = 1 # int | How many items to load. Maximum for this request is 1000 items (optional)
     offset = 20 # int | How many items should be returned ahead. (optional)
 
@@ -270,6 +274,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling EventsApi->events_channels_by_name_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -278,7 +283,7 @@ Name | Type | Description  | Notes
  **event_types** | [**[EventType]**](EventType.md)| Types of Events to return | [optional]
  **_from** | **datetime, none_type**| Starting date for search in YYYY-MM-DDThh:mm:ss format. | [optional]
  **to** | **datetime, none_type**| Ending date for search in YYYY-MM-DDThh:mm:ss format. | [optional]
- **order_by** | **object**|  | [optional]
+ **order_by** | **dict**|  | [optional]
  **limit** | **int**| How many items to load. Maximum for this request is 1000 items | [optional]
  **offset** | **int**| How many items should be returned ahead. | [optional]
 
@@ -294,6 +299,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -350,6 +356,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling EventsApi->events_channels_export_by_id_status_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -368,6 +375,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -424,6 +432,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling EventsApi->events_export_by_id_status_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -442,6 +451,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -493,8 +503,8 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     ] # [EventType] | Types of Events to return (optional)
     _from = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
     to = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    file_format =  # object | Format of the exported file (optional)
-    compression_format =  # object | FileResponse compression format. None or Zip. (optional)
+    file_format =  # dict | Format of the exported file (optional)
+    compression_format =  # dict | FileResponse compression format. None or Zip. (optional)
     file_name = "filename.txt" # str | Name of your file including extension. (optional)
 
     # example passing only required values which don't have defaults set
@@ -507,6 +517,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling EventsApi->events_export_post: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -514,8 +525,8 @@ Name | Type | Description  | Notes
  **event_types** | [**[EventType]**](EventType.md)| Types of Events to return | [optional]
  **_from** | **datetime, none_type**| Starting date for search in YYYY-MM-DDThh:mm:ss format. | [optional]
  **to** | **datetime, none_type**| Ending date for search in YYYY-MM-DDThh:mm:ss format. | [optional]
- **file_format** | **object**| Format of the exported file | [optional]
- **compression_format** | **object**| FileResponse compression format. None or Zip. | [optional]
+ **file_format** | **dict**| Format of the exported file | [optional]
+ **compression_format** | **dict**| FileResponse compression format. None or Zip. | [optional]
  **file_name** | **str**| Name of your file including extension. | [optional]
 
 ### Return type
@@ -530,6 +541,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -581,7 +593,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     ] # [EventType] | Types of Events to return (optional)
     _from = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
     to = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    order_by =  # object |  (optional)
+    order_by =  # dict |  (optional)
     limit = 1 # int | How many items to load. Maximum for this request is 1000 items (optional)
     offset = 20 # int | How many items should be returned ahead. (optional)
 
@@ -595,6 +607,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling EventsApi->events_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -602,7 +615,7 @@ Name | Type | Description  | Notes
  **event_types** | [**[EventType]**](EventType.md)| Types of Events to return | [optional]
  **_from** | **datetime, none_type**| Starting date for search in YYYY-MM-DDThh:mm:ss format. | [optional]
  **to** | **datetime, none_type**| Ending date for search in YYYY-MM-DDThh:mm:ss format. | [optional]
- **order_by** | **object**|  | [optional]
+ **order_by** | **dict**|  | [optional]
  **limit** | **int**| How many items to load. Maximum for this request is 1000 items | [optional]
  **offset** | **int**| How many items should be returned ahead. | [optional]
 
@@ -618,6 +631,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

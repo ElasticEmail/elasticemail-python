@@ -55,7 +55,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     emails_payload = EmailsPayload(
         rule="rule_example",
         emails=[
-            "emails_example",
+            "[ "john.doe@sample.com" ]",
         ],
     ) # EmailsPayload | Provide either rule or a list of emails, not both.
 
@@ -67,6 +67,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     except ElasticEmail.ApiException as e:
         print("Exception when calling ListsApi->lists_by_name_contacts_post: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -87,6 +88,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -136,7 +138,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     emails_payload = EmailsPayload(
         rule="rule_example",
         emails=[
-            "emails_example",
+            "[ "john.doe@sample.com" ]",
         ],
     ) # EmailsPayload | Provide either rule or a list of emails, not both.
 
@@ -147,6 +149,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     except ElasticEmail.ApiException as e:
         print("Exception when calling ListsApi->lists_by_name_contacts_remove_post: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -167,6 +170,7 @@ void (empty response body)
 
  - **Content-Type**: application/json
  - **Accept**: Not defined
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -221,6 +225,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling ListsApi->lists_by_name_delete: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -239,6 +244,7 @@ void (empty response body)
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -295,6 +301,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling ListsApi->lists_by_name_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -313,6 +320,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -374,6 +382,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling ListsApi->lists_by_name_put: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -393,6 +402,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -451,6 +461,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling ListsApi->lists_get: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -470,6 +481,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -533,6 +545,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print("Exception when calling ListsApi->lists_post: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -551,6 +564,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
