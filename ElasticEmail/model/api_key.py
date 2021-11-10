@@ -159,7 +159,7 @@ class ApiKey(ModelNormal):
             restrict_access_to_ip_range ([str]): Which IPs can use this ApiKey. [optional]  # noqa: E501
         """
 
-        _check_type = kwargs.pop('_check_type', True)
+        _check_type = kwargs.pop('_check_type', False)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())
         _configuration = kwargs.pop('_configuration', None)
@@ -246,7 +246,7 @@ class ApiKey(ModelNormal):
             restrict_access_to_ip_range ([str]): Which IPs can use this ApiKey. [optional]  # noqa: E501
         """
 
-        _check_type = kwargs.pop('_check_type', True)
+        _check_type = kwargs.pop('_check_type', False)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())
         _configuration = kwargs.pop('_configuration', None)

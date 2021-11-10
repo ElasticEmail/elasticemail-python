@@ -147,7 +147,7 @@ class SplitOptions(ModelNormal):
             optimize_period_minutes (int): For how long should the results be measured until determining the winner template (content). [optional]  # noqa: E501
         """
 
-        _check_type = kwargs.pop('_check_type', True)
+        _check_type = kwargs.pop('_check_type', False)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())
         _configuration = kwargs.pop('_configuration', None)
@@ -230,7 +230,7 @@ class SplitOptions(ModelNormal):
             optimize_period_minutes (int): For how long should the results be measured until determining the winner template (content). [optional]  # noqa: E501
         """
 
-        _check_type = kwargs.pop('_check_type', True)
+        _check_type = kwargs.pop('_check_type', False)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())
         _configuration = kwargs.pop('_configuration', None)

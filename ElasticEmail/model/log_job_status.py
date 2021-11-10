@@ -160,7 +160,7 @@ class LogJobStatus(ModelSimple):
         else:
             value = "All"
 
-        _check_type = kwargs.pop('_check_type', True)
+        _check_type = kwargs.pop('_check_type', False)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _configuration = kwargs.pop('_configuration', None)
         _visited_composed_classes = kwargs.pop('_visited_composed_classes', ())
@@ -248,7 +248,7 @@ class LogJobStatus(ModelSimple):
         else:
             value = "All"
 
-        _check_type = kwargs.pop('_check_type', True)
+        _check_type = kwargs.pop('_check_type', False)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _configuration = kwargs.pop('_configuration', None)
         _visited_composed_classes = kwargs.pop('_visited_composed_classes', ())

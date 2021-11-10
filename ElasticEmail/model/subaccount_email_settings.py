@@ -156,7 +156,7 @@ class SubaccountEmailSettings(ModelNormal):
             pool_name (str): Name of your custom IP Pool to be used in the sending process. [optional]  # noqa: E501
         """
 
-        _check_type = kwargs.pop('_check_type', True)
+        _check_type = kwargs.pop('_check_type', False)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())
         _configuration = kwargs.pop('_configuration', None)
@@ -244,7 +244,7 @@ class SubaccountEmailSettings(ModelNormal):
             pool_name (str): Name of your custom IP Pool to be used in the sending process. [optional]  # noqa: E501
         """
 
-        _check_type = kwargs.pop('_check_type', True)
+        _check_type = kwargs.pop('_check_type', False)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())
         _configuration = kwargs.pop('_configuration', None)

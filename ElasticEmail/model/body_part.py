@@ -152,7 +152,7 @@ class BodyPart(ModelNormal):
             charset (str): Text value of charset encoding for example: iso-8859-1, windows-1251, utf-8, us-ascii, windows-1250 and more…. [optional]  # noqa: E501
         """
 
-        _check_type = kwargs.pop('_check_type', True)
+        _check_type = kwargs.pop('_check_type', False)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())
         _configuration = kwargs.pop('_configuration', None)
@@ -239,7 +239,7 @@ class BodyPart(ModelNormal):
             charset (str): Text value of charset encoding for example: iso-8859-1, windows-1251, utf-8, us-ascii, windows-1250 and more…. [optional]  # noqa: E501
         """
 
-        _check_type = kwargs.pop('_check_type', True)
+        _check_type = kwargs.pop('_check_type', False)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())
         _configuration = kwargs.pop('_configuration', None)
