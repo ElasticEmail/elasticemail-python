@@ -31,8 +31,12 @@ from ElasticEmail.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from ElasticEmail.model.email_content import EmailContent
     from ElasticEmail.model.email_recipient import EmailRecipient
+    from ElasticEmail.model.options import Options
+    globals()['EmailContent'] = EmailContent
     globals()['EmailRecipient'] = EmailRecipient
+    globals()['Options'] = Options
 
 
 class EmailMessageData(ModelNormal):
@@ -89,8 +93,8 @@ class EmailMessageData(ModelNormal):
         lazy_import()
         return {
             'recipients': ([EmailRecipient],),  # noqa: E501
-            'content': (dict,),  # noqa: E501
-            'options': (dict,),  # noqa: E501
+            'content': (EmailContent,),  # noqa: E501
+            'options': (Options,),  # noqa: E501
         }
 
     @cached_property
@@ -115,7 +119,7 @@ class EmailMessageData(ModelNormal):
         """EmailMessageData - a model defined in OpenAPI
 
         Args:
-            recipients ([EmailRecipient]): List of recipients (visible to others)
+            recipients ([EmailRecipient]): List of recipients
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -148,8 +152,8 @@ class EmailMessageData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            content (dict): Proper e-mail content. [optional]  # noqa: E501
-            options (dict): E-mail configuration. [optional]  # noqa: E501
+            content (EmailContent): [optional]  # noqa: E501
+            options (Options): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -202,7 +206,7 @@ class EmailMessageData(ModelNormal):
         """EmailMessageData - a model defined in OpenAPI
 
         Args:
-            recipients ([EmailRecipient]): List of recipients (visible to others)
+            recipients ([EmailRecipient]): List of recipients
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -235,8 +239,8 @@ class EmailMessageData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            content (dict): Proper e-mail content. [optional]  # noqa: E501
-            options (dict): E-mail configuration. [optional]  # noqa: E501
+            content (EmailContent): [optional]  # noqa: E501
+            options (Options): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

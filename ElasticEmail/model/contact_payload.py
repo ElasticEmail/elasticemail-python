@@ -32,7 +32,9 @@ from ElasticEmail.exceptions import ApiAttributeError
 
 def lazy_import():
     from ElasticEmail.model.consent_data import ConsentData
+    from ElasticEmail.model.contact_status import ContactStatus
     globals()['ConsentData'] = ConsentData
+    globals()['ContactStatus'] = ContactStatus
 
 
 class ContactPayload(ModelNormal):
@@ -89,7 +91,7 @@ class ContactPayload(ModelNormal):
         lazy_import()
         return {
             'email': (str,),  # noqa: E501
-            'status': (dict,),  # noqa: E501
+            'status': (ContactStatus,),  # noqa: E501
             'first_name': (str,),  # noqa: E501
             'last_name': (str,),  # noqa: E501
             'custom_fields': ({str: (str,)},),  # noqa: E501
@@ -154,7 +156,7 @@ class ContactPayload(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            status (dict): Status of the given resource. [optional]  # noqa: E501
+            status (ContactStatus): [optional]  # noqa: E501
             first_name (str): First name.. [optional]  # noqa: E501
             last_name (str): Last name.. [optional]  # noqa: E501
             custom_fields ({str: (str,)}): A key-value collection of custom contact fields which can be used in the system. Only already existing custom fields will be saved.. [optional]  # noqa: E501
@@ -244,7 +246,7 @@ class ContactPayload(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            status (dict): Status of the given resource. [optional]  # noqa: E501
+            status (ContactStatus): [optional]  # noqa: E501
             first_name (str): First name.. [optional]  # noqa: E501
             last_name (str): Last name.. [optional]  # noqa: E501
             custom_fields ({str: (str,)}): A key-value collection of custom contact fields which can be used in the system. Only already existing custom fields will be saved.. [optional]  # noqa: E501

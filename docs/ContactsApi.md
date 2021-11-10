@@ -26,6 +26,7 @@ Deletes the provided contact. Required Access Level: ModifyContacts
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -84,6 +85,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -100,6 +102,7 @@ Load detailed contact information for specified email. Required Access Level: Vi
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -160,6 +163,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -176,6 +180,7 @@ Returns detailed history of specified Contact. Required Access Level: ViewContac
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -249,6 +254,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -265,6 +271,7 @@ Update selected contact. Omitted contact's fields will not be changed. Required 
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -334,6 +341,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -350,6 +358,7 @@ Deletes provided contacts in bulk. Required Access Level: ModifyContacts
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -414,6 +423,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -430,6 +440,7 @@ Check the current status of the export. Required Access Level: Export
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -490,6 +501,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -506,10 +518,13 @@ Request an Export of specified Contacts. Required Access Level: Export
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
 from ElasticEmail.api import contacts_api
+from ElasticEmail.model.export_file_formats import ExportFileFormats
+from ElasticEmail.model.compression_format import CompressionFormat
 from ElasticEmail.model.export_link import ExportLink
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
@@ -533,12 +548,12 @@ configuration.api_key['apikey'] = 'YOUR_API_KEY'
 with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = contacts_api.ContactsApi(api_client)
-    file_format =  # dict | Format of the exported file (optional)
+    file_format = ExportFileFormats("Csv") # ExportFileFormats | Format of the exported file (optional)
     rule = "Status%20=%20Engaged" # str | Query used for filtering. (optional)
     emails = [
         "mail@contact.com,mail1@contact.com,mail2@contact.com",
     ] # [str] | Comma delimited list of contact emails (optional)
-    compression_format =  # dict | FileResponse compression format. None or Zip. (optional)
+    compression_format = CompressionFormat("None") # CompressionFormat | FileResponse compression format. None or Zip. (optional)
     file_name = "filename.txt" # str | Name of your file including extension. (optional)
 
     # example passing only required values which don't have defaults set
@@ -556,10 +571,10 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **file_format** | **dict**| Format of the exported file | [optional]
+ **file_format** | **ExportFileFormats**| Format of the exported file | [optional]
  **rule** | **str**| Query used for filtering. | [optional]
  **emails** | **[str]**| Comma delimited list of contact emails | [optional]
- **compression_format** | **dict**| FileResponse compression format. None or Zip. | [optional]
+ **compression_format** | **CompressionFormat**| FileResponse compression format. None or Zip. | [optional]
  **file_name** | **str**| Name of your file including extension. | [optional]
 
 ### Return type
@@ -577,6 +592,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Accepted |  -  |
@@ -593,6 +609,7 @@ Returns a list of contacts. Required Access Level: ViewContacts
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -656,6 +673,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -672,6 +690,7 @@ Upload contacts from a file. Required Access Level: ModifyContacts
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -735,6 +754,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Accepted |  -  |
@@ -751,6 +771,7 @@ Add new Contacts to your Lists. Up to 1000 can be added (for more please refer t
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -782,7 +803,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     contact_payload = [
         ContactPayload(
             email="mail@example.com",
-            status=,
+            status=ContactStatus("Transactional"),
             first_name="Fred",
             last_name="Flintstone",
             custom_fields={
@@ -791,7 +812,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
             consent=ConsentData(
                 consent_ip="192.168.0.1",
                 consent_date=dateutil_parser('1970-01-01T00:00:00.00Z'),
-                consent_tracking=,
+                consent_tracking=ConsentTracking("Unknown"),
             ),
         ),
     ] # [ContactPayload] | 
@@ -840,6 +861,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

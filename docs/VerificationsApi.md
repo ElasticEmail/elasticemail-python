@@ -26,6 +26,7 @@ Delete a result with given email if exists. Required Access Level: VerifyEmails
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -84,6 +85,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -100,6 +102,7 @@ Returns a result of verified email. Required Access Level: ViewEmailVerification
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -160,6 +163,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -176,6 +180,7 @@ Verify single email address and returns result of verification. Required Access 
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -236,6 +241,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -252,6 +258,7 @@ Delete Verification Results if they exist. Required Access Level: VerifyEmails
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -310,6 +317,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -326,6 +334,7 @@ Download verification results as a ZIP file. Required Access Level: VerifyEmails
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -385,6 +394,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A ZIP file with verification details |  -  |
@@ -401,6 +411,7 @@ Returns status and results (if verified) of file with given ID. Required Access 
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -474,6 +485,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -490,6 +502,7 @@ Start a verification of the previously uploaded file with emails. Required Acces
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -548,6 +561,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -564,6 +578,7 @@ Uploads a CSV file with list of emails that can then be triggered for verificati
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -625,6 +640,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -641,6 +657,7 @@ Returns a list of uploaded files, their statuses and results. Required Access Le
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -697,6 +714,7 @@ This endpoint does not need any parameter.
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -713,6 +731,7 @@ Returns a results of all verified single emails. Required Access Level: ViewEmai
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -776,6 +795,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

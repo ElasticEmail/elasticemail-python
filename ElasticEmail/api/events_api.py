@@ -22,7 +22,10 @@ from ElasticEmail.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from ElasticEmail.model.compression_format import CompressionFormat
 from ElasticEmail.model.event_type import EventType
+from ElasticEmail.model.events_order_by import EventsOrderBy
+from ElasticEmail.model.export_file_formats import ExportFileFormats
 from ElasticEmail.model.export_link import ExportLink
 from ElasticEmail.model.export_status import ExportStatus
 from ElasticEmail.model.recipient_event import RecipientEvent
@@ -39,79 +42,7 @@ class EventsApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-
-        def __events_by_transactionid_get(
-            self,
-            transactionid,
-            **kwargs
-        ):
-            """Load Email Events  # noqa: E501
-
-            Returns a log of delivery events for the specific transaction ID. Required Access Level: ViewReports  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.events_by_transactionid_get(transactionid, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                transactionid (str): ID number of transaction
-
-            Keyword Args:
-                _from (datetime, none_type): Starting date for search in YYYY-MM-DDThh:mm:ss format.. [optional]
-                to (datetime, none_type): Ending date for search in YYYY-MM-DDThh:mm:ss format.. [optional]
-                order_by (dict): [optional]
-                limit (int): Maximum number of returned items.. [optional]
-                offset (int): How many items should be returned ahead.. [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [RecipientEvent]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['transactionid'] = \
-                transactionid
-            return self.call_with_http_info(**kwargs)
-
-        self.events_by_transactionid_get = _Endpoint(
+        self.events_by_transactionid_get_endpoint = _Endpoint(
             settings={
                 'response_type': ([RecipientEvent],),
                 'auth': [
@@ -156,7 +87,7 @@ class EventsApi(object):
                     'to':
                         (datetime, none_type,),
                     'order_by':
-                        (dict,),
+                        (EventsOrderBy,),
                     'limit':
                         (int,),
                     'offset':
@@ -187,83 +118,9 @@ class EventsApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__events_by_transactionid_get
+            api_client=api_client
         )
-
-        def __events_channels_by_name_export_post(
-            self,
-            name,
-            **kwargs
-        ):
-            """Export Channel Events  # noqa: E501
-
-            Export delivery events log information to the specified file format. Required Access Level: Export  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.events_channels_by_name_export_post(name, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                name (str): Name of selected channel.
-
-            Keyword Args:
-                event_types ([EventType]): Types of Events to return. [optional]
-                _from (datetime, none_type): Starting date for search in YYYY-MM-DDThh:mm:ss format.. [optional]
-                to (datetime, none_type): Ending date for search in YYYY-MM-DDThh:mm:ss format.. [optional]
-                file_format (dict): Format of the exported file. [optional]
-                compression_format (dict): FileResponse compression format. None or Zip.. [optional]
-                file_name (str): Name of your file including extension.. [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                ExportLink
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['name'] = \
-                name
-            return self.call_with_http_info(**kwargs)
-
-        self.events_channels_by_name_export_post = _Endpoint(
+        self.events_channels_by_name_export_post_endpoint = _Endpoint(
             settings={
                 'response_type': (ExportLink,),
                 'auth': [
@@ -311,9 +168,9 @@ class EventsApi(object):
                     'to':
                         (datetime, none_type,),
                     'file_format':
-                        (dict,),
+                        (ExportFileFormats,),
                     'compression_format':
-                        (dict,),
+                        (CompressionFormat,),
                     'file_name':
                         (str,),
                 },
@@ -345,83 +202,9 @@ class EventsApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__events_channels_by_name_export_post
+            api_client=api_client
         )
-
-        def __events_channels_by_name_get(
-            self,
-            name,
-            **kwargs
-        ):
-            """Load Channel Events  # noqa: E501
-
-            Returns a log of delivery events filtered by specified parameters. Required Access Level: ViewReports  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.events_channels_by_name_get(name, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                name (str): Name of selected channel.
-
-            Keyword Args:
-                event_types ([EventType]): Types of Events to return. [optional]
-                _from (datetime, none_type): Starting date for search in YYYY-MM-DDThh:mm:ss format.. [optional]
-                to (datetime, none_type): Ending date for search in YYYY-MM-DDThh:mm:ss format.. [optional]
-                order_by (dict): [optional]
-                limit (int): How many items to load. Maximum for this request is 1000 items. [optional]
-                offset (int): How many items should be returned ahead.. [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [RecipientEvent]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['name'] = \
-                name
-            return self.call_with_http_info(**kwargs)
-
-        self.events_channels_by_name_get = _Endpoint(
+        self.events_channels_by_name_get_endpoint = _Endpoint(
             settings={
                 'response_type': ([RecipientEvent],),
                 'auth': [
@@ -469,7 +252,7 @@ class EventsApi(object):
                     'to':
                         (datetime, none_type,),
                     'order_by':
-                        (dict,),
+                        (EventsOrderBy,),
                     'limit':
                         (int,),
                     'offset':
@@ -503,77 +286,9 @@ class EventsApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__events_channels_by_name_get
+            api_client=api_client
         )
-
-        def __events_channels_export_by_id_status_get(
-            self,
-            id,
-            **kwargs
-        ):
-            """Check Channel Export Status  # noqa: E501
-
-            Check the current status of the channel export. Required Access Level: Export  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.events_channels_export_by_id_status_get(id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                id (str): ID of the exported file
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                ExportStatus
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['id'] = \
-                id
-            return self.call_with_http_info(**kwargs)
-
-        self.events_channels_export_by_id_status_get = _Endpoint(
+        self.events_channels_export_by_id_status_get_endpoint = _Endpoint(
             settings={
                 'response_type': (ExportStatus,),
                 'auth': [
@@ -622,77 +337,9 @@ class EventsApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__events_channels_export_by_id_status_get
+            api_client=api_client
         )
-
-        def __events_export_by_id_status_get(
-            self,
-            id,
-            **kwargs
-        ):
-            """Check Export Status  # noqa: E501
-
-            Check the current status of the export. Required Access Level: Export  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.events_export_by_id_status_get(id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                id (str): ID of the exported file
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                ExportStatus
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['id'] = \
-                id
-            return self.call_with_http_info(**kwargs)
-
-        self.events_export_by_id_status_get = _Endpoint(
+        self.events_export_by_id_status_get_endpoint = _Endpoint(
             settings={
                 'response_type': (ExportStatus,),
                 'auth': [
@@ -741,78 +388,9 @@ class EventsApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__events_export_by_id_status_get
+            api_client=api_client
         )
-
-        def __events_export_post(
-            self,
-            **kwargs
-        ):
-            """Export Events  # noqa: E501
-
-            Export delivery events log information to the specified file format. Required Access Level: Export  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.events_export_post(async_req=True)
-            >>> result = thread.get()
-
-
-            Keyword Args:
-                event_types ([EventType]): Types of Events to return. [optional]
-                _from (datetime, none_type): Starting date for search in YYYY-MM-DDThh:mm:ss format.. [optional]
-                to (datetime, none_type): Ending date for search in YYYY-MM-DDThh:mm:ss format.. [optional]
-                file_format (dict): Format of the exported file. [optional]
-                compression_format (dict): FileResponse compression format. None or Zip.. [optional]
-                file_name (str): Name of your file including extension.. [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                ExportLink
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            return self.call_with_http_info(**kwargs)
-
-        self.events_export_post = _Endpoint(
+        self.events_export_post_endpoint = _Endpoint(
             settings={
                 'response_type': (ExportLink,),
                 'auth': [
@@ -855,9 +433,9 @@ class EventsApi(object):
                     'to':
                         (datetime, none_type,),
                     'file_format':
-                        (dict,),
+                        (ExportFileFormats,),
                     'compression_format':
-                        (dict,),
+                        (CompressionFormat,),
                     'file_name':
                         (str,),
                 },
@@ -887,78 +465,9 @@ class EventsApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__events_export_post
+            api_client=api_client
         )
-
-        def __events_get(
-            self,
-            **kwargs
-        ):
-            """Load Events  # noqa: E501
-
-            Returns a log of delivery events filtered by specified parameters. Required Access Level: ViewReports  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.events_get(async_req=True)
-            >>> result = thread.get()
-
-
-            Keyword Args:
-                event_types ([EventType]): Types of Events to return. [optional]
-                _from (datetime, none_type): Starting date for search in YYYY-MM-DDThh:mm:ss format.. [optional]
-                to (datetime, none_type): Ending date for search in YYYY-MM-DDThh:mm:ss format.. [optional]
-                order_by (dict): [optional]
-                limit (int): How many items to load. Maximum for this request is 1000 items. [optional]
-                offset (int): How many items should be returned ahead.. [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [RecipientEvent]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            return self.call_with_http_info(**kwargs)
-
-        self.events_get = _Endpoint(
+        self.events_get_endpoint = _Endpoint(
             settings={
                 'response_type': ([RecipientEvent],),
                 'auth': [
@@ -1001,7 +510,7 @@ class EventsApi(object):
                     'to':
                         (datetime, none_type,),
                     'order_by':
-                        (dict,),
+                        (EventsOrderBy,),
                     'limit':
                         (int,),
                     'offset':
@@ -1033,6 +542,487 @@ class EventsApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__events_get
+            api_client=api_client
         )
+
+    def events_by_transactionid_get(
+        self,
+        transactionid,
+        **kwargs
+    ):
+        """Load Email Events  # noqa: E501
+
+        Returns a log of delivery events for the specific transaction ID. Required Access Level: ViewReports  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.events_by_transactionid_get(transactionid, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            transactionid (str): ID number of transaction
+
+        Keyword Args:
+            _from (datetime, none_type): Starting date for search in YYYY-MM-DDThh:mm:ss format.. [optional]
+            to (datetime, none_type): Ending date for search in YYYY-MM-DDThh:mm:ss format.. [optional]
+            order_by (EventsOrderBy): [optional]
+            limit (int): Maximum number of returned items.. [optional]
+            offset (int): How many items should be returned ahead.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [RecipientEvent]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['transactionid'] = \
+            transactionid
+        return self.events_by_transactionid_get_endpoint.call_with_http_info(**kwargs)
+
+    def events_channels_by_name_export_post(
+        self,
+        name,
+        **kwargs
+    ):
+        """Export Channel Events  # noqa: E501
+
+        Export delivery events log information to the specified file format. Required Access Level: Export  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.events_channels_by_name_export_post(name, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            name (str): Name of selected channel.
+
+        Keyword Args:
+            event_types ([EventType]): Types of Events to return. [optional]
+            _from (datetime, none_type): Starting date for search in YYYY-MM-DDThh:mm:ss format.. [optional]
+            to (datetime, none_type): Ending date for search in YYYY-MM-DDThh:mm:ss format.. [optional]
+            file_format (ExportFileFormats): Format of the exported file. [optional]
+            compression_format (CompressionFormat): FileResponse compression format. None or Zip.. [optional]
+            file_name (str): Name of your file including extension.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ExportLink
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['name'] = \
+            name
+        return self.events_channels_by_name_export_post_endpoint.call_with_http_info(**kwargs)
+
+    def events_channels_by_name_get(
+        self,
+        name,
+        **kwargs
+    ):
+        """Load Channel Events  # noqa: E501
+
+        Returns a log of delivery events filtered by specified parameters. Required Access Level: ViewReports  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.events_channels_by_name_get(name, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            name (str): Name of selected channel.
+
+        Keyword Args:
+            event_types ([EventType]): Types of Events to return. [optional]
+            _from (datetime, none_type): Starting date for search in YYYY-MM-DDThh:mm:ss format.. [optional]
+            to (datetime, none_type): Ending date for search in YYYY-MM-DDThh:mm:ss format.. [optional]
+            order_by (EventsOrderBy): [optional]
+            limit (int): How many items to load. Maximum for this request is 1000 items. [optional]
+            offset (int): How many items should be returned ahead.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [RecipientEvent]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['name'] = \
+            name
+        return self.events_channels_by_name_get_endpoint.call_with_http_info(**kwargs)
+
+    def events_channels_export_by_id_status_get(
+        self,
+        id,
+        **kwargs
+    ):
+        """Check Channel Export Status  # noqa: E501
+
+        Check the current status of the channel export. Required Access Level: Export  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.events_channels_export_by_id_status_get(id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            id (str): ID of the exported file
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ExportStatus
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['id'] = \
+            id
+        return self.events_channels_export_by_id_status_get_endpoint.call_with_http_info(**kwargs)
+
+    def events_export_by_id_status_get(
+        self,
+        id,
+        **kwargs
+    ):
+        """Check Export Status  # noqa: E501
+
+        Check the current status of the export. Required Access Level: Export  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.events_export_by_id_status_get(id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            id (str): ID of the exported file
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ExportStatus
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['id'] = \
+            id
+        return self.events_export_by_id_status_get_endpoint.call_with_http_info(**kwargs)
+
+    def events_export_post(
+        self,
+        **kwargs
+    ):
+        """Export Events  # noqa: E501
+
+        Export delivery events log information to the specified file format. Required Access Level: Export  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.events_export_post(async_req=True)
+        >>> result = thread.get()
+
+
+        Keyword Args:
+            event_types ([EventType]): Types of Events to return. [optional]
+            _from (datetime, none_type): Starting date for search in YYYY-MM-DDThh:mm:ss format.. [optional]
+            to (datetime, none_type): Ending date for search in YYYY-MM-DDThh:mm:ss format.. [optional]
+            file_format (ExportFileFormats): Format of the exported file. [optional]
+            compression_format (CompressionFormat): FileResponse compression format. None or Zip.. [optional]
+            file_name (str): Name of your file including extension.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ExportLink
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        return self.events_export_post_endpoint.call_with_http_info(**kwargs)
+
+    def events_get(
+        self,
+        **kwargs
+    ):
+        """Load Events  # noqa: E501
+
+        Returns a log of delivery events filtered by specified parameters. Required Access Level: ViewReports  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.events_get(async_req=True)
+        >>> result = thread.get()
+
+
+        Keyword Args:
+            event_types ([EventType]): Types of Events to return. [optional]
+            _from (datetime, none_type): Starting date for search in YYYY-MM-DDThh:mm:ss format.. [optional]
+            to (datetime, none_type): Ending date for search in YYYY-MM-DDThh:mm:ss format.. [optional]
+            order_by (EventsOrderBy): [optional]
+            limit (int): How many items to load. Maximum for this request is 1000 items. [optional]
+            offset (int): How many items should be returned ahead.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [RecipientEvent]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        return self.events_get_endpoint.call_with_http_info(**kwargs)
+

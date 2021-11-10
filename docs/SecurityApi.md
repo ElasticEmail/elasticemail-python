@@ -26,6 +26,7 @@ Delete your existing ApiKey. Required Access Level: Security
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -94,6 +95,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -110,6 +112,7 @@ Load your existing ApiKey info. Required Access Level: Security
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -181,6 +184,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -197,6 +201,7 @@ Update your existing ApiKey. Required Access Level: Security
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -270,6 +275,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -286,6 +292,7 @@ List all your existing ApiKeys. Required Access Level: Security
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -347,6 +354,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -363,6 +371,7 @@ Add a new ApiKey. Required Access Level: Security
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -434,6 +443,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Created |  -  |
@@ -450,6 +460,7 @@ Delete your existing SMTP Credentials. Required Access Level: Security
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -518,6 +529,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -534,6 +546,7 @@ Load your existing SMTP Credential info. Required Access Level: Security
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -605,6 +618,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -621,6 +635,7 @@ Update your existing SMTP Credentials. Required Access Level: Security
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -691,6 +706,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -707,6 +723,7 @@ List all your existing SMTP Credentials. Required Access Level: Security
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -768,6 +785,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -784,6 +802,7 @@ Add new SMTP Credential. Required Access Level: Security
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -852,6 +871,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Created |  -  |

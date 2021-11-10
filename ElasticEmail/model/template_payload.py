@@ -32,7 +32,9 @@ from ElasticEmail.exceptions import ApiAttributeError
 
 def lazy_import():
     from ElasticEmail.model.body_part import BodyPart
+    from ElasticEmail.model.template_scope import TemplateScope
     globals()['BodyPart'] = BodyPart
+    globals()['TemplateScope'] = TemplateScope
 
 
 class TemplatePayload(ModelNormal):
@@ -91,7 +93,7 @@ class TemplatePayload(ModelNormal):
             'name': (str,),  # noqa: E501
             'subject': (str,),  # noqa: E501
             'body': ([BodyPart],),  # noqa: E501
-            'template_scope': (dict,),  # noqa: E501
+            'template_scope': (TemplateScope,),  # noqa: E501
         }
 
     @cached_property
@@ -152,7 +154,7 @@ class TemplatePayload(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             subject (str): Default subject of email.. [optional]  # noqa: E501
             body ([BodyPart]): Email content of this template. [optional]  # noqa: E501
-            template_scope (dict): Visibility of a template. [optional]  # noqa: E501
+            template_scope (TemplateScope): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -240,7 +242,7 @@ class TemplatePayload(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             subject (str): Default subject of email.. [optional]  # noqa: E501
             body ([BodyPart]): Email content of this template. [optional]  # noqa: E501
-            template_scope (dict): Visibility of a template. [optional]  # noqa: E501
+            template_scope (TemplateScope): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

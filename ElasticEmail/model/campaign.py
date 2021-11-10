@@ -31,7 +31,13 @@ from ElasticEmail.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from ElasticEmail.model.campaign_options import CampaignOptions
+    from ElasticEmail.model.campaign_recipient import CampaignRecipient
+    from ElasticEmail.model.campaign_status import CampaignStatus
     from ElasticEmail.model.campaign_template import CampaignTemplate
+    globals()['CampaignOptions'] = CampaignOptions
+    globals()['CampaignRecipient'] = CampaignRecipient
+    globals()['CampaignStatus'] = CampaignStatus
     globals()['CampaignTemplate'] = CampaignTemplate
 
 
@@ -89,10 +95,10 @@ class Campaign(ModelNormal):
         lazy_import()
         return {
             'name': (str,),  # noqa: E501
-            'recipients': (dict,),  # noqa: E501
+            'recipients': (CampaignRecipient,),  # noqa: E501
             'content': ([CampaignTemplate],),  # noqa: E501
-            'status': (dict,),  # noqa: E501
-            'options': (dict,),  # noqa: E501
+            'status': (CampaignStatus,),  # noqa: E501
+            'options': (CampaignOptions,),  # noqa: E501
         }
 
     @cached_property
@@ -120,7 +126,7 @@ class Campaign(ModelNormal):
 
         Args:
             name (str): Campaign name
-            recipients (dict): Recipients this campaign should be sent to
+            recipients (CampaignRecipient):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -154,8 +160,8 @@ class Campaign(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             content ([CampaignTemplate]): Campaign's email content. Provide multiple items to send an A/X Split Campaign. [optional]  # noqa: E501
-            status (dict): Campaign status. [optional]  # noqa: E501
-            options (dict): Campaign sending options. [optional]  # noqa: E501
+            status (CampaignStatus): [optional]  # noqa: E501
+            options (CampaignOptions): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -210,7 +216,7 @@ class Campaign(ModelNormal):
 
         Args:
             name (str): Campaign name
-            recipients (dict): Recipients this campaign should be sent to
+            recipients (CampaignRecipient):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -244,8 +250,8 @@ class Campaign(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             content ([CampaignTemplate]): Campaign's email content. Provide multiple items to send an A/X Split Campaign. [optional]  # noqa: E501
-            status (dict): Campaign status. [optional]  # noqa: E501
-            options (dict): Campaign sending options. [optional]  # noqa: E501
+            status (CampaignStatus): [optional]  # noqa: E501
+            options (CampaignOptions): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

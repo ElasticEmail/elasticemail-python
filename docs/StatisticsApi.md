@@ -21,6 +21,7 @@ Retrieve stats of an existing campaign. Required Access Level: ViewChannels
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -81,6 +82,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -97,6 +99,7 @@ Returns a list of your Campaigns' stats. Required Access Level: ViewChannels
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -160,6 +163,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -176,6 +180,7 @@ Retrieve an existing channel stats. Required Access Level: ViewChannels
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -236,6 +241,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -252,6 +258,7 @@ Returns a list of your Channels' stats. Required Access Level: ViewChannels
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -315,6 +322,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -331,6 +339,7 @@ Returns basic statistics. Required Access Level: ViewReports
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -402,6 +411,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

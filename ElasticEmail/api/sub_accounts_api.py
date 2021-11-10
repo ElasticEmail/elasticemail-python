@@ -39,78 +39,7 @@ class SubAccountsApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-
-        def __subaccounts_by_email_credits_patch(
-            self,
-            email,
-            subaccount_email_credits_payload,
-            **kwargs
-        ):
-            """Add, Subtract Email Credits  # noqa: E501
-
-            Update email credits of a subaccount by the given amount. Required Access Level: ModifySubAccounts  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.subaccounts_by_email_credits_patch(email, subaccount_email_credits_payload, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                email (str): Email address of Sub-Account
-                subaccount_email_credits_payload (SubaccountEmailCreditsPayload): Amount of email credits to add or subtract from the current SubAccount email credits pool (positive or negative value)
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                None
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['email'] = \
-                email
-            kwargs['subaccount_email_credits_payload'] = \
-                subaccount_email_credits_payload
-            return self.call_with_http_info(**kwargs)
-
-        self.subaccounts_by_email_credits_patch = _Endpoint(
+        self.subaccounts_by_email_credits_patch_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -164,77 +93,9 @@ class SubAccountsApi(object):
                     'application/json'
                 ]
             },
-            api_client=api_client,
-            callable=__subaccounts_by_email_credits_patch
+            api_client=api_client
         )
-
-        def __subaccounts_by_email_delete(
-            self,
-            email,
-            **kwargs
-        ):
-            """Delete SubAccount  # noqa: E501
-
-            Deletes specified SubAccount. An email will be sent to confirm this change. Required Access Level: ModifySubAccounts  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.subaccounts_by_email_delete(email, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                email (str): Email address of Sub-Account
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                None
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['email'] = \
-                email
-            return self.call_with_http_info(**kwargs)
-
-        self.subaccounts_by_email_delete = _Endpoint(
+        self.subaccounts_by_email_delete_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -281,77 +142,9 @@ class SubAccountsApi(object):
                 'accept': [],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__subaccounts_by_email_delete
+            api_client=api_client
         )
-
-        def __subaccounts_by_email_get(
-            self,
-            email,
-            **kwargs
-        ):
-            """Load SubAccount  # noqa: E501
-
-            Returns details for the specified SubAccount. Required Access Level: ViewSubAccounts  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.subaccounts_by_email_get(email, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                email (str): Email address of Sub-Account
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                SubAccountInfo
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['email'] = \
-                email
-            return self.call_with_http_info(**kwargs)
-
-        self.subaccounts_by_email_get = _Endpoint(
+        self.subaccounts_by_email_get_endpoint = _Endpoint(
             settings={
                 'response_type': (SubAccountInfo,),
                 'auth': [
@@ -400,81 +193,9 @@ class SubAccountsApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__subaccounts_by_email_get
+            api_client=api_client
         )
-
-        def __subaccounts_by_email_settings_email_put(
-            self,
-            email,
-            subaccount_email_settings,
-            **kwargs
-        ):
-            """Update SubAccount Email Settings  # noqa: E501
-
-            Update SubAccount email settings. Required Access Level: ModifySubAccounts  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.subaccounts_by_email_settings_email_put(email, subaccount_email_settings, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                email (str):
-                subaccount_email_settings (SubaccountEmailSettings): Updated Email Settings
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                SubaccountEmailSettings
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['email'] = \
-                email
-            kwargs['subaccount_email_settings'] = \
-                subaccount_email_settings
-            return self.call_with_http_info(**kwargs)
-
-        self.subaccounts_by_email_settings_email_put = _Endpoint(
+        self.subaccounts_by_email_settings_email_put_endpoint = _Endpoint(
             settings={
                 'response_type': (SubaccountEmailSettings,),
                 'auth': [
@@ -530,74 +251,9 @@ class SubAccountsApi(object):
                     'application/json'
                 ]
             },
-            api_client=api_client,
-            callable=__subaccounts_by_email_settings_email_put
+            api_client=api_client
         )
-
-        def __subaccounts_get(
-            self,
-            **kwargs
-        ):
-            """Load SubAccounts  # noqa: E501
-
-            Returns a list of all your SubAccounts. Required Access Level: ViewSubAccounts  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.subaccounts_get(async_req=True)
-            >>> result = thread.get()
-
-
-            Keyword Args:
-                limit (int): Maximum number of returned items.. [optional]
-                offset (int): How many items should be returned ahead.. [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                [SubAccountInfo]
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            return self.call_with_http_info(**kwargs)
-
-        self.subaccounts_get = _Endpoint(
+        self.subaccounts_get_endpoint = _Endpoint(
             settings={
                 'response_type': ([SubAccountInfo],),
                 'auth': [
@@ -649,77 +305,9 @@ class SubAccountsApi(object):
                 ],
                 'content_type': [],
             },
-            api_client=api_client,
-            callable=__subaccounts_get
+            api_client=api_client
         )
-
-        def __subaccounts_post(
-            self,
-            subaccount_payload,
-            **kwargs
-        ):
-            """Add SubAccount  # noqa: E501
-
-            Add a new SubAccount to your Account. To receive an access token for this SubAccount, make a POST security/apikeys request using the 'subaccount' parameter. Required Access Level: ModifySubAccounts  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.subaccounts_post(subaccount_payload, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                subaccount_payload (SubaccountPayload):
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (int/float/tuple): timeout setting for this request. If
-                    one number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                SubAccountInfo
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['subaccount_payload'] = \
-                subaccount_payload
-            return self.call_with_http_info(**kwargs)
-
-        self.subaccounts_post = _Endpoint(
+        self.subaccounts_post_endpoint = _Endpoint(
             settings={
                 'response_type': (SubAccountInfo,),
                 'auth': [
@@ -769,6 +357,407 @@ class SubAccountsApi(object):
                     'application/json'
                 ]
             },
-            api_client=api_client,
-            callable=__subaccounts_post
+            api_client=api_client
         )
+
+    def subaccounts_by_email_credits_patch(
+        self,
+        email,
+        subaccount_email_credits_payload,
+        **kwargs
+    ):
+        """Add, Subtract Email Credits  # noqa: E501
+
+        Update email credits of a subaccount by the given amount. Required Access Level: ModifySubAccounts  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.subaccounts_by_email_credits_patch(email, subaccount_email_credits_payload, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            email (str): Email address of Sub-Account
+            subaccount_email_credits_payload (SubaccountEmailCreditsPayload): Amount of email credits to add or subtract from the current SubAccount email credits pool (positive or negative value)
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['email'] = \
+            email
+        kwargs['subaccount_email_credits_payload'] = \
+            subaccount_email_credits_payload
+        return self.subaccounts_by_email_credits_patch_endpoint.call_with_http_info(**kwargs)
+
+    def subaccounts_by_email_delete(
+        self,
+        email,
+        **kwargs
+    ):
+        """Delete SubAccount  # noqa: E501
+
+        Deletes specified SubAccount. An email will be sent to confirm this change. Required Access Level: ModifySubAccounts  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.subaccounts_by_email_delete(email, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            email (str): Email address of Sub-Account
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['email'] = \
+            email
+        return self.subaccounts_by_email_delete_endpoint.call_with_http_info(**kwargs)
+
+    def subaccounts_by_email_get(
+        self,
+        email,
+        **kwargs
+    ):
+        """Load SubAccount  # noqa: E501
+
+        Returns details for the specified SubAccount. Required Access Level: ViewSubAccounts  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.subaccounts_by_email_get(email, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            email (str): Email address of Sub-Account
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            SubAccountInfo
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['email'] = \
+            email
+        return self.subaccounts_by_email_get_endpoint.call_with_http_info(**kwargs)
+
+    def subaccounts_by_email_settings_email_put(
+        self,
+        email,
+        subaccount_email_settings,
+        **kwargs
+    ):
+        """Update SubAccount Email Settings  # noqa: E501
+
+        Update SubAccount email settings. Required Access Level: ModifySubAccounts  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.subaccounts_by_email_settings_email_put(email, subaccount_email_settings, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            email (str):
+            subaccount_email_settings (SubaccountEmailSettings): Updated Email Settings
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            SubaccountEmailSettings
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['email'] = \
+            email
+        kwargs['subaccount_email_settings'] = \
+            subaccount_email_settings
+        return self.subaccounts_by_email_settings_email_put_endpoint.call_with_http_info(**kwargs)
+
+    def subaccounts_get(
+        self,
+        **kwargs
+    ):
+        """Load SubAccounts  # noqa: E501
+
+        Returns a list of all your SubAccounts. Required Access Level: ViewSubAccounts  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.subaccounts_get(async_req=True)
+        >>> result = thread.get()
+
+
+        Keyword Args:
+            limit (int): Maximum number of returned items.. [optional]
+            offset (int): How many items should be returned ahead.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            [SubAccountInfo]
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        return self.subaccounts_get_endpoint.call_with_http_info(**kwargs)
+
+    def subaccounts_post(
+        self,
+        subaccount_payload,
+        **kwargs
+    ):
+        """Add SubAccount  # noqa: E501
+
+        Add a new SubAccount to your Account. To receive an access token for this SubAccount, make a POST security/apikeys request using the 'subaccount' parameter. Required Access Level: ModifySubAccounts  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.subaccounts_post(subaccount_payload, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            subaccount_payload (SubaccountPayload):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            SubAccountInfo
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['subaccount_payload'] = \
+            subaccount_payload
+        return self.subaccounts_post_endpoint.call_with_http_info(**kwargs)
+

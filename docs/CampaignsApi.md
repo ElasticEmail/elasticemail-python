@@ -21,6 +21,7 @@ Delete the specific campaign.  This does not cancel in progress email, see Cance
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -79,6 +80,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -95,6 +97,7 @@ Returns the specified campaign details. Required Access Level: ViewCampaigns
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -155,6 +158,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -171,6 +175,7 @@ Updates a previously added campaign.  Only Active and Paused campaigns can be up
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -210,13 +215,34 @@ with ElasticEmail.ApiClient(configuration) as api_client:
                 attach_files=[
                     "[ "preuploaded.jpg" ]",
                 ],
-                utm=,
+                utm=Utm(
+                    source="source_example",
+                    medium="medium_example",
+                    campaign="campaign_example",
+                    content="content_example",
+                ),
             ),
         ],
         name="name_example",
-        status=,
-        recipients=,
-        options=,
+        status=CampaignStatus("Deleted"),
+        recipients=CampaignRecipient(
+            list_names=[
+                "list_names_example",
+            ],
+            segment_names=[
+                "segment_names_example",
+            ],
+        ),
+        options=CampaignOptions(
+            delivery_optimization=DeliveryOptimizationType("None"),
+            track_opens=True,
+            track_clicks=True,
+            schedule_for=dateutil_parser('1970-01-01T00:00:00.00Z'),
+            split_options=SplitOptions(
+                optimize_for=SplitOptimizationType("Opens"),
+                optimize_period_minutes=30,
+            ),
+        ),
     ) # Campaign | JSON representation of a campaign
 
     # example passing only required values which don't have defaults set
@@ -251,6 +277,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -267,6 +294,7 @@ Returns a list all of your campaigns. Limited to 1000 results. Required Access L
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -332,6 +360,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -348,6 +377,7 @@ Add a campaign for processing. Required Access Level: ModifyCampaigns
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -386,13 +416,34 @@ with ElasticEmail.ApiClient(configuration) as api_client:
                 attach_files=[
                     "[ "preuploaded.jpg" ]",
                 ],
-                utm=,
+                utm=Utm(
+                    source="source_example",
+                    medium="medium_example",
+                    campaign="campaign_example",
+                    content="content_example",
+                ),
             ),
         ],
         name="name_example",
-        status=,
-        recipients=,
-        options=,
+        status=CampaignStatus("Deleted"),
+        recipients=CampaignRecipient(
+            list_names=[
+                "list_names_example",
+            ],
+            segment_names=[
+                "segment_names_example",
+            ],
+        ),
+        options=CampaignOptions(
+            delivery_optimization=DeliveryOptimizationType("None"),
+            track_opens=True,
+            track_clicks=True,
+            schedule_for=dateutil_parser('1970-01-01T00:00:00.00Z'),
+            split_options=SplitOptions(
+                optimize_for=SplitOptimizationType("Opens"),
+                optimize_period_minutes=30,
+            ),
+        ),
     ) # Campaign | JSON representation of a campaign
 
     # example passing only required values which don't have defaults set
@@ -426,6 +477,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Created |  -  |

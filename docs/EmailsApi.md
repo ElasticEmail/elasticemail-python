@@ -20,6 +20,7 @@ Returns email details for viewing or rendering. Required Access Level: None
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -80,6 +81,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -96,6 +98,7 @@ Send bulk merge email. Required Access Level: SendHttp
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -125,9 +128,56 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = emails_api.EmailsApi(api_client)
     merge_email_payload = MergeEmailPayload(
-        merge_file=,
-        content=,
-        options=,
+        merge_file=MessageAttachment(
+            binary_content='YQ==',
+            name="name_example",
+            content_type="content_type_example",
+        ),
+        content=EmailContent(
+            body=[
+                BodyPart(
+                    content_type=BodyContentType("HTML"),
+                    content="content_example",
+                    charset="charset_example",
+                ),
+            ],
+            merge={
+                "key": "key_example",
+            },
+            attachments=[
+                MessageAttachment(
+                    binary_content='YQ==',
+                    name="name_example",
+                    content_type="content_type_example",
+                ),
+            ],
+            headers={
+                "key": "key_example",
+            },
+            postback="postback_example",
+            envelope_from="John Doe <email@domain.com>",
+            _from="John Doe <email@domain.com>",
+            reply_to="John Doe <email@domain.com>",
+            subject="Hello!",
+            template_name="Template01",
+            attach_files=[
+                "[ "preuploaded.jpg" ]",
+            ],
+            utm=Utm(
+                source="source_example",
+                medium="medium_example",
+                campaign="campaign_example",
+                content="content_example",
+            ),
+        ),
+        options=Options(
+            time_offset=1,
+            pool_name="My Custom Pool",
+            channel_name="Channel01",
+            encoding=EncodingType("UserProvided"),
+            track_opens=True,
+            track_clicks=True,
+        ),
     ) # MergeEmailPayload | Email data
 
     # example passing only required values which don't have defaults set
@@ -161,6 +211,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -177,6 +228,7 @@ Send bulk merge email. Required Access Level: SendHttp
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -214,8 +266,51 @@ with ElasticEmail.ApiClient(configuration) as api_client:
                 },
             ),
         ],
-        content=,
-        options=,
+        content=EmailContent(
+            body=[
+                BodyPart(
+                    content_type=BodyContentType("HTML"),
+                    content="content_example",
+                    charset="charset_example",
+                ),
+            ],
+            merge={
+                "key": "key_example",
+            },
+            attachments=[
+                MessageAttachment(
+                    binary_content='YQ==',
+                    name="name_example",
+                    content_type="content_type_example",
+                ),
+            ],
+            headers={
+                "key": "key_example",
+            },
+            postback="postback_example",
+            envelope_from="John Doe <email@domain.com>",
+            _from="John Doe <email@domain.com>",
+            reply_to="John Doe <email@domain.com>",
+            subject="Hello!",
+            template_name="Template01",
+            attach_files=[
+                "[ "preuploaded.jpg" ]",
+            ],
+            utm=Utm(
+                source="source_example",
+                medium="medium_example",
+                campaign="campaign_example",
+                content="content_example",
+            ),
+        ),
+        options=Options(
+            time_offset=1,
+            pool_name="My Custom Pool",
+            channel_name="Channel01",
+            encoding=EncodingType("UserProvided"),
+            track_opens=True,
+            track_clicks=True,
+        ),
     ) # EmailMessageData | Email data
 
     # example passing only required values which don't have defaults set
@@ -249,6 +344,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -265,6 +361,7 @@ Send transactional emails (recipients will be known to each other). Required Acc
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -294,9 +391,62 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = emails_api.EmailsApi(api_client)
     email_transactional_message_data = EmailTransactionalMessageData(
-        recipients=,
-        content=,
-        options=,
+        recipients=TransactionalRecipient(
+            to=[
+                "to_example",
+            ],
+            cc=[
+                "cc_example",
+            ],
+            bcc=[
+                "bcc_example",
+            ],
+        ),
+        content=EmailContent(
+            body=[
+                BodyPart(
+                    content_type=BodyContentType("HTML"),
+                    content="content_example",
+                    charset="charset_example",
+                ),
+            ],
+            merge={
+                "key": "key_example",
+            },
+            attachments=[
+                MessageAttachment(
+                    binary_content='YQ==',
+                    name="name_example",
+                    content_type="content_type_example",
+                ),
+            ],
+            headers={
+                "key": "key_example",
+            },
+            postback="postback_example",
+            envelope_from="John Doe <email@domain.com>",
+            _from="John Doe <email@domain.com>",
+            reply_to="John Doe <email@domain.com>",
+            subject="Hello!",
+            template_name="Template01",
+            attach_files=[
+                "[ "preuploaded.jpg" ]",
+            ],
+            utm=Utm(
+                source="source_example",
+                medium="medium_example",
+                campaign="campaign_example",
+                content="content_example",
+            ),
+        ),
+        options=Options(
+            time_offset=1,
+            pool_name="My Custom Pool",
+            channel_name="Channel01",
+            encoding=EncodingType("UserProvided"),
+            track_opens=True,
+            track_clicks=True,
+        ),
     ) # EmailTransactionalMessageData | Email data
 
     # example passing only required values which don't have defaults set
@@ -330,6 +480,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

@@ -32,7 +32,13 @@ from ElasticEmail.exceptions import ApiAttributeError
 
 def lazy_import():
     from ElasticEmail.model.consent_data import ConsentData
+    from ElasticEmail.model.contact_activity import ContactActivity
+    from ElasticEmail.model.contact_source import ContactSource
+    from ElasticEmail.model.contact_status import ContactStatus
     globals()['ConsentData'] = ConsentData
+    globals()['ContactActivity'] = ContactActivity
+    globals()['ContactSource'] = ContactSource
+    globals()['ContactStatus'] = ContactStatus
 
 
 class Contact(ModelNormal):
@@ -89,16 +95,16 @@ class Contact(ModelNormal):
         lazy_import()
         return {
             'email': (str,),  # noqa: E501
-            'status': (dict,),  # noqa: E501
+            'status': (ContactStatus,),  # noqa: E501
             'first_name': (str,),  # noqa: E501
             'last_name': (str,),  # noqa: E501
             'custom_fields': ({str: (str,)},),  # noqa: E501
             'consent': (ConsentData,),  # noqa: E501
-            'source': (dict,),  # noqa: E501
+            'source': (ContactSource,),  # noqa: E501
             'date_added': (datetime,),  # noqa: E501
             'date_updated': (datetime, none_type,),  # noqa: E501
             'status_change_date': (datetime, none_type,),  # noqa: E501
-            'activity': (dict,),  # noqa: E501
+            'activity': (ContactActivity,),  # noqa: E501
         }
 
     @cached_property
@@ -162,16 +168,16 @@ class Contact(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             email (str): Proper email address.. [optional]  # noqa: E501
-            status (dict): Status of the given resource. [optional]  # noqa: E501
+            status (ContactStatus): [optional]  # noqa: E501
             first_name (str): First name.. [optional]  # noqa: E501
             last_name (str): Last name.. [optional]  # noqa: E501
             custom_fields ({str: (str,)}): A key-value collection of custom contact fields which can be used in the system.. [optional]  # noqa: E501
             consent (ConsentData): [optional]  # noqa: E501
-            source (dict): From where was this contact added. [optional]  # noqa: E501
+            source (ContactSource): [optional]  # noqa: E501
             date_added (datetime): Date of creation in YYYY-MM-DDThh:ii:ss format. [optional]  # noqa: E501
             date_updated (datetime, none_type): Last change date. [optional]  # noqa: E501
             status_change_date (datetime, none_type): Date of last status change.. [optional]  # noqa: E501
-            activity (dict): Contact's email statistics and activity. [optional]  # noqa: E501
+            activity (ContactActivity): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -254,16 +260,16 @@ class Contact(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             email (str): Proper email address.. [optional]  # noqa: E501
-            status (dict): Status of the given resource. [optional]  # noqa: E501
+            status (ContactStatus): [optional]  # noqa: E501
             first_name (str): First name.. [optional]  # noqa: E501
             last_name (str): Last name.. [optional]  # noqa: E501
             custom_fields ({str: (str,)}): A key-value collection of custom contact fields which can be used in the system.. [optional]  # noqa: E501
             consent (ConsentData): [optional]  # noqa: E501
-            source (dict): From where was this contact added. [optional]  # noqa: E501
+            source (ContactSource): [optional]  # noqa: E501
             date_added (datetime): Date of creation in YYYY-MM-DDThh:ii:ss format. [optional]  # noqa: E501
             date_updated (datetime, none_type): Last change date. [optional]  # noqa: E501
             status_change_date (datetime, none_type): Date of last status change.. [optional]  # noqa: E501
-            activity (dict): Contact's email statistics and activity. [optional]  # noqa: E501
+            activity (ContactActivity): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**event_type** | **dict** | Type of event occured on this Contact. | [optional] 
+**event_type** | [**ContactHistEventType**](ContactHistEventType.md) |  | [optional] 
 **event_date** | **datetime** | Formatted date of event. | [optional] 
 **channel_name** | **str** | Name of channel this event occured on | [optional] 
 **template_name** | **str** | Name of template this event occured on | [optional] 

@@ -6,7 +6,7 @@ Newly generated SMTP Credentials with Token
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **token** | **str** | Unique token to be used in the system | [optional] 
-**access_level** | **dict** | Access level of this Smtp Credential. | [optional] 
+**access_level** | [**AccessLevel**](AccessLevel.md) |  | [optional] 
 **name** | **str** | Name of the key. | [optional] 
 **date_created** | **datetime** | Date this SmtpCredential was created. | [optional] 
 **last_use** | **datetime, none_type** | Date this SmtpCredential was last used. | [optional] 

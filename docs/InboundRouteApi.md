@@ -22,6 +22,7 @@ Deletes the Inbound Route. Required Access Level: ModifySettings
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -80,6 +81,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -96,6 +98,7 @@ Load an Inbound Route. Required Access Level: ViewSettings
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -156,6 +159,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -172,6 +176,7 @@ Update the Inbound Route. Required Access Level: ModifySettings
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -204,8 +209,8 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     inbound_payload = InboundPayload(
         filter="filter_example",
         name="name_example",
-        filter_type=,
-        action_type=,
+        filter_type=InboundRouteFilterType("EmailAddress"),
+        action_type=InboundRouteActionType("ForwardToEmail"),
         email_address="email_address_example",
         http_address="http_address_example",
     ) # InboundPayload | 
@@ -242,6 +247,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -258,6 +264,7 @@ Get all your Inbound Routes. Required Access Level: ViewSettings
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -314,6 +321,7 @@ This endpoint does not need any parameter.
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -330,6 +338,7 @@ Required Access Level: ViewSettings
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -396,6 +405,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -412,6 +422,7 @@ Create new Inbound Route. Required Access Level: ModifySettings
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -443,8 +454,8 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     inbound_payload = InboundPayload(
         filter="filter_example",
         name="name_example",
-        filter_type=,
-        action_type=,
+        filter_type=InboundRouteFilterType("EmailAddress"),
+        action_type=InboundRouteActionType("ForwardToEmail"),
         email_address="email_address_example",
         http_address="http_address_example",
     ) # InboundPayload | 
@@ -480,6 +491,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

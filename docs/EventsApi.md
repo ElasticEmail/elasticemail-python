@@ -23,11 +23,13 @@ Returns a log of delivery events for the specific transaction ID. Required Acces
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
 from ElasticEmail.api import events_api
 from ElasticEmail.model.recipient_event import RecipientEvent
+from ElasticEmail.model.events_order_by import EventsOrderBy
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
 # See configuration.py for a list of all supported configuration parameters.
@@ -53,7 +55,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     transactionid = "TransactionID" # str | ID number of transaction
     _from = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
     to = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    order_by =  # dict |  (optional)
+    order_by = EventsOrderBy("DateDescending") # EventsOrderBy |  (optional)
     limit = 100 # int | Maximum number of returned items. (optional)
     offset = 20 # int | How many items should be returned ahead. (optional)
 
@@ -83,7 +85,7 @@ Name | Type | Description  | Notes
  **transactionid** | **str**| ID number of transaction |
  **_from** | **datetime, none_type**| Starting date for search in YYYY-MM-DDThh:mm:ss format. | [optional]
  **to** | **datetime, none_type**| Ending date for search in YYYY-MM-DDThh:mm:ss format. | [optional]
- **order_by** | **dict**|  | [optional]
+ **order_by** | **EventsOrderBy**|  | [optional]
  **limit** | **int**| Maximum number of returned items. | [optional]
  **offset** | **int**| How many items should be returned ahead. | [optional]
 
@@ -102,6 +104,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -118,10 +121,13 @@ Export delivery events log information to the specified file format. Required Ac
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
 from ElasticEmail.api import events_api
+from ElasticEmail.model.export_file_formats import ExportFileFormats
+from ElasticEmail.model.compression_format import CompressionFormat
 from ElasticEmail.model.export_link import ExportLink
 from ElasticEmail.model.event_type import EventType
 from pprint import pprint
@@ -152,8 +158,8 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     ] # [EventType] | Types of Events to return (optional)
     _from = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
     to = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    file_format =  # dict | Format of the exported file (optional)
-    compression_format =  # dict | FileResponse compression format. None or Zip. (optional)
+    file_format = ExportFileFormats("Csv") # ExportFileFormats | Format of the exported file (optional)
+    compression_format = CompressionFormat("None") # CompressionFormat | FileResponse compression format. None or Zip. (optional)
     file_name = "filename.txt" # str | Name of your file including extension. (optional)
 
     # example passing only required values which don't have defaults set
@@ -183,8 +189,8 @@ Name | Type | Description  | Notes
  **event_types** | [**[EventType]**](EventType.md)| Types of Events to return | [optional]
  **_from** | **datetime, none_type**| Starting date for search in YYYY-MM-DDThh:mm:ss format. | [optional]
  **to** | **datetime, none_type**| Ending date for search in YYYY-MM-DDThh:mm:ss format. | [optional]
- **file_format** | **dict**| Format of the exported file | [optional]
- **compression_format** | **dict**| FileResponse compression format. None or Zip. | [optional]
+ **file_format** | **ExportFileFormats**| Format of the exported file | [optional]
+ **compression_format** | **CompressionFormat**| FileResponse compression format. None or Zip. | [optional]
  **file_name** | **str**| Name of your file including extension. | [optional]
 
 ### Return type
@@ -202,6 +208,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Accepted |  -  |
@@ -218,11 +225,13 @@ Returns a log of delivery events filtered by specified parameters. Required Acce
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
 from ElasticEmail.api import events_api
 from ElasticEmail.model.recipient_event import RecipientEvent
+from ElasticEmail.model.events_order_by import EventsOrderBy
 from ElasticEmail.model.event_type import EventType
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
@@ -252,7 +261,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     ] # [EventType] | Types of Events to return (optional)
     _from = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
     to = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    order_by =  # dict |  (optional)
+    order_by = EventsOrderBy("DateDescending") # EventsOrderBy |  (optional)
     limit = 1 # int | How many items to load. Maximum for this request is 1000 items (optional)
     offset = 20 # int | How many items should be returned ahead. (optional)
 
@@ -283,7 +292,7 @@ Name | Type | Description  | Notes
  **event_types** | [**[EventType]**](EventType.md)| Types of Events to return | [optional]
  **_from** | **datetime, none_type**| Starting date for search in YYYY-MM-DDThh:mm:ss format. | [optional]
  **to** | **datetime, none_type**| Ending date for search in YYYY-MM-DDThh:mm:ss format. | [optional]
- **order_by** | **dict**|  | [optional]
+ **order_by** | **EventsOrderBy**|  | [optional]
  **limit** | **int**| How many items to load. Maximum for this request is 1000 items | [optional]
  **offset** | **int**| How many items should be returned ahead. | [optional]
 
@@ -302,6 +311,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -318,6 +328,7 @@ Check the current status of the channel export. Required Access Level: Export
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -378,6 +389,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -394,6 +406,7 @@ Check the current status of the export. Required Access Level: Export
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -454,6 +467,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -470,10 +484,13 @@ Export delivery events log information to the specified file format. Required Ac
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
 from ElasticEmail.api import events_api
+from ElasticEmail.model.export_file_formats import ExportFileFormats
+from ElasticEmail.model.compression_format import CompressionFormat
 from ElasticEmail.model.export_link import ExportLink
 from ElasticEmail.model.event_type import EventType
 from pprint import pprint
@@ -503,8 +520,8 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     ] # [EventType] | Types of Events to return (optional)
     _from = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
     to = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    file_format =  # dict | Format of the exported file (optional)
-    compression_format =  # dict | FileResponse compression format. None or Zip. (optional)
+    file_format = ExportFileFormats("Csv") # ExportFileFormats | Format of the exported file (optional)
+    compression_format = CompressionFormat("None") # CompressionFormat | FileResponse compression format. None or Zip. (optional)
     file_name = "filename.txt" # str | Name of your file including extension. (optional)
 
     # example passing only required values which don't have defaults set
@@ -525,8 +542,8 @@ Name | Type | Description  | Notes
  **event_types** | [**[EventType]**](EventType.md)| Types of Events to return | [optional]
  **_from** | **datetime, none_type**| Starting date for search in YYYY-MM-DDThh:mm:ss format. | [optional]
  **to** | **datetime, none_type**| Ending date for search in YYYY-MM-DDThh:mm:ss format. | [optional]
- **file_format** | **dict**| Format of the exported file | [optional]
- **compression_format** | **dict**| FileResponse compression format. None or Zip. | [optional]
+ **file_format** | **ExportFileFormats**| Format of the exported file | [optional]
+ **compression_format** | **CompressionFormat**| FileResponse compression format. None or Zip. | [optional]
  **file_name** | **str**| Name of your file including extension. | [optional]
 
 ### Return type
@@ -544,6 +561,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Accepted |  -  |
@@ -560,11 +578,13 @@ Returns a log of delivery events filtered by specified parameters. Required Acce
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
 from ElasticEmail.api import events_api
 from ElasticEmail.model.recipient_event import RecipientEvent
+from ElasticEmail.model.events_order_by import EventsOrderBy
 from ElasticEmail.model.event_type import EventType
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
@@ -593,7 +613,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     ] # [EventType] | Types of Events to return (optional)
     _from = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
     to = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime, none_type | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    order_by =  # dict |  (optional)
+    order_by = EventsOrderBy("DateDescending") # EventsOrderBy |  (optional)
     limit = 1 # int | How many items to load. Maximum for this request is 1000 items (optional)
     offset = 20 # int | How many items should be returned ahead. (optional)
 
@@ -615,7 +635,7 @@ Name | Type | Description  | Notes
  **event_types** | [**[EventType]**](EventType.md)| Types of Events to return | [optional]
  **_from** | **datetime, none_type**| Starting date for search in YYYY-MM-DDThh:mm:ss format. | [optional]
  **to** | **datetime, none_type**| Ending date for search in YYYY-MM-DDThh:mm:ss format. | [optional]
- **order_by** | **dict**|  | [optional]
+ **order_by** | **EventsOrderBy**|  | [optional]
  **limit** | **int**| How many items to load. Maximum for this request is 1000 items | [optional]
  **offset** | **int**| How many items should be returned ahead. | [optional]
 
@@ -634,6 +654,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

@@ -31,7 +31,11 @@ from ElasticEmail.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from ElasticEmail.model.email_status import EmailStatus
+    from ElasticEmail.model.email_view import EmailView
     from ElasticEmail.model.file_info import FileInfo
+    globals()['EmailStatus'] = EmailStatus
+    globals()['EmailView'] = EmailView
     globals()['FileInfo'] = FileInfo
 
 
@@ -88,9 +92,9 @@ class EmailData(ModelNormal):
         """
         lazy_import()
         return {
-            'preview': (dict,),  # noqa: E501
+            'preview': (EmailView,),  # noqa: E501
             'attachments': ([FileInfo],),  # noqa: E501
-            'status': (dict,),  # noqa: E501
+            'status': (EmailStatus,),  # noqa: E501
         }
 
     @cached_property
@@ -145,9 +149,9 @@ class EmailData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            preview (dict): Email details. [optional]  # noqa: E501
+            preview (EmailView): [optional]  # noqa: E501
             attachments ([FileInfo]): Attachments sent with the email. [optional]  # noqa: E501
-            status (dict): Status of the given resource. [optional]  # noqa: E501
+            status (EmailStatus): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -229,9 +233,9 @@ class EmailData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            preview (dict): Email details. [optional]  # noqa: E501
+            preview (EmailView): [optional]  # noqa: E501
             attachments ([FileInfo]): Attachments sent with the email. [optional]  # noqa: E501
-            status (dict): Status of the given resource. [optional]  # noqa: E501
+            status (EmailStatus): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -32,7 +32,11 @@ from ElasticEmail.exceptions import ApiAttributeError
 
 def lazy_import():
     from ElasticEmail.model.email_validation_result import EmailValidationResult
+    from ElasticEmail.model.file_upload_result import FileUploadResult
+    from ElasticEmail.model.verification_status import VerificationStatus
     globals()['EmailValidationResult'] = EmailValidationResult
+    globals()['FileUploadResult'] = FileUploadResult
+    globals()['VerificationStatus'] = VerificationStatus
 
 
 class VerificationFileResultDetails(ModelNormal):
@@ -91,8 +95,8 @@ class VerificationFileResultDetails(ModelNormal):
             'verification_result': ([EmailValidationResult],),  # noqa: E501
             'verification_id': (str,),  # noqa: E501
             'filename': (str,),  # noqa: E501
-            'verification_status': (dict,),  # noqa: E501
-            'file_upload_result': (dict,),  # noqa: E501
+            'verification_status': (VerificationStatus,),  # noqa: E501
+            'file_upload_result': (FileUploadResult,),  # noqa: E501
             'date_added': (datetime,),  # noqa: E501
             'source': (str,),  # noqa: E501
         }
@@ -156,8 +160,8 @@ class VerificationFileResultDetails(ModelNormal):
             verification_result ([EmailValidationResult]): Verification result's details. [optional]  # noqa: E501
             verification_id (str): Identifier of this verification result. [optional]  # noqa: E501
             filename (str): Origin file name. [optional]  # noqa: E501
-            verification_status (dict): In what state does this verification result currently is. [optional]  # noqa: E501
-            file_upload_result (dict): How many emails were detected in the file for verification. [optional]  # noqa: E501
+            verification_status (VerificationStatus): [optional]  # noqa: E501
+            file_upload_result (FileUploadResult): [optional]  # noqa: E501
             date_added (datetime): Date of creation in YYYY-MM-DDThh:ii:ss format. [optional]  # noqa: E501
             source (str): Origin file extension. [optional]  # noqa: E501
         """
@@ -244,8 +248,8 @@ class VerificationFileResultDetails(ModelNormal):
             verification_result ([EmailValidationResult]): Verification result's details. [optional]  # noqa: E501
             verification_id (str): Identifier of this verification result. [optional]  # noqa: E501
             filename (str): Origin file name. [optional]  # noqa: E501
-            verification_status (dict): In what state does this verification result currently is. [optional]  # noqa: E501
-            file_upload_result (dict): How many emails were detected in the file for verification. [optional]  # noqa: E501
+            verification_status (VerificationStatus): [optional]  # noqa: E501
+            file_upload_result (FileUploadResult): [optional]  # noqa: E501
             date_added (datetime): Date of creation in YYYY-MM-DDThh:ii:ss format. [optional]  # noqa: E501
             source (str): Origin file extension. [optional]  # noqa: E501
         """

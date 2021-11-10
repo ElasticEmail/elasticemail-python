@@ -22,6 +22,7 @@ Update email credits of a subaccount by the given amount. Required Access Level:
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -86,6 +87,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -102,6 +104,7 @@ Deletes specified SubAccount. An email will be sent to confirm this change. Requ
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -160,6 +163,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -176,6 +180,7 @@ Returns details for the specified SubAccount. Required Access Level: ViewSubAcco
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -236,6 +241,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -252,6 +258,7 @@ Update SubAccount email settings. Required Access Level: ModifySubAccounts
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -322,6 +329,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Created |  -  |
@@ -338,6 +346,7 @@ Returns a list of all your SubAccounts. Required Access Level: ViewSubAccounts
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -401,6 +410,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -417,6 +427,7 @@ Add a new SubAccount to your Account. To receive an access token for this SubAcc
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -449,7 +460,16 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         email="mail@example.com",
         password="********",
         send_activation=True,
-        settings=,
+        settings=SubaccountSettingsInfoPayload(
+            email=SubaccountEmailSettingsPayload(
+                requires_email_credits=True,
+                email_size_limit=10,
+                daily_send_limit=100000,
+                max_contacts=1,
+                enable_private_ip_purchase=True,
+                pool_name="My Custom Pool",
+            ),
+        ),
     ) # SubaccountPayload | 
 
     # example passing only required values which don't have defaults set
@@ -483,6 +503,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Created |  -  |

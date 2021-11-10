@@ -32,7 +32,11 @@ from ElasticEmail.exceptions import ApiAttributeError
 
 def lazy_import():
     from ElasticEmail.model.body_part import BodyPart
+    from ElasticEmail.model.template_scope import TemplateScope
+    from ElasticEmail.model.template_type import TemplateType
     globals()['BodyPart'] = BodyPart
+    globals()['TemplateScope'] = TemplateScope
+    globals()['TemplateType'] = TemplateType
 
 
 class Template(ModelNormal):
@@ -88,12 +92,12 @@ class Template(ModelNormal):
         """
         lazy_import()
         return {
-            'template_type': (dict,),  # noqa: E501
+            'template_type': (TemplateType,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'date_added': (datetime,),  # noqa: E501
             'subject': (str,),  # noqa: E501
             'body': ([BodyPart],),  # noqa: E501
-            'template_scope': (dict,),  # noqa: E501
+            'template_scope': (TemplateScope,),  # noqa: E501
         }
 
     @cached_property
@@ -151,12 +155,12 @@ class Template(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            template_type (dict): How the template should be edited. [optional]  # noqa: E501
+            template_type (TemplateType): [optional]  # noqa: E501
             name (str): Template name. [optional]  # noqa: E501
             date_added (datetime): Date of creation in YYYY-MM-DDThh:ii:ss format. [optional]  # noqa: E501
             subject (str): Default subject of email.. [optional]  # noqa: E501
             body ([BodyPart]): Email content of this template. [optional]  # noqa: E501
-            template_scope (dict): Visibility of a template. [optional]  # noqa: E501
+            template_scope (TemplateScope): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -238,12 +242,12 @@ class Template(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            template_type (dict): How the template should be edited. [optional]  # noqa: E501
+            template_type (TemplateType): [optional]  # noqa: E501
             name (str): Template name. [optional]  # noqa: E501
             date_added (datetime): Date of creation in YYYY-MM-DDThh:ii:ss format. [optional]  # noqa: E501
             subject (str): Default subject of email.. [optional]  # noqa: E501
             body ([BodyPart]): Email content of this template. [optional]  # noqa: E501
-            template_scope (dict): Visibility of a template. [optional]  # noqa: E501
+            template_scope (TemplateScope): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -21,6 +21,7 @@ Delete template with the specified name. Required Access Level: ModifyTemplates
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -79,6 +80,7 @@ void (empty response body)
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -86,7 +88,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **templates_by_name_get**
-> dict templates_by_name_get(name)
+> Template templates_by_name_get(name)
 
 Load Template
 
@@ -95,10 +97,12 @@ Load detailed information of the specified template. Required Access Level: View
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
 from ElasticEmail.api import templates_api
+from ElasticEmail.model.template import Template
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
 # See configuration.py for a list of all supported configuration parameters.
@@ -141,7 +145,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**dict**
+[**Template**](Template.md)
 
 ### Authorization
 
@@ -154,6 +158,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Serialized template |  -  |
@@ -170,6 +175,7 @@ Update existing template, overwriting existing data. Required Access Level: Modi
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -204,12 +210,12 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         subject="Hello!",
         body=[
             BodyPart(
-                content_type=,
+                content_type=BodyContentType("HTML"),
                 content="content_example",
                 charset="charset_example",
             ),
         ],
-        template_scope=,
+        template_scope=TemplateScope("Personal"),
     ) # TemplatePayload | 
 
     # example passing only required values which don't have defaults set
@@ -244,6 +250,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -260,6 +267,7 @@ Returns a list of templates for the specified type. Required Access Level: ViewT
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
@@ -341,6 +349,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -348,7 +357,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **templates_post**
-> dict templates_post(template_payload)
+> Template templates_post(template_payload)
 
 Add Template
 
@@ -357,10 +366,12 @@ Add a new Template. Required Access Level: ModifyTemplates
 ### Example
 
 * Api Key Authentication (apikey):
+
 ```python
 import time
 import ElasticEmail
 from ElasticEmail.api import templates_api
+from ElasticEmail.model.template import Template
 from ElasticEmail.model.template_payload import TemplatePayload
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
@@ -389,12 +400,12 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         subject="Hello!",
         body=[
             BodyPart(
-                content_type=,
+                content_type=BodyContentType("HTML"),
                 content="content_example",
                 charset="charset_example",
             ),
         ],
-        template_scope=,
+        template_scope=TemplateScope("Personal"),
     ) # TemplatePayload | 
 
     # example passing only required values which don't have defaults set
@@ -415,7 +426,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**dict**
+[**Template**](Template.md)
 
 ### Authorization
 
@@ -428,6 +439,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Template |  -  |

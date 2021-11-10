@@ -33,8 +33,10 @@ from ElasticEmail.exceptions import ApiAttributeError
 def lazy_import():
     from ElasticEmail.model.body_part import BodyPart
     from ElasticEmail.model.message_attachment import MessageAttachment
+    from ElasticEmail.model.utm import Utm
     globals()['BodyPart'] = BodyPart
     globals()['MessageAttachment'] = MessageAttachment
+    globals()['Utm'] = Utm
 
 
 class EmailContent(ModelNormal):
@@ -101,7 +103,7 @@ class EmailContent(ModelNormal):
             'subject': (str,),  # noqa: E501
             'template_name': (str,),  # noqa: E501
             'attach_files': ([str],),  # noqa: E501
-            'utm': (dict,),  # noqa: E501
+            'utm': (Utm,),  # noqa: E501
         }
 
     @cached_property
@@ -176,7 +178,7 @@ class EmailContent(ModelNormal):
             subject (str): Default subject of email.. [optional]  # noqa: E501
             template_name (str): Name of template.. [optional]  # noqa: E501
             attach_files ([str]): Names of previously uploaded files that should be sent as downloadable attachments. [optional]  # noqa: E501
-            utm (dict): Utm marketing data to be attached to every link in this e-mail.. [optional]  # noqa: E501
+            utm (Utm): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -269,7 +271,7 @@ class EmailContent(ModelNormal):
             subject (str): Default subject of email.. [optional]  # noqa: E501
             template_name (str): Name of template.. [optional]  # noqa: E501
             attach_files ([str]): Names of previously uploaded files that should be sent as downloadable attachments. [optional]  # noqa: E501
-            utm (dict): Utm marketing data to be attached to every link in this e-mail.. [optional]  # noqa: E501
+            utm (Utm): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
