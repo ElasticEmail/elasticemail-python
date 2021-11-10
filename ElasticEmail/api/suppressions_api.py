@@ -730,7 +730,7 @@ class SuppressionsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.suppressions_bounces_get_endpoint.call_with_http_info(**kwargs)
@@ -792,7 +792,7 @@ class SuppressionsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.suppressions_bounces_import_post_endpoint.call_with_http_info(**kwargs)
@@ -856,7 +856,7 @@ class SuppressionsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['request_body'] = \
@@ -922,7 +922,7 @@ class SuppressionsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['email'] = \
@@ -988,7 +988,7 @@ class SuppressionsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['email'] = \
@@ -1054,7 +1054,7 @@ class SuppressionsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.suppressions_complaints_get_endpoint.call_with_http_info(**kwargs)
@@ -1116,7 +1116,7 @@ class SuppressionsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.suppressions_complaints_import_post_endpoint.call_with_http_info(**kwargs)
@@ -1180,7 +1180,7 @@ class SuppressionsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['request_body'] = \
@@ -1245,7 +1245,7 @@ class SuppressionsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.suppressions_get_endpoint.call_with_http_info(**kwargs)
@@ -1309,7 +1309,7 @@ class SuppressionsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.suppressions_unsubscribes_get_endpoint.call_with_http_info(**kwargs)
@@ -1371,7 +1371,7 @@ class SuppressionsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.suppressions_unsubscribes_import_post_endpoint.call_with_http_info(**kwargs)
@@ -1435,7 +1435,7 @@ class SuppressionsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['request_body'] = \

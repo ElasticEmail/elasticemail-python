@@ -665,7 +665,7 @@ class ContactsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['email'] = \
@@ -731,7 +731,7 @@ class ContactsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['email'] = \
@@ -799,7 +799,7 @@ class ContactsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['email'] = \
@@ -867,7 +867,7 @@ class ContactsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['email'] = \
@@ -935,7 +935,7 @@ class ContactsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['emails_payload'] = \
@@ -1001,7 +1001,7 @@ class ContactsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['id'] = \
@@ -1069,7 +1069,7 @@ class ContactsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.contacts_export_post_endpoint.call_with_http_info(**kwargs)
@@ -1132,7 +1132,7 @@ class ContactsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.contacts_get_endpoint.call_with_http_info(**kwargs)
@@ -1196,7 +1196,7 @@ class ContactsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.contacts_import_post_endpoint.call_with_http_info(**kwargs)
@@ -1261,7 +1261,7 @@ class ContactsApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['contact_payload'] = \

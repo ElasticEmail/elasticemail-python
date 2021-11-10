@@ -11,7 +11,7 @@
 """
 
 
-__version__ = "4.0.17"
+__version__ = "4.0.18"
 
 # import ApiClient
 from ElasticEmail.api_client import ApiClient

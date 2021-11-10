@@ -377,7 +377,7 @@ class TemplatesApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['name'] = \
@@ -443,7 +443,7 @@ class TemplatesApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['name'] = \
@@ -511,7 +511,7 @@ class TemplatesApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['name'] = \
@@ -582,7 +582,7 @@ class TemplatesApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['scope_type'] = \
@@ -648,7 +648,7 @@ class TemplatesApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['template_payload'] = \

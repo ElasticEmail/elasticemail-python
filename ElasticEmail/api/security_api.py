@@ -640,7 +640,7 @@ class SecurityApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['name'] = \
@@ -707,7 +707,7 @@ class SecurityApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['name'] = \
@@ -775,7 +775,7 @@ class SecurityApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['name'] = \
@@ -841,7 +841,7 @@ class SecurityApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.security_apikeys_get_endpoint.call_with_http_info(**kwargs)
@@ -905,7 +905,7 @@ class SecurityApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['api_key_payload'] = \
@@ -972,7 +972,7 @@ class SecurityApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['name'] = \
@@ -1039,7 +1039,7 @@ class SecurityApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['name'] = \
@@ -1107,7 +1107,7 @@ class SecurityApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['name'] = \
@@ -1173,7 +1173,7 @@ class SecurityApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.security_smtp_get_endpoint.call_with_http_info(**kwargs)
@@ -1237,7 +1237,7 @@ class SecurityApi(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
+            '_check_return_type', False
         )
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['smtp_credentials_payload'] = \
