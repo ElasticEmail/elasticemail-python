@@ -295,6 +295,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         max_contacts=1,
         enable_private_ip_purchase=True,
         pool_name="My Custom Pool",
+        valid_sender_domain_only=True,
     ) # SubaccountEmailSettings | Updated Email Settings
 
     # example passing only required values which don't have defaults set
@@ -468,6 +469,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
                 max_contacts=1,
                 enable_private_ip_purchase=True,
                 pool_name="My Custom Pool",
+                valid_sender_domain_only=True,
             ),
         ),
     ) # SubaccountPayload | 

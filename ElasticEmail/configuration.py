@@ -200,6 +200,9 @@ conf = ElasticEmail.Configuration(
         self.proxy = None
         """Proxy URL
         """
+        self.no_proxy = None
+        """bypass proxy for host in the no_proxy list.
+        """
         self.proxy_headers = None
         """Proxy headers
         """
@@ -407,7 +410,7 @@ conf = ElasticEmail.Configuration(
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: 4.0.0\n"\
-               "SDK Package Version: 4.0.18".\
+               "SDK Package Version: 4.0.16".\
                format(env=sys.platform, pyversion=sys.version)
 
     def get_host_settings(self):

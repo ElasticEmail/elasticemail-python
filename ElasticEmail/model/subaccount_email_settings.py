@@ -25,8 +25,8 @@ from ElasticEmail.model_utils import (  # noqa: F401
     file_type,
     none_type,
     validate_get_composed_info,
+    OpenApiModel
 )
-from ..model_utils import OpenApiModel
 from ElasticEmail.exceptions import ApiAttributeError
 
 
@@ -89,6 +89,7 @@ class SubaccountEmailSettings(ModelNormal):
             'max_contacts': (int,),  # noqa: E501
             'enable_private_ip_purchase': (bool,),  # noqa: E501
             'pool_name': (str,),  # noqa: E501
+            'valid_sender_domain_only': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -104,6 +105,7 @@ class SubaccountEmailSettings(ModelNormal):
         'max_contacts': 'MaxContacts',  # noqa: E501
         'enable_private_ip_purchase': 'EnablePrivateIPPurchase',  # noqa: E501
         'pool_name': 'PoolName',  # noqa: E501
+        'valid_sender_domain_only': 'ValidSenderDomainOnly',  # noqa: E501
     }
 
     read_only_vars = {
@@ -154,6 +156,7 @@ class SubaccountEmailSettings(ModelNormal):
             max_contacts (int): Maximum number of contacts the Account can have. 0 means that parent account's limit is used.. [optional]  # noqa: E501
             enable_private_ip_purchase (bool): Can the SubAccount purchase Private IP for themselves. [optional]  # noqa: E501
             pool_name (str): Name of your custom IP Pool to be used in the sending process. [optional]  # noqa: E501
+            valid_sender_domain_only (bool, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', False)
@@ -242,6 +245,7 @@ class SubaccountEmailSettings(ModelNormal):
             max_contacts (int): Maximum number of contacts the Account can have. 0 means that parent account's limit is used.. [optional]  # noqa: E501
             enable_private_ip_purchase (bool): Can the SubAccount purchase Private IP for themselves. [optional]  # noqa: E501
             pool_name (str): Name of your custom IP Pool to be used in the sending process. [optional]  # noqa: E501
+            valid_sender_domain_only (bool, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', False)
