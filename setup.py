@@ -10,9 +10,10 @@
 
 
 from setuptools import setup, find_packages  # noqa: H301
+from os import path
 
 NAME = "ElasticEmail"
-VERSION = "4.0.16"
+VERSION = "4.0.17"
 # To install the library, run the following
 #
 # python setup.py install
@@ -25,11 +26,17 @@ REQUIRES = [
   "python-dateutil",
 ]
 
+here = path.abspath(path.dirname(__file__))
+
+# Get the long description from the README file
+with open(path.join(here, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
+
 setup(
     name=NAME,
     version=VERSION,
     description="Elastic Email REST API",
-    author="OpenAPI Generator community",
+    author="Elastic Email",
     author_email="support@elasticemail.com",
     url="",
     keywords=["OpenAPI", "OpenAPI-Generator", "Elastic Email REST API"],
@@ -38,7 +45,6 @@ setup(
     packages=find_packages(exclude=["test", "tests"]),
     include_package_data=True,
     license="MIT",
-    long_description="""\
-    This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://elasticemail.com/account#/settings/new/manage-api\&quot;&gt;here&lt;/a&gt;). Remember to keep it safe. Required access levels are listed in the given request’s description.    This is the documentation for REST API. If you’d like to read our legacy documentation regarding Web API v2 click &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://api.elasticemail.com/public/help\&quot;&gt;here&lt;/a&gt;.    Downloadable library clients can be found in our Github repository &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://github.com/ElasticEmail?tab&#x3D;repositories&amp;q&#x3D;%22rest+api%22+in%3Areadme\&quot;&gt;here&lt;/a&gt;  # noqa: E501
-    """
+    long_description=long_description,
+    long_description_content_type='text/markdown'
 )
