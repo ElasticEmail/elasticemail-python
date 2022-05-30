@@ -677,7 +677,7 @@ class SuppressionsApi(object):
     ):
         """Get Bounce List  # noqa: E501
 
-        Retrieve your list of bounced emails. Required Access Level: ViewContacts  # noqa: E501
+        Retrieve your list of bounced emails. Required Access Level: ViewContacts, ViewSuppressions  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -714,6 +714,10 @@ class SuppressionsApi(object):
             _host_index (int/None): specifies the index of the server
                 that we want to use.
                 Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
             async_req (bool): execute request asynchronously
 
         Returns:
@@ -745,6 +749,7 @@ class SuppressionsApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         return self.suppressions_bounces_get_endpoint.call_with_http_info(**kwargs)
 
     def suppressions_bounces_import_post(
@@ -753,7 +758,7 @@ class SuppressionsApi(object):
     ):
         """Add Bounces Async  # noqa: E501
 
-        Add Bounced. Required Access Level: ModifyContacts  # noqa: E501
+        Add Bounced. Required Access Level: ModifyContacts, ModifySuppressions  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -788,6 +793,10 @@ class SuppressionsApi(object):
             _host_index (int/None): specifies the index of the server
                 that we want to use.
                 Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
             async_req (bool): execute request asynchronously
 
         Returns:
@@ -819,6 +828,7 @@ class SuppressionsApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         return self.suppressions_bounces_import_post_endpoint.call_with_http_info(**kwargs)
 
     def suppressions_bounces_post(
@@ -828,7 +838,7 @@ class SuppressionsApi(object):
     ):
         """Add Bounces  # noqa: E501
 
-        Add Bounced. Required Access Level: ModifyContacts  # noqa: E501
+        Add Bounced. Required Access Level: ModifyContacts, ModifySuppressions  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -864,6 +874,10 @@ class SuppressionsApi(object):
             _host_index (int/None): specifies the index of the server
                 that we want to use.
                 Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
             async_req (bool): execute request asynchronously
 
         Returns:
@@ -895,6 +909,7 @@ class SuppressionsApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         kwargs['request_body'] = \
             request_body
         return self.suppressions_bounces_post_endpoint.call_with_http_info(**kwargs)
@@ -906,7 +921,7 @@ class SuppressionsApi(object):
     ):
         """Delete Suppression  # noqa: E501
 
-        Delete Suppression. Required Access Level: ViewContacts  # noqa: E501
+        Delete Suppression. Required Access Level: ViewContacts, ViewSuppressions  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -942,6 +957,10 @@ class SuppressionsApi(object):
             _host_index (int/None): specifies the index of the server
                 that we want to use.
                 Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
             async_req (bool): execute request asynchronously
 
         Returns:
@@ -973,6 +992,7 @@ class SuppressionsApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         kwargs['email'] = \
             email
         return self.suppressions_by_email_delete_endpoint.call_with_http_info(**kwargs)
@@ -984,7 +1004,7 @@ class SuppressionsApi(object):
     ):
         """Get Suppression  # noqa: E501
 
-        Retrieve your suppression. Required Access Level: ViewContacts  # noqa: E501
+        Retrieve your suppression. Required Access Level: ViewContacts, ViewSuppressions  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1020,6 +1040,10 @@ class SuppressionsApi(object):
             _host_index (int/None): specifies the index of the server
                 that we want to use.
                 Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
             async_req (bool): execute request asynchronously
 
         Returns:
@@ -1051,6 +1075,7 @@ class SuppressionsApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         kwargs['email'] = \
             email
         return self.suppressions_by_email_get_endpoint.call_with_http_info(**kwargs)
@@ -1061,7 +1086,7 @@ class SuppressionsApi(object):
     ):
         """Get Complaints List  # noqa: E501
 
-        Retrieve your list of complaints. Required Access Level: ViewContacts  # noqa: E501
+        Retrieve your list of complaints. Required Access Level: ViewContacts, ViewSuppressions  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1098,6 +1123,10 @@ class SuppressionsApi(object):
             _host_index (int/None): specifies the index of the server
                 that we want to use.
                 Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
             async_req (bool): execute request asynchronously
 
         Returns:
@@ -1129,6 +1158,7 @@ class SuppressionsApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         return self.suppressions_complaints_get_endpoint.call_with_http_info(**kwargs)
 
     def suppressions_complaints_import_post(
@@ -1137,7 +1167,7 @@ class SuppressionsApi(object):
     ):
         """Add Complaints Async  # noqa: E501
 
-        Add Complaints. Required Access Level: ModifyContacts  # noqa: E501
+        Add Complaints. Required Access Level: ModifyContacts, ModifySuppressions  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1172,6 +1202,10 @@ class SuppressionsApi(object):
             _host_index (int/None): specifies the index of the server
                 that we want to use.
                 Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
             async_req (bool): execute request asynchronously
 
         Returns:
@@ -1203,6 +1237,7 @@ class SuppressionsApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         return self.suppressions_complaints_import_post_endpoint.call_with_http_info(**kwargs)
 
     def suppressions_complaints_post(
@@ -1212,7 +1247,7 @@ class SuppressionsApi(object):
     ):
         """Add Complaints  # noqa: E501
 
-        Add Complaints. Required Access Level: ModifyContacts  # noqa: E501
+        Add Complaints. Required Access Level: ModifyContacts, ModifySuppressions  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1248,6 +1283,10 @@ class SuppressionsApi(object):
             _host_index (int/None): specifies the index of the server
                 that we want to use.
                 Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
             async_req (bool): execute request asynchronously
 
         Returns:
@@ -1279,6 +1318,7 @@ class SuppressionsApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         kwargs['request_body'] = \
             request_body
         return self.suppressions_complaints_post_endpoint.call_with_http_info(**kwargs)
@@ -1289,7 +1329,7 @@ class SuppressionsApi(object):
     ):
         """Get Suppressions  # noqa: E501
 
-        Retrieve your suppressions. Required Access Level: ViewContacts  # noqa: E501
+        Retrieve your suppressions. Required Access Level: ViewContacts, ViewSuppressions  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1325,6 +1365,10 @@ class SuppressionsApi(object):
             _host_index (int/None): specifies the index of the server
                 that we want to use.
                 Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
             async_req (bool): execute request asynchronously
 
         Returns:
@@ -1356,6 +1400,7 @@ class SuppressionsApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         return self.suppressions_get_endpoint.call_with_http_info(**kwargs)
 
     def suppressions_unsubscribes_get(
@@ -1364,7 +1409,7 @@ class SuppressionsApi(object):
     ):
         """Get Unsubscribes List  # noqa: E501
 
-        Retrieve your list of unsubscribes. Required Access Level: ViewContacts  # noqa: E501
+        Retrieve your list of unsubscribes. Required Access Level: ViewContacts, ViewSuppressions  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1401,6 +1446,10 @@ class SuppressionsApi(object):
             _host_index (int/None): specifies the index of the server
                 that we want to use.
                 Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
             async_req (bool): execute request asynchronously
 
         Returns:
@@ -1432,6 +1481,7 @@ class SuppressionsApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         return self.suppressions_unsubscribes_get_endpoint.call_with_http_info(**kwargs)
 
     def suppressions_unsubscribes_import_post(
@@ -1440,7 +1490,7 @@ class SuppressionsApi(object):
     ):
         """Add Unsubscribes Async  # noqa: E501
 
-        Add Unsubscribes. Required Access Level: ModifyContacts  # noqa: E501
+        Add Unsubscribes. Required Access Level: ModifyContacts, ModifySuppressions  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1475,6 +1525,10 @@ class SuppressionsApi(object):
             _host_index (int/None): specifies the index of the server
                 that we want to use.
                 Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
             async_req (bool): execute request asynchronously
 
         Returns:
@@ -1506,6 +1560,7 @@ class SuppressionsApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         return self.suppressions_unsubscribes_import_post_endpoint.call_with_http_info(**kwargs)
 
     def suppressions_unsubscribes_post(
@@ -1515,7 +1570,7 @@ class SuppressionsApi(object):
     ):
         """Add Unsubscribes  # noqa: E501
 
-        Add Unsubscribes. Required Access Level: ModifyContacts  # noqa: E501
+        Add Unsubscribes. Required Access Level: ModifyContacts, ModifySuppressions  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1551,6 +1606,10 @@ class SuppressionsApi(object):
             _host_index (int/None): specifies the index of the server
                 that we want to use.
                 Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
             async_req (bool): execute request asynchronously
 
         Returns:
@@ -1582,6 +1641,7 @@ class SuppressionsApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         kwargs['request_body'] = \
             request_body
         return self.suppressions_unsubscribes_post_endpoint.call_with_http_info(**kwargs)

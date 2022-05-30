@@ -100,6 +100,10 @@ class AccessLevel(ModelSimple):
             'VIEWMARKETING': "ViewMarketing",
             'VIEWEMAILAPI': "ViewEmailApi",
             'VIEWINBOUND': "ViewInbound",
+            'MODIFYLANDINGPAGES': "ModifyLandingPages",
+            'VIEWLANDINGPAGES': "ViewLandingPages",
+            'MODIFYSUPPRESSIONS': "ModifySuppressions",
+            'VIEWSUPPRESSIONS': "ViewSuppressions",
         },
     }
 
@@ -151,10 +155,10 @@ class AccessLevel(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): if omitted defaults to "None", must be one of ["None", "ViewAccount", "ViewContacts", "ViewForms", "ViewTemplates", "ViewCampaigns", "ViewChannels", "ViewAutomations", "ViewSurveys", "ViewSettings", "ViewBilling", "ViewSubAccounts", "ViewUsers", "ViewFiles", "ViewReports", "ModifyAccount", "ModifyContacts", "ModifyForms", "ModifyTemplates", "ModifyCampaigns", "ModifyChannels", "ModifyAutomations", "ModifySurveys", "ModifyFiles", "Export", "SendSmtp", "SendSMS", "ModifySettings", "ModifyBilling", "ModifyProfile", "ModifySubAccounts", "ModifyUsers", "Security", "ModifyLanguage", "ViewSupport", "SendHttp", "Modify2FA", "ModifySupport", "ViewCustomFields", "ModifyCustomFields", "ModifyWebNotifications", "ExtendedLogs", "VerifyEmails", "ViewEmailVerifications", "ViewMarketing", "ViewEmailApi", "ViewInbound", ]  # noqa: E501
+            args[0] (str): if omitted defaults to "None", must be one of ["None", "ViewAccount", "ViewContacts", "ViewForms", "ViewTemplates", "ViewCampaigns", "ViewChannels", "ViewAutomations", "ViewSurveys", "ViewSettings", "ViewBilling", "ViewSubAccounts", "ViewUsers", "ViewFiles", "ViewReports", "ModifyAccount", "ModifyContacts", "ModifyForms", "ModifyTemplates", "ModifyCampaigns", "ModifyChannels", "ModifyAutomations", "ModifySurveys", "ModifyFiles", "Export", "SendSmtp", "SendSMS", "ModifySettings", "ModifyBilling", "ModifyProfile", "ModifySubAccounts", "ModifyUsers", "Security", "ModifyLanguage", "ViewSupport", "SendHttp", "Modify2FA", "ModifySupport", "ViewCustomFields", "ModifyCustomFields", "ModifyWebNotifications", "ExtendedLogs", "VerifyEmails", "ViewEmailVerifications", "ViewMarketing", "ViewEmailApi", "ViewInbound", "ModifyLandingPages", "ViewLandingPages", "ModifySuppressions", "ViewSuppressions", ]  # noqa: E501
 
         Keyword Args:
-            value (str): if omitted defaults to "None", must be one of ["None", "ViewAccount", "ViewContacts", "ViewForms", "ViewTemplates", "ViewCampaigns", "ViewChannels", "ViewAutomations", "ViewSurveys", "ViewSettings", "ViewBilling", "ViewSubAccounts", "ViewUsers", "ViewFiles", "ViewReports", "ModifyAccount", "ModifyContacts", "ModifyForms", "ModifyTemplates", "ModifyCampaigns", "ModifyChannels", "ModifyAutomations", "ModifySurveys", "ModifyFiles", "Export", "SendSmtp", "SendSMS", "ModifySettings", "ModifyBilling", "ModifyProfile", "ModifySubAccounts", "ModifyUsers", "Security", "ModifyLanguage", "ViewSupport", "SendHttp", "Modify2FA", "ModifySupport", "ViewCustomFields", "ModifyCustomFields", "ModifyWebNotifications", "ExtendedLogs", "VerifyEmails", "ViewEmailVerifications", "ViewMarketing", "ViewEmailApi", "ViewInbound", ]  # noqa: E501
+            value (str): if omitted defaults to "None", must be one of ["None", "ViewAccount", "ViewContacts", "ViewForms", "ViewTemplates", "ViewCampaigns", "ViewChannels", "ViewAutomations", "ViewSurveys", "ViewSettings", "ViewBilling", "ViewSubAccounts", "ViewUsers", "ViewFiles", "ViewReports", "ModifyAccount", "ModifyContacts", "ModifyForms", "ModifyTemplates", "ModifyCampaigns", "ModifyChannels", "ModifyAutomations", "ModifySurveys", "ModifyFiles", "Export", "SendSmtp", "SendSMS", "ModifySettings", "ModifyBilling", "ModifyProfile", "ModifySubAccounts", "ModifyUsers", "Security", "ModifyLanguage", "ViewSupport", "SendHttp", "Modify2FA", "ModifySupport", "ViewCustomFields", "ModifyCustomFields", "ModifyWebNotifications", "ExtendedLogs", "VerifyEmails", "ViewEmailVerifications", "ViewMarketing", "ViewEmailApi", "ViewInbound", "ModifyLandingPages", "ViewLandingPages", "ModifySuppressions", "ViewSuppressions", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -203,14 +207,18 @@ class AccessLevel(ModelSimple):
         _visited_composed_classes = kwargs.pop('_visited_composed_classes', ())
 
         if args:
-            raise ApiTypeError(
-                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments." % (
-                    args,
-                    self.__class__.__name__,
-                ),
-                path_to_item=_path_to_item,
-                valid_classes=(self.__class__,),
-            )
+            for arg in args:
+                if isinstance(arg, dict):
+                    kwargs.update(arg)
+                else:
+                    raise ApiTypeError(
+                        "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments." % (
+                            args,
+                            self.__class__.__name__,
+                        ),
+                        path_to_item=_path_to_item,
+                        valid_classes=(self.__class__,),
+                    )
 
         self._data_store = {}
         self._check_type = _check_type
@@ -237,10 +245,10 @@ class AccessLevel(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): if omitted defaults to "None", must be one of ["None", "ViewAccount", "ViewContacts", "ViewForms", "ViewTemplates", "ViewCampaigns", "ViewChannels", "ViewAutomations", "ViewSurveys", "ViewSettings", "ViewBilling", "ViewSubAccounts", "ViewUsers", "ViewFiles", "ViewReports", "ModifyAccount", "ModifyContacts", "ModifyForms", "ModifyTemplates", "ModifyCampaigns", "ModifyChannels", "ModifyAutomations", "ModifySurveys", "ModifyFiles", "Export", "SendSmtp", "SendSMS", "ModifySettings", "ModifyBilling", "ModifyProfile", "ModifySubAccounts", "ModifyUsers", "Security", "ModifyLanguage", "ViewSupport", "SendHttp", "Modify2FA", "ModifySupport", "ViewCustomFields", "ModifyCustomFields", "ModifyWebNotifications", "ExtendedLogs", "VerifyEmails", "ViewEmailVerifications", "ViewMarketing", "ViewEmailApi", "ViewInbound", ]  # noqa: E501
+            args[0] (str): if omitted defaults to "None", must be one of ["None", "ViewAccount", "ViewContacts", "ViewForms", "ViewTemplates", "ViewCampaigns", "ViewChannels", "ViewAutomations", "ViewSurveys", "ViewSettings", "ViewBilling", "ViewSubAccounts", "ViewUsers", "ViewFiles", "ViewReports", "ModifyAccount", "ModifyContacts", "ModifyForms", "ModifyTemplates", "ModifyCampaigns", "ModifyChannels", "ModifyAutomations", "ModifySurveys", "ModifyFiles", "Export", "SendSmtp", "SendSMS", "ModifySettings", "ModifyBilling", "ModifyProfile", "ModifySubAccounts", "ModifyUsers", "Security", "ModifyLanguage", "ViewSupport", "SendHttp", "Modify2FA", "ModifySupport", "ViewCustomFields", "ModifyCustomFields", "ModifyWebNotifications", "ExtendedLogs", "VerifyEmails", "ViewEmailVerifications", "ViewMarketing", "ViewEmailApi", "ViewInbound", "ModifyLandingPages", "ViewLandingPages", "ModifySuppressions", "ViewSuppressions", ]  # noqa: E501
 
         Keyword Args:
-            value (str): if omitted defaults to "None", must be one of ["None", "ViewAccount", "ViewContacts", "ViewForms", "ViewTemplates", "ViewCampaigns", "ViewChannels", "ViewAutomations", "ViewSurveys", "ViewSettings", "ViewBilling", "ViewSubAccounts", "ViewUsers", "ViewFiles", "ViewReports", "ModifyAccount", "ModifyContacts", "ModifyForms", "ModifyTemplates", "ModifyCampaigns", "ModifyChannels", "ModifyAutomations", "ModifySurveys", "ModifyFiles", "Export", "SendSmtp", "SendSMS", "ModifySettings", "ModifyBilling", "ModifyProfile", "ModifySubAccounts", "ModifyUsers", "Security", "ModifyLanguage", "ViewSupport", "SendHttp", "Modify2FA", "ModifySupport", "ViewCustomFields", "ModifyCustomFields", "ModifyWebNotifications", "ExtendedLogs", "VerifyEmails", "ViewEmailVerifications", "ViewMarketing", "ViewEmailApi", "ViewInbound", ]  # noqa: E501
+            value (str): if omitted defaults to "None", must be one of ["None", "ViewAccount", "ViewContacts", "ViewForms", "ViewTemplates", "ViewCampaigns", "ViewChannels", "ViewAutomations", "ViewSurveys", "ViewSettings", "ViewBilling", "ViewSubAccounts", "ViewUsers", "ViewFiles", "ViewReports", "ModifyAccount", "ModifyContacts", "ModifyForms", "ModifyTemplates", "ModifyCampaigns", "ModifyChannels", "ModifyAutomations", "ModifySurveys", "ModifyFiles", "Export", "SendSmtp", "SendSMS", "ModifySettings", "ModifyBilling", "ModifyProfile", "ModifySubAccounts", "ModifyUsers", "Security", "ModifyLanguage", "ViewSupport", "SendHttp", "Modify2FA", "ModifySupport", "ViewCustomFields", "ModifyCustomFields", "ModifyWebNotifications", "ExtendedLogs", "VerifyEmails", "ViewEmailVerifications", "ViewMarketing", "ViewEmailApi", "ViewInbound", "ModifyLandingPages", "ViewLandingPages", "ModifySuppressions", "ViewSuppressions", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -291,14 +299,18 @@ class AccessLevel(ModelSimple):
         _visited_composed_classes = kwargs.pop('_visited_composed_classes', ())
 
         if args:
-            raise ApiTypeError(
-                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments." % (
-                    args,
-                    self.__class__.__name__,
-                ),
-                path_to_item=_path_to_item,
-                valid_classes=(self.__class__,),
-            )
+            for arg in args:
+                if isinstance(arg, dict):
+                    kwargs.update(arg)
+                else:
+                    raise ApiTypeError(
+                        "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments." % (
+                            args,
+                            self.__class__.__name__,
+                        ),
+                        path_to_item=_path_to_item,
+                        valid_classes=(self.__class__,),
+                    )
 
         self._data_store = {}
         self._check_type = _check_type
