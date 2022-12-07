@@ -1,3 +1,5 @@
+# coding: utf-8
+
 # flake8: noqa
 
 # import all models into this package
@@ -26,8 +28,6 @@ from ElasticEmail.model.consent_data import ConsentData
 from ElasticEmail.model.consent_tracking import ConsentTracking
 from ElasticEmail.model.contact import Contact
 from ElasticEmail.model.contact_activity import ContactActivity
-from ElasticEmail.model.contact_hist_event_type import ContactHistEventType
-from ElasticEmail.model.contact_history import ContactHistory
 from ElasticEmail.model.contact_payload import ContactPayload
 from ElasticEmail.model.contact_source import ContactSource
 from ElasticEmail.model.contact_status import ContactStatus
