@@ -97,7 +97,7 @@ void (empty response body)
 
 Get Email Verification Result
 
-Returns a result of verified email. Required Access Level: ViewEmailVerifications
+Returns a result of verified email. Required Access Level: VerifyEmails, ViewEmailVerifications
 
 ### Example
 
@@ -406,7 +406,7 @@ Name | Type | Description  | Notes
 
 Get Detailed File Verification Result
 
-Returns status and results (if verified) of file with given ID. Required Access Level: ViewEmailVerifications
+Returns status and results (if verified) of file with given ID. Required Access Level: VerifyEmails, ViewEmailVerifications
 
 ### Example
 
@@ -652,7 +652,7 @@ Name | Type | Description  | Notes
 
 Get Files Verification Results
 
-Returns a list of uploaded files, their statuses and results. Required Access Level: ViewEmailVerifications
+Returns a list of uploaded files, their statuses and results. Required Access Level: VerifyEmails, ViewEmailVerifications
 
 ### Example
 
@@ -726,7 +726,7 @@ This endpoint does not need any parameter.
 
 Get Emails Verification Results
 
-Returns a results of all verified single emails. Required Access Level: ViewEmailVerifications
+Returns a results of all verified single emails. Required Access Level: VerifyEmails, ViewEmailVerifications
 
 ### Example
 

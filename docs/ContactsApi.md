@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**contacts_by_email_delete**](ContactsApi.md#contacts_by_email_delete) | **DELETE** /contacts/{email} | Delete Contact
 [**contacts_by_email_get**](ContactsApi.md#contacts_by_email_get) | **GET** /contacts/{email} | Load Contact
-[**contacts_by_email_history_get**](ContactsApi.md#contacts_by_email_history_get) | **GET** /contacts/{email}/history | Load History
 [**contacts_by_email_put**](ContactsApi.md#contacts_by_email_put) | **PUT** /contacts/{email} | Update Contact
 [**contacts_delete_post**](ContactsApi.md#contacts_delete_post) | **POST** /contacts/delete | Delete Contacts Bulk
 [**contacts_export_by_id_status_get**](ContactsApi.md#contacts_export_by_id_status_get) | **GET** /contacts/export/{id}/status | Check Export Status
@@ -151,97 +150,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Contact**](Contact.md)
-
-### Authorization
-
-[apikey](../README.md#apikey)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **contacts_by_email_history_get**
-> [ContactHistory] contacts_by_email_history_get(email)
-
-Load History
-
-Returns detailed history of specified Contact. Required Access Level: ViewContacts
-
-### Example
-
-* Api Key Authentication (apikey):
-
-```python
-import time
-import ElasticEmail
-from ElasticEmail.api import contacts_api
-from ElasticEmail.model.contact_history import ContactHistory
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.elasticemail.com/v4
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ElasticEmail.Configuration(
-    host = "https://api.elasticemail.com/v4"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with ElasticEmail.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = contacts_api.ContactsApi(api_client)
-    email = "mail@example.com" # str | Proper email address.
-    limit = 100 # int | Maximum number of returned items. (optional)
-    offset = 20 # int | How many items should be returned ahead. (optional)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Load History
-        api_response = api_instance.contacts_by_email_history_get(email)
-        pprint(api_response)
-    except ElasticEmail.ApiException as e:
-        print("Exception when calling ContactsApi->contacts_by_email_history_get: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Load History
-        api_response = api_instance.contacts_by_email_history_get(email, limit=limit, offset=offset)
-        pprint(api_response)
-    except ElasticEmail.ApiException as e:
-        print("Exception when calling ContactsApi->contacts_by_email_history_get: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **str**| Proper email address. |
- **limit** | **int**| Maximum number of returned items. | [optional]
- **offset** | **int**| How many items should be returned ahead. | [optional]
-
-### Return type
-
-[**[ContactHistory]**](ContactHistory.md)
 
 ### Authorization
 
@@ -719,13 +627,14 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     api_instance = contacts_api.ContactsApi(api_client)
     list_name = "listName_example" # str | Name of an existing list to add these contacts to (optional)
     encoding_name = "encodingName_example" # str | In what encoding the file is uploaded (optional)
+    file_url = "fileUrl_example" # str | Optional url of csv to import (optional)
     file = open('/path/to/file', 'rb') # file_type |  (optional)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
         # Upload Contacts
-        api_instance.contacts_import_post(list_name=list_name, encoding_name=encoding_name, file=file)
+        api_instance.contacts_import_post(list_name=list_name, encoding_name=encoding_name, file_url=file_url, file=file)
     except ElasticEmail.ApiException as e:
         print("Exception when calling ContactsApi->contacts_import_post: %s\n" % e)
 ```
@@ -737,6 +646,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **list_name** | **str**| Name of an existing list to add these contacts to | [optional]
  **encoding_name** | **str**| In what encoding the file is uploaded | [optional]
+ **file_url** | **str**| Optional url of csv to import | [optional]
  **file** | **file_type**|  | [optional]
 
 ### Return type

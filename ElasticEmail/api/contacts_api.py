@@ -1,7 +1,7 @@
 """
     Elastic Email REST API
 
-    This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>  # noqa: E501
+    This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>  # noqa: E501
 
     The version of the OpenAPI document: 4.0.0
     Contact: support@elasticemail.com
@@ -24,7 +24,6 @@ from ElasticEmail.model_utils import (  # noqa: F401
 )
 from ElasticEmail.model.compression_format import CompressionFormat
 from ElasticEmail.model.contact import Contact
-from ElasticEmail.model.contact_history import ContactHistory
 from ElasticEmail.model.contact_payload import ContactPayload
 from ElasticEmail.model.contact_update_payload import ContactUpdatePayload
 from ElasticEmail.model.emails_payload import EmailsPayload
@@ -132,67 +131,6 @@ class ContactsApi(object):
                 },
                 'location_map': {
                     'email': 'path',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client
-        )
-        self.contacts_by_email_history_get_endpoint = _Endpoint(
-            settings={
-                'response_type': ([ContactHistory],),
-                'auth': [
-                    'apikey'
-                ],
-                'endpoint_path': '/contacts/{email}/history',
-                'operation_id': 'contacts_by_email_history_get',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'email',
-                    'limit',
-                    'offset',
-                ],
-                'required': [
-                    'email',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'email':
-                        (str,),
-                    'limit':
-                        (int,),
-                    'offset':
-                        (int,),
-                },
-                'attribute_map': {
-                    'email': 'email',
-                    'limit': 'limit',
-                    'offset': 'offset',
-                },
-                'location_map': {
-                    'email': 'path',
-                    'limit': 'query',
-                    'offset': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -503,6 +441,7 @@ class ContactsApi(object):
                 'all': [
                     'list_name',
                     'encoding_name',
+                    'file_url',
                     'file',
                 ],
                 'required': [],
@@ -523,17 +462,21 @@ class ContactsApi(object):
                         (str,),
                     'encoding_name':
                         (str,),
+                    'file_url':
+                        (str,),
                     'file':
                         (file_type,),
                 },
                 'attribute_map': {
                     'list_name': 'listName',
                     'encoding_name': 'encodingName',
+                    'file_url': 'fileUrl',
                     'file': 'file',
                 },
                 'location_map': {
                     'list_name': 'query',
                     'encoding_name': 'query',
+                    'file_url': 'query',
                     'file': 'form',
                 },
                 'collection_format_map': {
@@ -771,91 +714,6 @@ class ContactsApi(object):
         kwargs['email'] = \
             email
         return self.contacts_by_email_get_endpoint.call_with_http_info(**kwargs)
-
-    def contacts_by_email_history_get(
-        self,
-        email,
-        **kwargs
-    ):
-        """Load History  # noqa: E501
-
-        Returns detailed history of specified Contact. Required Access Level: ViewContacts  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.contacts_by_email_history_get(email, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            email (str): Proper email address.
-
-        Keyword Args:
-            limit (int): Maximum number of returned items.. [optional]
-            offset (int): How many items should be returned ahead.. [optional]
-            _return_http_data_only (bool): response data without head status
-                code and headers. Default is True.
-            _preload_content (bool): if False, the urllib3.HTTPResponse object
-                will be returned without reading/decoding response data.
-                Default is True.
-            _request_timeout (int/float/tuple): timeout setting for this request. If
-                one number provided, it will be total request timeout. It can also
-                be a pair (tuple) of (connection, read) timeouts.
-                Default is None.
-            _check_input_type (bool): specifies if type checking
-                should be done one the data sent to the server.
-                Default is True.
-            _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is True.
-            _spec_property_naming (bool): True if the variable names in the input data
-                are serialized names, as specified in the OpenAPI document.
-                False if the variable names in the input data
-                are pythonic names, e.g. snake case (default)
-            _content_type (str/None): force body content-type.
-                Default is None and content-type will be predicted by allowed
-                content-types and body.
-            _host_index (int/None): specifies the index of the server
-                that we want to use.
-                Default is read from the configuration.
-            _request_auths (list): set to override the auth_settings for an a single
-                request; this effectively ignores the authentication
-                in the spec for a single request.
-                Default is None
-            async_req (bool): execute request asynchronously
-
-        Returns:
-            [ContactHistory]
-                If the method is called asynchronously, returns the request
-                thread.
-        """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['email'] = \
-            email
-        return self.contacts_by_email_history_get_endpoint.call_with_http_info(**kwargs)
 
     def contacts_by_email_put(
         self,
@@ -1290,6 +1148,7 @@ class ContactsApi(object):
         Keyword Args:
             list_name (str): Name of an existing list to add these contacts to. [optional]
             encoding_name (str): In what encoding the file is uploaded. [optional]
+            file_url (str): Optional url of csv to import. [optional]
             file (file_type): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
