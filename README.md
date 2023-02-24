@@ -50,44 +50,48 @@ import ElasticEmail
 
 ## Getting Started
 
+Below is a code snippet that will allow you to send your first email with us. Please make sure that you have registered an account and created an API key before trying to run the code.
+
 Please follow the [installation procedure](#installation--usage) and then run the following:
 
 ```python
 
-import time
 import ElasticEmail
+from ElasticEmail.api import emails_api
+from ElasticEmail.model.email_message_data import EmailMessageData
+from ElasticEmail.model.email_recipient import EmailRecipient
+
 from pprint import pprint
-from ElasticEmail.api import campaigns_api
-from ElasticEmail.model.campaign import Campaign
-# Defining the host is optional and defaults to https://api.elasticemail.com/v4
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ElasticEmail.Configuration(
-    host = "https://api.elasticemail.com/v4"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-
-# Enter a context with an instance of the API client
+configuration = ElasticEmail.Configuration()
+configuration.api_key['apikey'] = '<your API key>'
+ 
 with ElasticEmail.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = campaigns_api.CampaignsApi(api_client)
-    name = "name_example" # str | Name of Campaign to delete
-
+    api_instance = emails_api.EmailsApi(api_client)
+    email_message_data = EmailMessageData(
+        recipients=[
+            EmailRecipient(
+                email="<to address>"
+            ),
+        ],
+        content={
+	    "Body": [
+		{
+		    "ContentType":"HTML",
+		    "Content":"My test email content ;)"
+		}
+	    ],
+	    "Subject": "Python EE lib test",
+	    "From": "<from address>"
+	}
+    )
+ 
     try:
-        # Delete Campaign
-        api_instance.campaigns_by_name_delete(name)
+        api_response = api_instance.emails_post(email_message_data)
+        pprint(api_response)
     except ElasticEmail.ApiException as e:
-        print("Exception when calling CampaignsApi->campaigns_by_name_delete: %s\n" % e)
+        print("Exception when calling EmailsApi->emails_post: %s\n" % e)
+
 ```
 
 
