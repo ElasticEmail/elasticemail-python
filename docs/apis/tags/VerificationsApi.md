@@ -115,7 +115,7 @@ headers | Unset | headers were not defined |
 
 Get Email Verification Result
 
-Returns a result of verified email. Required Access Level: VerifyEmails, ViewEmailVerifications
+Returns a result of verified email. Required Access Level: VerifyEmails
 
 ### Example
 
@@ -514,7 +514,7 @@ bytes, io.FileIO, io.BufferedReader,  | bytes, FileIO,  |  |
 
 Get Detailed File Verification Result
 
-Returns status and results (if verified) of file with given ID. Required Access Level: VerifyEmails, ViewEmailVerifications
+Returns status and results (if verified) of file with given ID. Required Access Level: VerifyEmails
 
 ### Example
 
@@ -860,7 +860,7 @@ Type | Description  | Notes
 
 Get Files Verification Results
 
-Returns a list of uploaded files, their statuses and results. Required Access Level: VerifyEmails, ViewEmailVerifications
+Returns a list of uploaded files, their statuses and results. Required Access Level: VerifyEmails
 
 ### Example
 
@@ -940,7 +940,7 @@ Class Name | Input Type | Accessed Type | Description | Notes
 
 Get Emails Verification Results
 
-Returns a results of all verified single emails. Required Access Level: VerifyEmails, ViewEmailVerifications
+Returns a results of all verified single emails. Required Access Level: VerifyEmails
 
 ### Example
 

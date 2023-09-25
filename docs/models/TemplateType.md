@@ -3,7 +3,7 @@
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-str,  | str,  |  | must be one of ["RawHTML", "DragDropEditor", "LandingPageEditor", ] if omitted the server will use the default value of "RawHTML"
+str,  | str,  |  | must be one of ["RawHTML", "DragDropEditor", "LandingPageEditor", "TemplateEditor", ] if omitted the server will use the default value of "RawHTML"
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

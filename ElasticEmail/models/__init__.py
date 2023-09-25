@@ -1,10 +1,12 @@
+# coding: utf-8
+
 # flake8: noqa
 
 # import all models into this package
 # if you have many models here with many references from one model to another this may
 # raise a RecursionError
 # to avoid this, import only the models that you directly need like:
-# from from ElasticEmail.model.pet import Pet
+# from ElasticEmail.model.pet import Pet
 # or import this package, but before doing it, use:
 # import sys
 # sys.setrecursionlimit(n)
@@ -35,6 +37,7 @@ from ElasticEmail.model.delivery_optimization_type import DeliveryOptimizationTy
 from ElasticEmail.model.email_content import EmailContent
 from ElasticEmail.model.email_data import EmailData
 from ElasticEmail.model.email_message_data import EmailMessageData
+from ElasticEmail.model.email_predicted_validation_status import EmailPredictedValidationStatus
 from ElasticEmail.model.email_recipient import EmailRecipient
 from ElasticEmail.model.email_send import EmailSend
 from ElasticEmail.model.email_status import EmailStatus

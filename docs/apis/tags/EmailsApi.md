@@ -156,6 +156,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
             binary_content='YQ==',
             name="name_example",
             content_type="content_type_example",
+            size=100,
         ),
         content=EmailContent(
             body=[
@@ -317,6 +318,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
                     binary_content='YQ==',
                     name="name_example",
                     content_type="content_type_example",
+                    size=100,
                 )
             ],
             headers=dict(
@@ -468,6 +470,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
                     binary_content='YQ==',
                     name="name_example",
                     content_type="content_type_example",
+                    size=100,
                 )
             ],
             headers=dict(
