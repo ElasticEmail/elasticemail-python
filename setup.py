@@ -13,7 +13,7 @@ from setuptools import setup, find_packages  # noqa: H301
 from os import path
 
 NAME = "ElasticEmail"
-VERSION = "4.0.23"
+VERSION = "4.0.24"
 # To install the library, run the following
 #
 # python setup.py install

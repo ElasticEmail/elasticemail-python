@@ -205,6 +205,31 @@ Function ||
 [updateCampaign](examples/functions/updateCampaign.py) | [readme](examples/functions/updateCampaign.md)
 [uploadContacts](examples/functions/uploadContacts.py) | [readme](examples/functions/uploadContacts.md)
 
+
+## Examples
+
+Function ||
+------------ | ------------- 
+[addCampaign](examples/functions/addCampaign.py) | [readme](examples/functions/addCampaign.md)
+[addContacts](examples/functions/addContacts.py) | [readme](examples/functions/addContacts.md)
+[addList](examples/functions/addList.py) | [readme](examples/functions/addList.md)
+[addTemplate](examples/functions/addTemplate.py) | [readme](examples/functions/addTemplate.md)
+[deleteCampaign](examples/functions/deleteCampaign.py) | [readme](examples/functions/deleteCampaign.md)
+[deleteContacts](examples/functions/deleteContacts.py) | [readme](examples/functions/deleteContacts.md)
+[deleteList](examples/functions/deleteList.py) | [readme](examples/functions/deleteList.md)
+[deleteTemplate](examples/functions/deleteTemplate.py) | [readme](examples/functions/deleteTemplate.md)
+[exportContacts](examples/functions/exportContacts.py) | [readme](examples/functions/exportContacts.md)
+[loadCampaign](examples/functions/loadCampaign.py) | [readme](examples/functions/loadCampaign.md)
+[loadCampaignsStats](examples/functions/loadCampaignsStats.py) | [readme](examples/functions/loadCampaignsStats.md)
+[loadChannelsStats](examples/functions/loadChannelsStats.py) | [readme](examples/functions/loadChannelsStats.md)
+[loadList](examples/functions/loadList.py) | [readme](examples/functions/loadList.md)
+[loadStatistics](examples/functions/loadStatistics.py) | [readme](examples/functions/loadStatistics.md)
+[loadTemplate](examples/functions/loadTemplate.py) | [readme](examples/functions/loadTemplate.md)
+[sendBulkEmails](examples/functions/sendBulkEmails.py) | [readme](examples/functions/sendBulkEmails.md)
+[sendTransactionalEmails](examples/functions/sendTransactionalEmails.py) | [readme](examples/functions/sendTransactionalEmails.md)
+[updateCampaign](examples/functions/updateCampaign.py) | [readme](examples/functions/updateCampaign.md)
+[uploadContacts](examples/functions/uploadContacts.py) | [readme](examples/functions/uploadContacts.md)
+
 ## Documentation for API Endpoints
 
 All URIs are relative to *https://api.elasticemail.com/v4*
