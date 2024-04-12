@@ -919,19 +919,26 @@ class OpenApiResponse(JSONDetector):
         content_type = response.getheader('content-type')
         deserialized_body = unset
         streamed = response.supports_chunked_reads()
-
+    
         deserialized_headers = unset
         if self.headers is not None:
             # TODO add header deserialiation here
             pass
-
+    
         if self.content is not None:
-            if content_type not in self.content:
+            found_content_type = None
+            for expected_content_type in self.content:
+                if expected_content_type in content_type:
+                    found_content_type = expected_content_type
+                    break
+    
+            if found_content_type is None:
                 raise ApiValueError(
                     f"Invalid content_type returned. Content_type='{content_type}' was returned "
                     f"when only {str(set(self.content))} are defined for status_code={str(response.status)}"
                 )
-            body_schema = self.content[content_type].schema
+    
+            body_schema = self.content[found_content_type].schema
             if body_schema is None:
                 # some specs do not define response content media type schemas
                 return self.response_cls(
@@ -939,26 +946,30 @@ class OpenApiResponse(JSONDetector):
                     headers=deserialized_headers,
                     body=unset
                 )
-
-            if self._content_type_is_json(content_type):
+    
+            if self._content_type_is_json(found_content_type):
                 body_data = self.__deserialize_json(response)
-            elif content_type == 'application/octet-stream':
+            elif found_content_type == 'application/octet-stream':
                 body_data = self.__deserialize_application_octet_stream(response)
-            elif content_type.startswith('multipart/form-data'):
+            elif found_content_type.startswith('multipart/form-data'):
                 body_data = self.__deserialize_multipart_form_data(response)
-                content_type = 'multipart/form-data'
+                found_content_type = 'multipart/form-data'
             else:
-                raise NotImplementedError('Deserialization of {} has not yet been implemented'.format(content_type))
+                raise NotImplementedError(
+                    'Deserialization of {} has not yet been implemented'.format(found_content_type))
+    
             deserialized_body = body_schema.from_openapi_data_oapg(
-                body_data, _configuration=configuration)
+                body_data, _configuration=configuration
+            )
         elif streamed:
             response.release_conn()
-
+    
         return self.response_cls(
             response=response,
             headers=deserialized_headers,
             body=deserialized_body
         )
+
 
 
 class ApiClient:
