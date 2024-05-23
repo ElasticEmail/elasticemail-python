@@ -10,9 +10,9 @@ When using Elastic Email you send emails to your contacts. A single template is 
 ## Preparation
 Install Python 3.
 
-Install `elasticemail-python` lib
+Install ElasticEmail library.
 
-Eg. run in terminal `pip install git+https://github.com/elasticemail/elasticemail-python.git`
+Eg. run in terminal `pip install ElasticEmail` to install from PyPi repository.
 
 Create a new Python file `snippet.py` and open it in editor of your preference eg. PyCharm (https://www.jetbrains.com/pycharm/download/)
 
@@ -24,7 +24,7 @@ Load libraries using below code:
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import templates_api
+from ElasticEmail.apis.tags import templates_api
 from ElasticEmail.model.body_part import BodyPart
 from ElasticEmail.model.body_content_type import BodyContentType
 from ElasticEmail.model.template_payload import TemplatePayload
@@ -63,16 +63,16 @@ Create an object with details about new template:
 
 ```python
     template_payload = TemplatePayload(
-        name="My new template",
-        subject="Default subject",
-        body=[
+        Name="My new template",
+        Subject="Default subject",
+        Body=[
             BodyPart(
-                content_type=BodyContentType("HTML"),
-                content="My template",
-                charset="utf-8",
+                ContentType=BodyContentType("HTML"),
+                Content="My template",
+                Charset="utf-8",
             ),
         ],
-        template_scope=TemplateScope("Personal"),
+        TemplateScope=TemplateScope("Personal"),
     )
 ```
 
@@ -80,7 +80,7 @@ Use try & except block to call `templates_post` method from the API to create a 
 
 ```python
     try:
-        api_response = api_instance.templates_post(template_payload)
+        api_response = api_instance.templates_post(body = template_payload)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling TemplatesApi->templates_post: %s\n" % e)
@@ -91,7 +91,7 @@ Use try & except block to call `templates_post` method from the API to create a 
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import templates_api
+from ElasticEmail.apis.tags import templates_api
 from ElasticEmail.model.body_part import BodyPart
 from ElasticEmail.model.body_content_type import BodyContentType
 from ElasticEmail.model.template_payload import TemplatePayload
@@ -105,20 +105,20 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     api_instance = templates_api.TemplatesApi(api_client)
 
     template_payload = TemplatePayload(
-        name="My new template",
-        subject="Default subject",
-        body=[
+        Name="My new template",
+        Subject="Default subject",
+        Body=[
             BodyPart(
-                content_type=BodyContentType("HTML"),
-                content="My template",
-                charset="utf-8",
+                ContentType=BodyContentType("HTML"),
+                Content="My template",
+                Charset="utf-8",
             ),
         ],
-        template_scope=TemplateScope("Personal"),
+        TemplateScope=TemplateScope("Personal"),
     )
 
     try:
-        api_response = api_instance.templates_post(template_payload)
+        api_response = api_instance.templates_post(body = template_payload)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling TemplatesApi->templates_post: %s\n" % e)

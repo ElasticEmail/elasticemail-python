@@ -1,5 +1,5 @@
 import ElasticEmail
-from ElasticEmail.api import templates_api
+from ElasticEmail.apis.tags import templates_api
 
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
 configuration = ElasticEmail.Configuration()
@@ -19,7 +19,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 
     try:
         # Delete Template
-        api_instance.templates_by_name_delete(name)
+        api_instance.templates_by_name_delete({'name': name})
         print("Template deleted.")
     except ElasticEmail.ApiException as e:
         print("Exception when calling TemplatesApi->templates_by_name_delete: %s\n" % e)

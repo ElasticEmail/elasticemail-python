@@ -1,5 +1,5 @@
 import ElasticEmail
-from ElasticEmail.api import contacts_api
+from ElasticEmail.apis.tags import contacts_api
 from ElasticEmail.model.contact_status import ContactStatus
 from ElasticEmail.model.contact_payload import ContactPayload
 from pprint import pprint
@@ -21,10 +21,10 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     api_instance = contacts_api.ContactsApi(api_client)
     contact_payload = [
         ContactPayload(
-            email="johnsmith@domain.com",
-            status=ContactStatus("Active"),
-            first_name="John",
-            last_name="Smith",
+            Email="johnsmith@domain.com",
+            Status=ContactStatus("Active"),
+            FirstName="John",
+            LastName="Smith",
         ),
     ]  # [ContactPayload]
 
@@ -34,7 +34,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 
     try:
         # Add Contact
-        api_response = api_instance.contacts_post(contact_payload, listnames=list_names)
+        api_response = api_instance.contacts_post(body = contact_payload, query_params = {'listnames': list_names})
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling ContactsApi->contacts_post: %s\n" % e)

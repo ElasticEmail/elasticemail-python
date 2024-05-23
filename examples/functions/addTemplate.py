@@ -1,8 +1,9 @@
 import ElasticEmail
-from ElasticEmail.api import templates_api
+from ElasticEmail.apis.tags import templates_api
+from ElasticEmail.model.template import Template
+from ElasticEmail.model.template_payload import TemplatePayload
 from ElasticEmail.model.body_part import BodyPart
 from ElasticEmail.model.body_content_type import BodyContentType
-from ElasticEmail.model.template_payload import TemplatePayload
 from ElasticEmail.model.template_scope import TemplateScope
 from pprint import pprint
 
@@ -22,20 +23,20 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     api_instance = templates_api.TemplatesApi(api_client)
 
     template_payload = TemplatePayload(
-        name="My new template",
-        subject="Default subject",
-        body=[
+        Name="My new template",
+        Subject="Default subject",
+        Body=[
             BodyPart(
-                content_type=BodyContentType("HTML"),
-                content="My template",
-                charset="utf-8",
+                ContentType=BodyContentType("HTML"),
+                Content="My template",
+                Charset="utf-8",
             ),
         ],
-        template_scope=TemplateScope("Personal"),
+        TemplateScope=TemplateScope("Personal"),
     )  # TemplatePayload |
 
     try:
-        api_response = api_instance.templates_post(template_payload)
+        api_response = api_instance.templates_post(body = template_payload)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling TemplatesApi->templates_post: %s\n" % e)

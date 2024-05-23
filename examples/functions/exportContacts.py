@@ -1,5 +1,5 @@
 import ElasticEmail
-from ElasticEmail.api import contacts_api
+from ElasticEmail.apis.tags import contacts_api
 from ElasticEmail.model.export_file_formats import ExportFileFormats
 from ElasticEmail.model.compression_format import CompressionFormat
 from pprint import pprint
@@ -24,19 +24,15 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = contacts_api.ContactsApi(api_client)
 
-    file_format = ExportFileFormats("Csv")  # ExportFileFormats | Format of the exported file (optional)
-
-    emails = [
-        "johnsmith@domain.com",
-    ] # [str] | Comma delimited list of contact emails (optional)
-
-    compression_format = CompressionFormat("None")  # CompressionFormat | FileResponse compression format. None or Zip. (optional)
-
-    file_name = "exported.csv"  # str | Name of your file including extension. (optional)
+    query_params = {
+        'fileFormat': ExportFileFormats("Csv"), # ExportFileFormats | Format of the exported file (optional)
+        'compressionFormat': CompressionFormat("None"),  # CompressionFormat | FileResponse compression format. None or Zip. (optional)
+        'fileName': "exported.csv", # str | Name of your file including extension. (optional)
+    }
 
     try:
         # Export Contacts
-        api_response = api_instance.contacts_export_post(file_format=file_format, emails=emails, compression_format=compression_format, file_name=file_name)
+        api_response = api_instance.contacts_export_post(query_params = query_params)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling ContactsApi->contacts_export_post: %s\n" % e)

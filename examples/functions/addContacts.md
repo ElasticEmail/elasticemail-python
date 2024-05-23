@@ -10,9 +10,9 @@ When using Elastic Email, you send emails to contacts – recipients who receive
 ## Preparation
 Install Python 3.
 
-Install `elasticemail-python` lib
+Install ElasticEmail library.
 
-Eg. run in terminal `pip install git+https://github.com/elasticemail/elasticemail-python.git`
+Eg. run in terminal `pip install ElasticEmail` to install from PyPi repository.
 
 Create a new Python file `snippet.py` and open it in editor of your preference eg. PyCharm (https://www.jetbrains.com/pycharm/download/)
 
@@ -24,7 +24,7 @@ Load libraries using below code:
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import contacts_api
+from ElasticEmail.apis.tags import contacts_api
 from ElasticEmail.model.contact_status import ContactStatus
 from ElasticEmail.model.contact_payload import ContactPayload
 from pprint import pprint
@@ -62,10 +62,10 @@ The `Email` field is mandatory, the rest is optional.
 ```python
     contact_payload = [
         ContactPayload(
-            email="johnsmith@domain.com",
-            status=ContactStatus("Active"),
-            first_name="John",
-            last_name="Smith",
+            Email="johnsmith@domain.com",
+            Status=ContactStatus("Active"),
+            FirstName="John",
+            LastName="Smith",
         ),
     ]
 ```
@@ -83,7 +83,7 @@ Use try & except block to call `contacts_post` method from the API to add contac
 
 ```python
     try:
-        api_response = api_instance.contacts_post(contact_payload, listnames=list_names)
+        api_response = api_instance.contacts_post(body = contact_payload, query_params = {'listnames': list_names})
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling ContactsApi->contacts_post: %s\n" % e)
@@ -94,7 +94,7 @@ Use try & except block to call `contacts_post` method from the API to add contac
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import contacts_api
+from ElasticEmail.apis.tags import contacts_api
 from ElasticEmail.model.contact_status import ContactStatus
 from ElasticEmail.model.contact_payload import ContactPayload
 from pprint import pprint
@@ -106,10 +106,10 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     api_instance = contacts_api.ContactsApi(api_client)
     contact_payload = [
         ContactPayload(
-            email="johnsmith@domain.com",
-            status=ContactStatus("Active"),
-            first_name="John",
-            last_name="Smith",
+            Email="johnsmith@domain.com",
+            Status=ContactStatus("Active"),
+            FirstName="John",
+            LastName="Smith",
         ),
     ]
 
@@ -118,7 +118,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     ]
 
     try:
-        api_response = api_instance.contacts_post(contact_payload, listnames=list_names)
+        api_response = api_instance.contacts_post(body = contact_payload, query_params = {'listnames': list_names})
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling ContactsApi->contacts_post: %s\n" % e)

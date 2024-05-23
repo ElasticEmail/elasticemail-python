@@ -13,9 +13,9 @@ A transactional email have a limit of 50 maximum recipients.
 ## Preparation
 Install Python 3.
 
-Install `elasticemail-python` lib
+Install ElasticEmail library.
 
-Eg. run in terminal `pip install git+https://github.com/elasticemail/elasticemail-python.git`
+Eg. run in terminal `pip install ElasticEmail` to install from PyPi repository.
 
 Create a new Python file `snippet.py` and open it in editor of your preference eg. PyCharm (https://www.jetbrains.com/pycharm/download/)
 
@@ -27,7 +27,7 @@ Load libraries using below code:
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import emails_api
+from ElasticEmail.apis.tags import emails_api
 from ElasticEmail.model.email_content import EmailContent
 from ElasticEmail.model.body_part import BodyPart
 from ElasticEmail.model.body_content_type import BodyContentType
@@ -68,29 +68,29 @@ First you need to specify email details:
 
 ```python
     email_transactional_message_data = EmailTransactionalMessageData(
-        recipients=TransactionalRecipient(
-            to=[
+        Recipients=TransactionalRecipient(
+            To=[
                 "johnsmith@domain.com",
             ],
         ),
-        content=EmailContent(
-            body=[
+        Content=EmailContent(
+            Body=[
                 BodyPart(
-                    content_type=BodyContentType("HTML"),
-                    content="<strong>Mail content.<strong>",
-                    charset="utf-8",
+                    ContentType=BodyContentType("HTML"),
+                    Content="<strong>Mail content.<strong>",
+                    Charset="utf-8",
                 ),
                 BodyPart(
-                    content_type=BodyContentType("PlainText"),
-                    content="Mail content.",
-                    charset="utf-8",
+                    ContentType=BodyContentType("PlainText"),
+                    Content="Mail content.",
+                    Charset="utf-8",
                 ),
             ],
-            _from="myemail@domain.com",
-            reply_to="myemail@domain.com",
-            subject="Example transactional email",
+            From="myemail@domain.com",
+            ReplyTo="myemail@domain.com",
+            Subject="Example transactional email",
         ),
-    ) 
+    )
 ```
 
 Use try & except block to call `emails_transactional_post` method from the API to send an email: 
@@ -108,7 +108,7 @@ Use try & except block to call `emails_transactional_post` method from the API t
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import emails_api
+from ElasticEmail.apis.tags import emails_api
 from ElasticEmail.model.email_content import EmailContent
 from ElasticEmail.model.body_part import BodyPart
 from ElasticEmail.model.body_content_type import BodyContentType
@@ -123,27 +123,27 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     api_instance = emails_api.EmailsApi(api_client)
 
     email_transactional_message_data = EmailTransactionalMessageData(
-        recipients=TransactionalRecipient(
-            to=[
+        Recipients=TransactionalRecipient(
+            To=[
                 "johnsmith@domain.com",
             ],
         ),
-        content=EmailContent(
-            body=[
+        Content=EmailContent(
+            Body=[
                 BodyPart(
-                    content_type=BodyContentType("HTML"),
-                    content="<strong>Mail content.<strong>",
-                    charset="utf-8",
+                    ContentType=BodyContentType("HTML"),
+                    Content="<strong>Mail content.<strong>",
+                    Charset="utf-8",
                 ),
                 BodyPart(
-                    content_type=BodyContentType("PlainText"),
-                    content="Mail content.",
-                    charset="utf-8",
+                    ContentType=BodyContentType("PlainText"),
+                    Content="Mail content.",
+                    Charset="utf-8",
                 ),
             ],
-            _from="myemail@domain.com",
-            reply_to="myemail@domain.com",
-            subject="Example transactional email",
+            From="myemail@domain.com",
+            ReplyTo="myemail@domain.com",
+            Subject="Example transactional email",
         ),
     )
 

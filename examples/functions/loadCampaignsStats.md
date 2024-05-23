@@ -10,9 +10,9 @@ When using Elastic Email you send email campaigns to your contacts. From that we
 ## Preparation
 Install Python 3.
 
-Install `elasticemail-python` lib
+Install ElasticEmail library.
 
-Eg. run in terminal `pip install git+https://github.com/elasticemail/elasticemail-python.git`
+Eg. run in terminal `pip install ElasticEmail` to install from PyPi repository.
 
 Create a new Python file `snippet.py` and open it in editor of your preference eg. PyCharm (https://www.jetbrains.com/pycharm/download/)
 
@@ -24,7 +24,7 @@ Load libraries using below code:
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import statistics_api
+from ElasticEmail.apis.tags import statistics_api
 from pprint import pprint
 ```
 
@@ -53,9 +53,11 @@ Campaigns statistics reponse is paginated you need to specfiy pagination options
 - offset – how many items should be skipped from begging
 
 Eg. to return second page of elements paginated 20 elements per page specify pagination options as follows
-```
-    limit = 20
-    offset = 20
+```python
+    query_params = {
+        'limit': 20,
+        'offset': 20 
+    }
 ```
 
 > Find out more by checking our API's documentation: https://elasticemail.com/developers/api-documentation/rest-api#operation/statisticsCampaignsByNameGet
@@ -63,15 +65,17 @@ Eg. to return second page of elements paginated 20 elements per page specify pag
 Let's fetch first 100 campaigns:
 
 ```python
-    limit = 100
-    offset = 0 
+    query_params = {
+        'limit': 100,
+        'offset': 0 
+    }
 ```
 
 Use try & except block to call `statistics_campaigns_get` method from the API to fetch statistics: 
 
 ```python
     try:
-        api_response = api_instance.statistics_campaigns_get(limit=limit, offset=offset)
+        api_response = api_instance.statistics_campaigns_get(query_params = query_params)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling StatisticsApi->statistics_campaigns_get: %s\n" % e)
@@ -82,7 +86,7 @@ Use try & except block to call `statistics_campaigns_get` method from the API to
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import statistics_api
+from ElasticEmail.apis.tags import statistics_api
 from pprint import pprint
 
 configuration = ElasticEmail.Configuration()
@@ -91,11 +95,13 @@ configuration.api_key['apikey'] = 'YOUR_API_KEY'
 with ElasticEmail.ApiClient(configuration) as api_client:
     api_instance = statistics_api.StatisticsApi(api_client)
 
-    limit = 100
-    offset = 0
+    query_params = {
+        'limit': 100
+        'offset': 0 
+    }
 
     try:
-        api_response = api_instance.statistics_campaigns_get(limit=limit, offset=offset)
+        api_response = api_instance.statistics_campaigns_get(query_params = query_params)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling StatisticsApi->statistics_campaigns_get: %s\n" % e)

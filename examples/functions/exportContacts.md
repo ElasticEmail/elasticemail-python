@@ -10,9 +10,9 @@ When using Elastic Email, you send emails to contacts – recipients who receive
 ## Preparation
 Install Python 3.
 
-Install `elasticemail-python` lib
+Install ElasticEmail library.
 
-Eg. run in terminal `pip install git+https://github.com/elasticemail/elasticemail-python.git`
+Eg. run in terminal `pip install ElasticEmail` to install from PyPi repository.
 
 Create a new Python file `snippet.py` and open it in editor of your preference eg. PyCharm (https://www.jetbrains.com/pycharm/download/)
 
@@ -24,7 +24,7 @@ Load libraries using below code:
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import contacts_api
+from ElasticEmail.apis.tags import contacts_api
 from ElasticEmail.model.export_file_formats import ExportFileFormats
 from ElasticEmail.model.compression_format import CompressionFormat
 from pprint import pprint
@@ -51,33 +51,29 @@ Create an instance of ContactsApi that will be used to create a file with export
 ```
 
 Create options variables:
-- file_format - specify format in which file should be created, options are: "Csv" "Xml" "Json".
+- fileFormat - specify format in which file should be created, options are: "Csv" "Xml" "Json".
 - emails - select contacts to export by providing array of emails
-- file_name - you can specify file name of your choice
+- fileName - you can specify file name of your choice
 
 Other options:
 - rule - eg. `rule=Status%20=%20Engaged` – Query used for filtering
-- compression_format - "None" or "Zip"
+- compressionFormat - "None" or "Zip"
 
 > Find out more by checking our API's documentation: https://elasticemail.com/developers/api-documentation/rest-api#operation/contactsExportPost
 
 ```python
-    file_format = ExportFileFormats("Csv")
-
-    emails = [
-        "johnsmith@domain.com",
-    ]
-
-    compression_format = CompressionFormat("None")
-
-    file_name = "exported.csv"
+    query_params = {
+        'fileFormat': ExportFileFormats("Csv"), # ExportFileFormats | Format of the exported file (optional)
+        'compressionFormat': CompressionFormat("None"),  # CompressionFormat | FileResponse compression format. None or Zip. (optional)
+        'fileName': "exported.csv", # str | Name of your file including extension. (optional)
+    }
 ```
 
 Use try & except block to call `contacts_export_post` method from the API to export contacts: 
 
 ```python
     try:
-        api_response = api_instance.contacts_export_post(file_format=file_format, emails=emails, compression_format=compression_format, file_name=file_name)
+        api_response = api_instance.contacts_export_post(query_params = query_params)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling ContactsApi->contacts_export_post: %s\n" % e)
@@ -89,7 +85,7 @@ Use try & except block to call `contacts_export_post` method from the API to exp
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import contacts_api
+from ElasticEmail.apis.tags import contacts_api
 from ElasticEmail.model.export_file_formats import ExportFileFormats
 from ElasticEmail.model.compression_format import CompressionFormat
 from pprint import pprint
@@ -100,18 +96,14 @@ configuration.api_key['apikey'] = 'YOUR_API_KEY'
 with ElasticEmail.ApiClient(configuration) as api_client:
     api_instance = contacts_api.ContactsApi(api_client)
 
-    file_format = ExportFileFormats("Csv")
-
-    emails = [
-        "johnsmith@domain.com",
-    ]
-
-    compression_format = CompressionFormat("None")
-
-    file_name = "exported.csv"
+    query_params = {
+        'fileFormat': ExportFileFormats("Csv"), # ExportFileFormats | Format of the exported file (optional)
+        'compressionFormat': CompressionFormat("None"),  # CompressionFormat | FileResponse compression format. None or Zip. (optional)
+        'fileName': "exported.csv", # str | Name of your file including extension. (optional)
+    }
 
     try:
-        api_response = api_instance.contacts_export_post(file_format=file_format, emails=emails, compression_format=compression_format, file_name=file_name)
+        api_response = api_instance.contacts_export_post(query_params = query_params)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling ContactsApi->contacts_export_post: %s\n" % e)

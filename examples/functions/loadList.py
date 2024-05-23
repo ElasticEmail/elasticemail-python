@@ -1,5 +1,5 @@
 import ElasticEmail
-from ElasticEmail.api import lists_api
+from ElasticEmail.apis.tags import lists_api
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
@@ -19,7 +19,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     name = "Best contacts"  # str | Name of your list.
 
     try:
-        api_response = api_instance.lists_by_name_get(name)
+        api_response = api_instance.lists_by_name_get({'name': name})
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling ListsApi->lists_by_name_get: %s\n" % e)

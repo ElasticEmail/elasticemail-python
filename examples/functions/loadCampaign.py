@@ -1,5 +1,5 @@
 import ElasticEmail
-from ElasticEmail.api import campaigns_api
+from ElasticEmail.apis.tags import campaigns_api
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
@@ -21,7 +21,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     # Call api
     try:
         # Load Campaign
-        api_response = api_instance.campaigns_by_name_get(name)
+        api_response = api_instance.campaigns_by_name_get({'name': name})
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling CampaignsApi->campaigns_by_name_get: %s\n" % e)

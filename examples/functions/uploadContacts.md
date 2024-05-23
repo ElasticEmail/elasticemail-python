@@ -24,7 +24,7 @@ Load libraries using below code:
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import contacts_api
+from ElasticEmail.apis.tags import contacts_api
 ```
 
 Generate and use your API key (remember to check a required access level).
@@ -53,9 +53,10 @@ Create options
 - optionaly a list name to which contacts should be added, otherwise contacts will be added to all contacts.
 
 ```python
-    list_name = "Best contacts"
-
-    encoding_name = "utf-8"
+    query_params = {
+        'listName': "example list",
+        'encodingName': "utf-8",
+    }
 ```
 
 The simplest CSV file requires only one column `Email`, eg.:
@@ -70,14 +71,16 @@ john@johnsmith.com
 Load file
 
 ```python
-    file = open('./files/contacts.csv', 'rb')
+    body = dict(
+        file = open('./files/contacts.csv', 'rb'),
+    )
 ```
 
 Use try & except block to call `contacts_import_post` method from the API to upload contacts: 
 
 ```python
     try:
-        api_instance.contacts_import_post(list_name=list_name, encoding_name=encoding_name, file=file)
+        api_instance.contacts_import_post(query_params=query_params, body=body)
         print("Contacts uploaded.")
     except ElasticEmail.ApiException as e:
         print("Exception when calling ContactsApi->contacts_import_post: %s\n" % e)
@@ -88,7 +91,7 @@ Use try & except block to call `contacts_import_post` method from the API to upl
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import contacts_api
+from ElasticEmail.apis.tags import contacts_api
 
 configuration = ElasticEmail.Configuration()
 configuration.api_key['apikey'] = 'YOUR_API_KEY'
@@ -96,14 +99,17 @@ configuration.api_key['apikey'] = 'YOUR_API_KEY'
 with ElasticEmail.ApiClient(configuration) as api_client:
     api_instance = contacts_api.ContactsApi(api_client)
 
-    list_name = "Best contacts"
+    query_params = {
+        'listName': "example list",
+        'encodingName': "utf-8",
+    }
 
-    encoding_name = "utf-8"
-
-    file = open('./files/contacts.csv', 'rb')
+    body = dict(
+        file = open('./files/contacts.csv', 'rb'),
+    )
 
     try:
-        api_instance.contacts_import_post(list_name=list_name, encoding_name=encoding_name, file=file)
+        api_instance.contacts_import_post(query_params=query_params, body=body)
         print("Contacts uploaded.")
     except ElasticEmail.ApiException as e:
         print("Exception when calling ContactsApi->contacts_import_post: %s\n" % e)

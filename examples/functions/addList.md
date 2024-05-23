@@ -10,9 +10,9 @@ When using Elastic Email, you send emails to contacts – recipients who receive
 ## Preparation
 Install Python 3.
 
-Install `elasticemail-python` lib
+Install ElasticEmail library.
 
-Eg. run in terminal `pip install git+https://github.com/elasticemail/elasticemail-python.git`
+Eg. run in terminal `pip install ElasticEmail` to install from PyPi repository.
 
 Create a new Python file `snippet.py` and open it in editor of your preference eg. PyCharm (https://www.jetbrains.com/pycharm/download/)
 
@@ -24,7 +24,7 @@ Load libraries using below code:
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import lists_api
+from ElasticEmail.apis.tags import lists_api
 from ElasticEmail.model.list_payload import ListPayload
 from pprint import pprint
 ```
@@ -58,9 +58,9 @@ You can also define if to allow unsubscription from list and pass an emails arra
 
 ```python
     list_payload = ListPayload(
-        list_name="Best contacts",
-        allow_unsubscribe=True,
-        emails=[
+        ListName="Best contacts",
+        AllowUnsubscribe=True,
+        Emails=[
             "johnsmith@domain.com",
         ],
     )
@@ -70,7 +70,7 @@ Use try & except block to call `lists_post` method from the API to create a list
 
 ```python
     try:
-        api_response = api_instance.lists_post(list_payload)
+        api_response = api_instance.lists_post(body = list_payload)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling ListsApi->lists_post: %s\n" % e)
@@ -81,7 +81,7 @@ Use try & except block to call `lists_post` method from the API to create a list
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import lists_api
+from ElasticEmail.apis.tags import lists_api
 from ElasticEmail.model.list_payload import ListPayload
 from pprint import pprint
 
@@ -92,15 +92,15 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     api_instance = lists_api.ListsApi(api_client)
 
     list_payload = ListPayload(
-        list_name="Best contacts",
-        allow_unsubscribe=True,
-        emails=[
+        ListName="Best contacts",
+        AllowUnsubscribe=True,
+        Emails=[
             "johnsmith@domain.com",
         ],
     )
 
     try:
-        api_response = api_instance.lists_post(list_payload)
+        api_response = api_instance.lists_post(body = list_payload)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling ListsApi->lists_post: %s\n" % e)

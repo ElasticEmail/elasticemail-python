@@ -11,9 +11,9 @@ When using Elastic Email you send emails to your contacts. One of options is to 
 ## Preparation
 Install Python 3.
 
-Install `elasticemail-python` lib
+Install ElasticEmail library.
 
-Eg. run in terminal `pip install git+https://github.com/elasticemail/elasticemail-python.git`
+Eg. run in terminal `pip install ElasticEmail` to install from PyPi repository.
 
 Create a new Python file `snippet.py` and open it in editor of your preference eg. PyCharm (https://www.jetbrains.com/pycharm/download/)
 
@@ -25,7 +25,7 @@ Load libraries using below code:
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import emails_api
+from ElasticEmail.apis.tags import emails_api
 from ElasticEmail.model.email_content import EmailContent
 from ElasticEmail.model.body_part import BodyPart
 from ElasticEmail.model.body_content_type import BodyContentType
@@ -44,7 +44,7 @@ configuration.api_key['apikey'] = 'YOUR_API_KEY'
 ```
 
 Pass configuration to an api client and make it instance available under `api_client` name:
-```
+```python
 with ElasticEmail.ApiClient(configuration) as api_client:
 ```
 
@@ -67,30 +67,30 @@ First you need to specify email details:
 
 ```python
     email_message_data = EmailMessageData(
-        recipients=[
+        Recipients=[
             EmailRecipient(
-                email="johnsmith@domain.com",
-                fields={
+                Email="johnsmith@domain.com",
+                Fields={
                     "name": "John",
                 },
             ),
         ],
-        content=EmailContent(
+        Content=EmailContent(
             body=[
                 BodyPart(
-                    content_type=BodyContentType("HTML"),
-                    content="<strong>Hi {name}!<strong>",
-                    charset="utf-8",
+                    ContentType=BodyContentType("HTML"),
+                    Content="<strong>Hi {name}!<strong>",
+                    Charset="utf-8",
                 ),
                 BodyPart(
-                    content_type=BodyContentType("PlainText"),
-                    content="Hi {name}!",
-                    charset="utf-8",
+                    ContentType=BodyContentType("PlainText"),
+                    Content="Hi {name}!",
+                    Charset="utf-8",
                 ),
             ],
-            _from="myemail@domain.com",
-            reply_to="myemail@domain.com",
-            subject="Example email",
+            From="myemail@domain.com",
+            ReplyTo="myemail@domain.com",
+            Subject="Example email",
         ),
     )
 ```
@@ -110,7 +110,7 @@ Use try & except block to call `emails_post` method from the API to send an emai
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import emails_api
+from ElasticEmail.apis.tags import emails_api
 from ElasticEmail.model.email_content import EmailContent
 from ElasticEmail.model.body_part import BodyPart
 from ElasticEmail.model.body_content_type import BodyContentType
@@ -125,30 +125,30 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     api_instance = emails_api.EmailsApi(api_client)
     
     email_message_data = EmailMessageData(
-        recipients=[
+        Recipients=[
             EmailRecipient(
-                email="johnsmith@domain.com",
-                fields={
+                Email="johnsmith@domain.com",
+                Fields={
                     "name": "John",
                 },
             ),
         ],
-        content=EmailContent(
+        Content=EmailContent(
             body=[
                 BodyPart(
-                    content_type=BodyContentType("HTML"),
-                    content="<strong>Hi {name}!<strong>",
-                    charset="utf-8",
+                    ContentType=BodyContentType("HTML"),
+                    Content="<strong>Hi {name}!<strong>",
+                    Charset="utf-8",
                 ),
                 BodyPart(
-                    content_type=BodyContentType("PlainText"),
-                    content="Hi {name}!",
-                    charset="utf-8",
+                    ContentType=BodyContentType("PlainText"),
+                    Content="Hi {name}!",
+                    Charset="utf-8",
                 ),
             ],
-            _from="myemail@domain.com",
-            reply_to="myemail@domain.com",
-            subject="Example email",
+            From="myemail@domain.com",
+            ReplyTo="myemail@domain.com",
+            Subject="Example email",
         ),
     )
 

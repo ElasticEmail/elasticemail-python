@@ -1,5 +1,5 @@
 import ElasticEmail
-from ElasticEmail.api import emails_api
+from ElasticEmail.apis.tags import emails_api
 from ElasticEmail.model.email_content import EmailContent
 from ElasticEmail.model.body_part import BodyPart
 from ElasticEmail.model.body_content_type import BodyContentType
@@ -21,30 +21,30 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = emails_api.EmailsApi(api_client)
     email_message_data = EmailMessageData(
-        recipients=[
+        Recipients=[
             EmailRecipient(
-                email="johnsmith@domain.com",
-                fields={
+                Email="johnsmith@domain.com",
+                Fields={
                     "name": "John",
                 },
             ),
         ],
-        content=EmailContent(
+        Content=EmailContent(
             body=[
                 BodyPart(
-                    content_type=BodyContentType("HTML"),
-                    content="<strong>Hi {name}!<strong>",
-                    charset="utf-8",
+                    ContentType=BodyContentType("HTML"),
+                    Content="<strong>Hi {name}!<strong>",
+                    Charset="utf-8",
                 ),
                 BodyPart(
-                    content_type=BodyContentType("PlainText"),
-                    content="Hi {name}!",
-                    charset="utf-8",
+                    ContentType=BodyContentType("PlainText"),
+                    Content="Hi {name}!",
+                    Charset="utf-8",
                 ),
             ],
-            _from="myemail@domain.com",
-            reply_to="myemail@domain.com",
-            subject="Example email",
+            From="myemail@domain.com",
+            ReplyTo="myemail@domain.com",
+            Subject="Example email",
         ),
     ) # EmailMessageData | Email data
 

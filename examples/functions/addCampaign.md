@@ -12,9 +12,9 @@ To send a campaign you need a template (which becomes the email body itself) and
 ## Preparation
 Install Python 3.
 
-Install `elasticemail-python` lib
+Install ElasticEmail library.
 
-Eg. run in terminal `pip install git+https://github.com/elasticemail/elasticemail-python.git`
+Eg. run in terminal `pip install ElasticEmail` to install from PyPi repository.
 
 Create a new Python file `snippet.py` and open it in editor of your preference eg. PyCharm (https://www.jetbrains.com/pycharm/download/)
 
@@ -26,7 +26,7 @@ Load libraries using below code:
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import campaigns_api
+from ElasticEmail.apis.tags import campaigns_api
 from ElasticEmail.model.campaign import Campaign
 from ElasticEmail.model.campaign_recipient import CampaignRecipient
 from ElasticEmail.model.campaign_status import CampaignStatus
@@ -68,17 +68,17 @@ Because we define `Status` as `Draft`, so in this case it will be postponed and 
 
 ```python
     campaign = Campaign(
-        content=[
+        Content=[
             CampaignTemplate(
-                _from="karol.szczycinski@elasticemail.com",
-                reply_to="karol.szczycinski@elasticemail.com",
-                subject="Hello",
-                template_name="hello_template",
+                From="example@email.test",
+                ReplyTo="example@email.test",
+                Subject="Hello",
+                TemplateName="hello_template",
             ),
         ],
-        name="hello campaign",
-        status=CampaignStatus("Draft"),
-        recipients=CampaignRecipient(
+        Name="hello campaign",
+        Status=CampaignStatus("Draft"),
+        Recipients=CampaignRecipient(
             list_names=[
                 "my list name",
             ],
@@ -90,7 +90,7 @@ Use try & except block to call `campaigns_post` method from the API to create a 
 
 ```python
     try:
-        api_response = api_instance.campaigns_post(campaign)
+        api_response = api_instance.campaigns_post(body = campaign)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling CampaignsApi->campaigns_post: %s\n" % e)
@@ -101,7 +101,7 @@ Use try & except block to call `campaigns_post` method from the API to create a 
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import campaigns_api
+from ElasticEmail.apis.tags import campaigns_api
 from ElasticEmail.model.campaign import Campaign
 from ElasticEmail.model.campaign_recipient import CampaignRecipient
 from ElasticEmail.model.campaign_status import CampaignStatus
@@ -115,17 +115,17 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     api_instance = campaigns_api.CampaignsApi(api_client)
 
     campaign = Campaign(
-        content=[
+        Content=[
             CampaignTemplate(
-                _from="karol.szczycinski@elasticemail.com",
-                reply_to="karol.szczycinski@elasticemail.com",
-                subject="Hello",
-                template_name="hello_template",
+                From="example@email.test",
+                ReplyTo="example@email.test",
+                Subject="Hello",
+                TemplateName="hello_template",
             ),
         ],
-        name="hello campaign",
-        status=CampaignStatus("Draft"),
-        recipients=CampaignRecipient(
+        Name="hello campaign",
+        Status=CampaignStatus("Draft"),
+        Recipients=CampaignRecipient(
             list_names=[
                 "my list name",
             ],
@@ -133,7 +133,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     )
 
     try:
-        api_response = api_instance.campaigns_post(campaign)
+        api_response = api_instance.campaigns_post(body = campaign)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling CampaignsApi->campaigns_post: %s\n" % e)

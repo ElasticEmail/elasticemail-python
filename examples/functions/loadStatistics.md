@@ -10,9 +10,9 @@ When using Elastic Email you send emails to your contacts from that we create so
 ## Preparation
 Install Python 3.
 
-Install `elasticemail-python` lib
+Install ElasticEmail library.
 
-Eg. run in terminal `pip install git+https://github.com/elasticemail/elasticemail-python.git`
+Eg. run in terminal `pip install ElasticEmail` to install from PyPi repository.
 
 Create a new Python file `snippet.py` and open it in editor of your preference eg. PyCharm (https://www.jetbrains.com/pycharm/download/)
 
@@ -25,7 +25,7 @@ Load libraries using below code:
 ```python
 from datetime import datetime
 import ElasticEmail
-from ElasticEmail.api import statistics_api
+from ElasticEmail.apis.tags import statistics_api
 from pprint import pprint
 ```
 
@@ -65,7 +65,7 @@ Use try & except block to call `statistics_get` method from the API to load a st
 
 ```python
     try:
-        api_response = api_instance.statistics_get(_from)
+        api_response = api_instance.statistics_get({'from': _from})
         print("From %s" % _from)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
@@ -76,7 +76,7 @@ Use try & except block to call `statistics_get` method from the API to load a st
 
 ```python
     try:
-        api_response = api_instance.statistics_get(_from, to=to)
+        api_response = api_instance.statistics_get({'from': _from, 'to': to})
         print(f"\nFrom {_from} To {to}")
         pprint(api_response)
     except ElasticEmail.ApiException as e:
@@ -89,7 +89,7 @@ Use try & except block to call `statistics_get` method from the API to load a st
 ```python
 from datetime import datetime
 import ElasticEmail
-from ElasticEmail.api import statistics_api
+from ElasticEmail.apis.tags import statistics_api
 from pprint import pprint
 
 configuration = ElasticEmail.Configuration()
@@ -103,7 +103,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 
     # only from date:
     try:
-        api_response = api_instance.statistics_get(_from)
+        api_response = api_instance.statistics_get({'from': _from})
         print("From %s" % _from)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
@@ -111,7 +111,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 
     # from and to dates:
     try:
-        api_response = api_instance.statistics_get(_from, to=to)
+        api_response = api_instance.statistics_get({'from': _from, 'to': to})
         print(f"\nFrom {_from} To {to}")
         pprint(api_response)
     except ElasticEmail.ApiException as e:

@@ -1,5 +1,5 @@
 import ElasticEmail
-from ElasticEmail.api import contacts_api
+from ElasticEmail.apis.tags import contacts_api
 from ElasticEmail.model.emails_payload import EmailsPayload
 
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
@@ -17,7 +17,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     api_instance = contacts_api.ContactsApi(api_client)
 
     emails_payload = EmailsPayload(
-        emails=["johnsmith@domain.com"],
+        Emails=["johnsmith@domain.com"],
     )  # EmailsPayload | Provide either rule or a list of emails, not both.
 
     try:

@@ -10,9 +10,9 @@ When using Elastic Email, when you send an email to any group of contacts we cal
 ## Preparation
 Install Python 3.
 
-Install `elasticemail-python` lib
+Install ElasticEmail library.
 
-Eg. run in terminal `pip install git+https://github.com/elasticemail/elasticemail-python.git`
+Eg. run in terminal `pip install ElasticEmail` to install from PyPi repository.
 
 Create a new Python file `snippet.py` and open it in editor of your preference eg. PyCharm (https://www.jetbrains.com/pycharm/download/)
 
@@ -24,7 +24,7 @@ Load libraries using below code:
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import campaigns_api
+from ElasticEmail.apis.tags import campaigns_api
 ```
 
 Generate and use your API key (remember to check a required access level).
@@ -60,7 +60,7 @@ Use try & except block to call `campaigns_by_name_delete` method from the API to
 
 ```python
     try:
-        api_instance.campaigns_by_name_delete(name)
+        api_instance.campaigns_by_name_delete({'name': name})
         print("Campaign deleted.")
     except ElasticEmail.ApiException as e:
         print("Exception when calling CampaignsApi->campaigns_by_name_delete: %s\n" % e)
@@ -71,7 +71,7 @@ Use try & except block to call `campaigns_by_name_delete` method from the API to
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import campaigns_api
+from ElasticEmail.apis.tags import campaigns_api
 
 configuration = ElasticEmail.Configuration()
 configuration.api_key['apikey'] = 'YOUR_API_KEY'
@@ -82,7 +82,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     name = "hello campaign"
 
     try:
-        api_instance.campaigns_by_name_delete(name)
+        api_instance.campaigns_by_name_delete({'name': name})
         print("Campaign deleted.")
     except ElasticEmail.ApiException as e:
         print("Exception when calling CampaignsApi->campaigns_by_name_delete: %s\n" % e)

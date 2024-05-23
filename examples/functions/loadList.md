@@ -10,9 +10,9 @@ When using Elastic Email, you send emails to contacts – recipients who receive
 ## Preparation
 Install Python 3.
 
-Install `elasticemail-python` lib
+Install ElasticEmail library.
 
-Eg. run in terminal `pip install git+https://github.com/elasticemail/elasticemail-python.git`
+Eg. run in terminal `pip install ElasticEmail` to install from PyPi repository.
 
 Create a new Python file `snippet.py` and open it in editor of your preference eg. PyCharm (https://www.jetbrains.com/pycharm/download/)
 
@@ -24,7 +24,7 @@ Load libraries using below code:
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import lists_api
+from ElasticEmail.apis.tags import lists_api
 from pprint import pprint
 ```
 
@@ -61,7 +61,7 @@ Use try & except block to call `lists_by_name_get` method from the API to fetch 
 
 ```python
     try:
-        api_response = api_instance.lists_by_name_get(name)
+        api_response = api_instance.lists_by_name_get({'name': name})
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling ListsApi->lists_by_name_get: %s\n" % e)
@@ -72,7 +72,7 @@ Use try & except block to call `lists_by_name_get` method from the API to fetch 
 
 ```python
 import ElasticEmail
-from ElasticEmail.api import lists_api
+from ElasticEmail.apis.tags import lists_api
 from pprint import pprint
 
 configuration = ElasticEmail.Configuration()
@@ -84,7 +84,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     name = "Best contacts"
 
     try:
-        api_response = api_instance.lists_by_name_get(name)
+        api_response = api_instance.lists_by_name_get({'name': name})
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling ListsApi->lists_by_name_get: %s\n" % e)

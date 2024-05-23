@@ -1,5 +1,5 @@
 import ElasticEmail
-from ElasticEmail.api import campaigns_api
+from ElasticEmail.apis.tags import campaigns_api
 from ElasticEmail.model.campaign import Campaign
 from ElasticEmail.model.campaign_recipient import CampaignRecipient
 from ElasticEmail.model.campaign_status import CampaignStatus
@@ -24,18 +24,18 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     name = "hello campaign"
 
     campaign = Campaign(
-        content=[
+        Content=[
             CampaignTemplate(
-                _from="karol.szczycinski@elasticemail.com",
-                reply_to="karol.szczycinski@elasticemail.com",
-                subject="Hello",
-                template_name="hello_template",
+                From="test@email.test",
+                ReplyTo="test@email.test",
+                Subject="Hello",
+                TemplateName="hello_template",
             ),
         ],
-        name="hello campaign update",
-        status=CampaignStatus("Draft"),
-        recipients=CampaignRecipient(
-            list_names=[
+        Name="hello campaign update",
+        Status=CampaignStatus("Draft"),
+        Recipients=CampaignRecipient(
+            ListNames=[
                 "my list name",
             ],
         ),
@@ -44,7 +44,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Add Campaign
-        api_response = api_instance.campaigns_by_name_put(name, campaign)
+        api_response = api_instance.campaigns_by_name_put(path_params = {'name': name}, body = campaign)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling CampaignsApi->campaigns_by_name_put: %s\n" % e)
