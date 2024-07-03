@@ -5,6 +5,7 @@ All URIs are relative to *https://api.elasticemail.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**lists_by_listname_contacts_get**](#lists_by_listname_contacts_get) | **get** /lists/{listname}/contacts | Load Contacts in List
 [**lists_by_name_contacts_post**](#lists_by_name_contacts_post) | **post** /lists/{name}/contacts | Add Contacts to List
 [**lists_by_name_contacts_remove_post**](#lists_by_name_contacts_remove_post) | **post** /lists/{name}/contacts/remove | Remove Contacts from List
 [**lists_by_name_delete**](#lists_by_name_delete) | **delete** /lists/{name} | Delete List
@@ -12,6 +13,163 @@ Method | HTTP request | Description
 [**lists_by_name_put**](#lists_by_name_put) | **put** /lists/{name} | Update List
 [**lists_get**](#lists_get) | **get** /lists | Load Lists
 [**lists_post**](#lists_post) | **post** /lists | Add List
+
+# **lists_by_listname_contacts_get**
+<a name="lists_by_listname_contacts_get"></a>
+> [Contact] lists_by_listname_contacts_get(listname)
+
+Load Contacts in List
+
+Returns a list of contacts. Required Access Level: ViewContacts
+
+### Example
+
+* Api Key Authentication (apikey):
+```python
+import ElasticEmail
+from ElasticEmail.apis.tags import lists_api
+from ElasticEmail.model.contact import Contact
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.elasticemail.com/v4
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ElasticEmail.Configuration(
+    host = "https://api.elasticemail.com/v4"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
+# Enter a context with an instance of the API client
+with ElasticEmail.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = lists_api.ListsApi(api_client)
+
+    # example passing only required values which don't have defaults set
+    path_params = {
+        'listname': "My List 1",
+    }
+    query_params = {
+    }
+    try:
+        # Load Contacts in List
+        api_response = api_instance.lists_by_listname_contacts_get(
+            path_params=path_params,
+            query_params=query_params,
+        )
+        pprint(api_response)
+    except ElasticEmail.ApiException as e:
+        print("Exception when calling ListsApi->lists_by_listname_contacts_get: %s\n" % e)
+
+    # example passing only optional values
+    path_params = {
+        'listname': "My List 1",
+    }
+    query_params = {
+        'limit': 100,
+        'offset': 20,
+    }
+    try:
+        # Load Contacts in List
+        api_response = api_instance.lists_by_listname_contacts_get(
+            path_params=path_params,
+            query_params=query_params,
+        )
+        pprint(api_response)
+    except ElasticEmail.ApiException as e:
+        print("Exception when calling ListsApi->lists_by_listname_contacts_get: %s\n" % e)
+```
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+query_params | RequestQueryParams | |
+path_params | RequestPathParams | |
+accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
+stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
+timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
+skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+
+### query_params
+#### RequestQueryParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+limit | LimitSchema | | optional
+offset | OffsetSchema | | optional
+
+
+# LimitSchema
+
+integer
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+decimal.Decimal, int,  | decimal.Decimal,  | integer | value must be a 32 bit integer
+
+# OffsetSchema
+
+integer
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+decimal.Decimal, int,  | decimal.Decimal,  | integer | value must be a 32 bit integer
+
+### path_params
+#### RequestPathParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+listname | ListnameSchema | | 
+
+# ListnameSchema
+
+string
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str,  | str,  | string | 
+
+### Return Types, Responses
+
+Code | Class | Description
+------------- | ------------- | -------------
+n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
+200 | [ApiResponseFor200](#lists_by_listname_contacts_get.ApiResponseFor200) | OK
+
+#### lists_by_listname_contacts_get.ApiResponseFor200
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+# SchemaFor200ResponseBodyApplicationJson
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+list, tuple,  | tuple,  |  | 
+
+### Tuple Items
+Class Name | Input Type | Accessed Type | Description | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+[**Contact**]({{complexTypePrefix}}Contact.md) | [**Contact**]({{complexTypePrefix}}Contact.md) | [**Contact**]({{complexTypePrefix}}Contact.md) |  | 
+
+### Authorization
+
+[apikey](../../../README.md#apikey)
+
+[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **lists_by_name_contacts_post**
 <a name="lists_by_name_contacts_post"></a>

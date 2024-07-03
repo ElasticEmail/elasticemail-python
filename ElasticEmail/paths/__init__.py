@@ -33,6 +33,7 @@ class PathValues(str, enum.Enum):
     INBOUNDROUTE_ID = "/inboundroute/{id}"
     INBOUNDROUTE_ORDER = "/inboundroute/order"
     LISTS = "/lists"
+    LISTS_LISTNAME_CONTACTS = "/lists/{listname}/contacts"
     LISTS_NAME = "/lists/{name}"
     LISTS_NAME_CONTACTS = "/lists/{name}/contacts"
     LISTS_NAME_CONTACTS_REMOVE = "/lists/{name}/contacts/remove"

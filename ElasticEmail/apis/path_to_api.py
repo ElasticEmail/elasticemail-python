@@ -28,6 +28,7 @@ from ElasticEmail.apis.paths.inboundroute import Inboundroute
 from ElasticEmail.apis.paths.inboundroute_id import InboundrouteId
 from ElasticEmail.apis.paths.inboundroute_order import InboundrouteOrder
 from ElasticEmail.apis.paths.lists import Lists
+from ElasticEmail.apis.paths.lists_listname_contacts import ListsListnameContacts
 from ElasticEmail.apis.paths.lists_name import ListsName
 from ElasticEmail.apis.paths.lists_name_contacts import ListsNameContacts
 from ElasticEmail.apis.paths.lists_name_contacts_remove import ListsNameContactsRemove
@@ -95,6 +96,7 @@ PathToApi = typing_extensions.TypedDict(
         PathValues.INBOUNDROUTE_ID: InboundrouteId,
         PathValues.INBOUNDROUTE_ORDER: InboundrouteOrder,
         PathValues.LISTS: Lists,
+        PathValues.LISTS_LISTNAME_CONTACTS: ListsListnameContacts,
         PathValues.LISTS_NAME: ListsName,
         PathValues.LISTS_NAME_CONTACTS: ListsNameContacts,
         PathValues.LISTS_NAME_CONTACTS_REMOVE: ListsNameContactsRemove,
@@ -163,6 +165,7 @@ path_to_api = PathToApi(
         PathValues.INBOUNDROUTE_ID: InboundrouteId,
         PathValues.INBOUNDROUTE_ORDER: InboundrouteOrder,
         PathValues.LISTS: Lists,
+        PathValues.LISTS_LISTNAME_CONTACTS: ListsListnameContacts,
         PathValues.LISTS_NAME: ListsName,
         PathValues.LISTS_NAME_CONTACTS: ListsNameContacts,
         PathValues.LISTS_NAME_CONTACTS_REMOVE: ListsNameContactsRemove,
