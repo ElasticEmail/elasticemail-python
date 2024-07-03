@@ -918,6 +918,7 @@ class OpenApiResponse(JSONDetector):
     def deserialize(self, response: urllib3.HTTPResponse, configuration: Configuration) -> ApiResponse:
         content_type = response.getheader('content-type')
         deserialized_body = unset
+        content_type=content_type[0:content_type.find(';')]
         streamed = response.supports_chunked_reads()
 
         deserialized_headers = unset
@@ -926,7 +927,7 @@ class OpenApiResponse(JSONDetector):
             pass
 
         if self.content is not None:
-            if self.content not in content_type:
+            if content_type not in self.content:
                 raise ApiValueError(
                     f"Invalid content_type returned. Content_type='{content_type}' was returned "
                     f"when only {str(set(self.content))} are defined for status_code={str(response.status)}"
@@ -1004,7 +1005,7 @@ class ApiClient:
             self.default_headers[header_name] = header_value
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'OpenAPI-Generator/4.1.1/python'
+        self.user_agent = 'OpenAPI-Generator/4.1.2/python'
 
     def __enter__(self):
         return self
