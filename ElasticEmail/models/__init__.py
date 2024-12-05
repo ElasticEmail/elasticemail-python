@@ -1,98 +1,111 @@
 # coding: utf-8
 
 # flake8: noqa
+"""
+    Elastic Email REST API
 
-# import all models into this package
-# if you have many models here with many references from one model to another this may
-# raise a RecursionError
-# to avoid this, import only the models that you directly need like:
-# from ElasticEmail.model.pet import Pet
-# or import this package, but before doing it, use:
-# import sys
-# sys.setrecursionlimit(n)
+    This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
-from ElasticEmail.model.access_level import AccessLevel
-from ElasticEmail.model.account_status_enum import AccountStatusEnum
-from ElasticEmail.model.api_key import ApiKey
-from ElasticEmail.model.api_key_payload import ApiKeyPayload
-from ElasticEmail.model.body_content_type import BodyContentType
-from ElasticEmail.model.body_part import BodyPart
-from ElasticEmail.model.campaign import Campaign
-from ElasticEmail.model.campaign_options import CampaignOptions
-from ElasticEmail.model.campaign_recipient import CampaignRecipient
-from ElasticEmail.model.campaign_status import CampaignStatus
-from ElasticEmail.model.campaign_template import CampaignTemplate
-from ElasticEmail.model.channel_log_status_summary import ChannelLogStatusSummary
-from ElasticEmail.model.compression_format import CompressionFormat
-from ElasticEmail.model.consent_data import ConsentData
-from ElasticEmail.model.consent_tracking import ConsentTracking
-from ElasticEmail.model.contact import Contact
-from ElasticEmail.model.contact_activity import ContactActivity
-from ElasticEmail.model.contact_payload import ContactPayload
-from ElasticEmail.model.contact_source import ContactSource
-from ElasticEmail.model.contact_status import ContactStatus
-from ElasticEmail.model.contact_update_payload import ContactUpdatePayload
-from ElasticEmail.model.contacts_list import ContactsList
-from ElasticEmail.model.delivery_optimization_type import DeliveryOptimizationType
-from ElasticEmail.model.email_content import EmailContent
-from ElasticEmail.model.email_data import EmailData
-from ElasticEmail.model.email_job_failed_status import EmailJobFailedStatus
-from ElasticEmail.model.email_job_status import EmailJobStatus
-from ElasticEmail.model.email_message_data import EmailMessageData
-from ElasticEmail.model.email_predicted_validation_status import EmailPredictedValidationStatus
-from ElasticEmail.model.email_recipient import EmailRecipient
-from ElasticEmail.model.email_send import EmailSend
-from ElasticEmail.model.email_status import EmailStatus
-from ElasticEmail.model.email_transactional_message_data import EmailTransactionalMessageData
-from ElasticEmail.model.email_validation_result import EmailValidationResult
-from ElasticEmail.model.email_validation_status import EmailValidationStatus
-from ElasticEmail.model.email_view import EmailView
-from ElasticEmail.model.emails_payload import EmailsPayload
-from ElasticEmail.model.encoding_type import EncodingType
-from ElasticEmail.model.event_type import EventType
-from ElasticEmail.model.events_order_by import EventsOrderBy
-from ElasticEmail.model.export_file_formats import ExportFileFormats
-from ElasticEmail.model.export_link import ExportLink
-from ElasticEmail.model.export_status import ExportStatus
-from ElasticEmail.model.file_info import FileInfo
-from ElasticEmail.model.file_payload import FilePayload
-from ElasticEmail.model.file_upload_result import FileUploadResult
-from ElasticEmail.model.inbound_payload import InboundPayload
-from ElasticEmail.model.inbound_route import InboundRoute
-from ElasticEmail.model.inbound_route_action_type import InboundRouteActionType
-from ElasticEmail.model.inbound_route_filter_type import InboundRouteFilterType
-from ElasticEmail.model.list_payload import ListPayload
-from ElasticEmail.model.list_update_payload import ListUpdatePayload
-from ElasticEmail.model.log_job_status import LogJobStatus
-from ElasticEmail.model.log_status_summary import LogStatusSummary
-from ElasticEmail.model.merge_email_payload import MergeEmailPayload
-from ElasticEmail.model.message_attachment import MessageAttachment
-from ElasticEmail.model.message_category import MessageCategory
-from ElasticEmail.model.new_api_key import NewApiKey
-from ElasticEmail.model.new_smtp_credentials import NewSmtpCredentials
-from ElasticEmail.model.options import Options
-from ElasticEmail.model.recipient_event import RecipientEvent
-from ElasticEmail.model.segment import Segment
-from ElasticEmail.model.segment_payload import SegmentPayload
-from ElasticEmail.model.smtp_credentials import SmtpCredentials
-from ElasticEmail.model.smtp_credentials_payload import SmtpCredentialsPayload
-from ElasticEmail.model.sort_order_item import SortOrderItem
-from ElasticEmail.model.split_optimization_type import SplitOptimizationType
-from ElasticEmail.model.split_options import SplitOptions
-from ElasticEmail.model.sub_account_info import SubAccountInfo
-from ElasticEmail.model.subaccount_email_credits_payload import SubaccountEmailCreditsPayload
-from ElasticEmail.model.subaccount_email_settings import SubaccountEmailSettings
-from ElasticEmail.model.subaccount_email_settings_payload import SubaccountEmailSettingsPayload
-from ElasticEmail.model.subaccount_payload import SubaccountPayload
-from ElasticEmail.model.subaccount_settings_info import SubaccountSettingsInfo
-from ElasticEmail.model.subaccount_settings_info_payload import SubaccountSettingsInfoPayload
-from ElasticEmail.model.suppression import Suppression
-from ElasticEmail.model.template import Template
-from ElasticEmail.model.template_payload import TemplatePayload
-from ElasticEmail.model.template_scope import TemplateScope
-from ElasticEmail.model.template_type import TemplateType
-from ElasticEmail.model.transactional_recipient import TransactionalRecipient
-from ElasticEmail.model.utm import Utm
-from ElasticEmail.model.verification_file_result import VerificationFileResult
-from ElasticEmail.model.verification_file_result_details import VerificationFileResultDetails
-from ElasticEmail.model.verification_status import VerificationStatus
+    The version of the OpenAPI document: 4.0.0
+    Contact: support@elasticemail.com
+    Generated by OpenAPI Generator (https://openapi-generator.tech)
+
+    Do not edit the class manually.
+"""  # noqa: E501
+
+
+# import models into model package
+from ElasticEmail.models.access_level import AccessLevel
+from ElasticEmail.models.account_status_enum import AccountStatusEnum
+from ElasticEmail.models.api_key import ApiKey
+from ElasticEmail.models.api_key_payload import ApiKeyPayload
+from ElasticEmail.models.body_content_type import BodyContentType
+from ElasticEmail.models.body_part import BodyPart
+from ElasticEmail.models.campaign import Campaign
+from ElasticEmail.models.campaign_options import CampaignOptions
+from ElasticEmail.models.campaign_recipient import CampaignRecipient
+from ElasticEmail.models.campaign_status import CampaignStatus
+from ElasticEmail.models.campaign_template import CampaignTemplate
+from ElasticEmail.models.certificate_validation_status import CertificateValidationStatus
+from ElasticEmail.models.channel_log_status_summary import ChannelLogStatusSummary
+from ElasticEmail.models.compression_format import CompressionFormat
+from ElasticEmail.models.consent_data import ConsentData
+from ElasticEmail.models.consent_tracking import ConsentTracking
+from ElasticEmail.models.contact import Contact
+from ElasticEmail.models.contact_activity import ContactActivity
+from ElasticEmail.models.contact_payload import ContactPayload
+from ElasticEmail.models.contact_source import ContactSource
+from ElasticEmail.models.contact_status import ContactStatus
+from ElasticEmail.models.contact_update_payload import ContactUpdatePayload
+from ElasticEmail.models.contacts_list import ContactsList
+from ElasticEmail.models.delivery_optimization_type import DeliveryOptimizationType
+from ElasticEmail.models.domain_data import DomainData
+from ElasticEmail.models.domain_detail import DomainDetail
+from ElasticEmail.models.domain_owner import DomainOwner
+from ElasticEmail.models.domain_payload import DomainPayload
+from ElasticEmail.models.domain_update_payload import DomainUpdatePayload
+from ElasticEmail.models.email_content import EmailContent
+from ElasticEmail.models.email_data import EmailData
+from ElasticEmail.models.email_job_failed_status import EmailJobFailedStatus
+from ElasticEmail.models.email_job_status import EmailJobStatus
+from ElasticEmail.models.email_message_data import EmailMessageData
+from ElasticEmail.models.email_predicted_validation_status import EmailPredictedValidationStatus
+from ElasticEmail.models.email_recipient import EmailRecipient
+from ElasticEmail.models.email_send import EmailSend
+from ElasticEmail.models.email_status import EmailStatus
+from ElasticEmail.models.email_transactional_message_data import EmailTransactionalMessageData
+from ElasticEmail.models.email_validation_result import EmailValidationResult
+from ElasticEmail.models.email_validation_status import EmailValidationStatus
+from ElasticEmail.models.email_view import EmailView
+from ElasticEmail.models.emails_payload import EmailsPayload
+from ElasticEmail.models.encoding_type import EncodingType
+from ElasticEmail.models.event_type import EventType
+from ElasticEmail.models.events_order_by import EventsOrderBy
+from ElasticEmail.models.export_file_formats import ExportFileFormats
+from ElasticEmail.models.export_link import ExportLink
+from ElasticEmail.models.export_status import ExportStatus
+from ElasticEmail.models.file_info import FileInfo
+from ElasticEmail.models.file_payload import FilePayload
+from ElasticEmail.models.file_upload_result import FileUploadResult
+from ElasticEmail.models.inbound_payload import InboundPayload
+from ElasticEmail.models.inbound_route import InboundRoute
+from ElasticEmail.models.inbound_route_action_type import InboundRouteActionType
+from ElasticEmail.models.inbound_route_filter_type import InboundRouteFilterType
+from ElasticEmail.models.list_payload import ListPayload
+from ElasticEmail.models.list_update_payload import ListUpdatePayload
+from ElasticEmail.models.log_job_status import LogJobStatus
+from ElasticEmail.models.log_status_summary import LogStatusSummary
+from ElasticEmail.models.merge_email_payload import MergeEmailPayload
+from ElasticEmail.models.message_attachment import MessageAttachment
+from ElasticEmail.models.message_category import MessageCategory
+from ElasticEmail.models.message_category_enum import MessageCategoryEnum
+from ElasticEmail.models.new_api_key import NewApiKey
+from ElasticEmail.models.new_smtp_credentials import NewSmtpCredentials
+from ElasticEmail.models.options import Options
+from ElasticEmail.models.recipient_event import RecipientEvent
+from ElasticEmail.models.segment import Segment
+from ElasticEmail.models.segment_payload import SegmentPayload
+from ElasticEmail.models.smtp_credentials import SmtpCredentials
+from ElasticEmail.models.smtp_credentials_payload import SmtpCredentialsPayload
+from ElasticEmail.models.sort_order_item import SortOrderItem
+from ElasticEmail.models.split_optimization_type import SplitOptimizationType
+from ElasticEmail.models.split_options import SplitOptions
+from ElasticEmail.models.sub_account_info import SubAccountInfo
+from ElasticEmail.models.subaccount_email_credits_payload import SubaccountEmailCreditsPayload
+from ElasticEmail.models.subaccount_email_settings import SubaccountEmailSettings
+from ElasticEmail.models.subaccount_email_settings_payload import SubaccountEmailSettingsPayload
+from ElasticEmail.models.subaccount_payload import SubaccountPayload
+from ElasticEmail.models.subaccount_settings_info import SubaccountSettingsInfo
+from ElasticEmail.models.subaccount_settings_info_payload import SubaccountSettingsInfoPayload
+from ElasticEmail.models.suppression import Suppression
+from ElasticEmail.models.template import Template
+from ElasticEmail.models.template_payload import TemplatePayload
+from ElasticEmail.models.template_scope import TemplateScope
+from ElasticEmail.models.template_type import TemplateType
+from ElasticEmail.models.tracking_type import TrackingType
+from ElasticEmail.models.tracking_validation_status import TrackingValidationStatus
+from ElasticEmail.models.transactional_recipient import TransactionalRecipient
+from ElasticEmail.models.utm import Utm
+from ElasticEmail.models.verification_file_result import VerificationFileResult
+from ElasticEmail.models.verification_file_result_details import VerificationFileResultDetails
+from ElasticEmail.models.verification_status import VerificationStatus
