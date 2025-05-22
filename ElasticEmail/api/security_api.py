@@ -65,7 +65,7 @@ class SecurityApi:
     ) -> None:
         """Delete ApiKey
 
-        Delete your existing ApiKey. Required Access Level: Security
+        Delete your existing ApiKey. Required Access Level: ModifyAccessTokens
 
         :param name: Name of the ApiKey (required)
         :type name: str
@@ -136,7 +136,7 @@ class SecurityApi:
     ) -> ApiResponse[None]:
         """Delete ApiKey
 
-        Delete your existing ApiKey. Required Access Level: Security
+        Delete your existing ApiKey. Required Access Level: ModifyAccessTokens
 
         :param name: Name of the ApiKey (required)
         :type name: str
@@ -207,7 +207,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """Delete ApiKey
 
-        Delete your existing ApiKey. Required Access Level: Security
+        Delete your existing ApiKey. Required Access Level: ModifyAccessTokens
 
         :param name: Name of the ApiKey (required)
         :type name: str
@@ -609,7 +609,7 @@ class SecurityApi:
     ) -> ApiKey:
         """Update ApiKey
 
-        Update your existing ApiKey. Required Access Level: Security
+        Update your existing ApiKey. Required Access Level: ModifyAccessTokens
 
         :param name: Name of the ApiKey (required)
         :type name: str
@@ -680,7 +680,7 @@ class SecurityApi:
     ) -> ApiResponse[ApiKey]:
         """Update ApiKey
 
-        Update your existing ApiKey. Required Access Level: Security
+        Update your existing ApiKey. Required Access Level: ModifyAccessTokens
 
         :param name: Name of the ApiKey (required)
         :type name: str
@@ -751,7 +751,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """Update ApiKey
 
-        Update your existing ApiKey. Required Access Level: Security
+        Update your existing ApiKey. Required Access Level: ModifyAccessTokens
 
         :param name: Name of the ApiKey (required)
         :type name: str
@@ -1154,7 +1154,7 @@ class SecurityApi:
     ) -> NewApiKey:
         """Add ApiKey
 
-        Add a new ApiKey. Required Access Level: Security
+        Add a new ApiKey. Required Access Level: ModifyAccessTokens
 
         :param api_key_payload: (required)
         :type api_key_payload: ApiKeyPayload
@@ -1221,7 +1221,7 @@ class SecurityApi:
     ) -> ApiResponse[NewApiKey]:
         """Add ApiKey
 
-        Add a new ApiKey. Required Access Level: Security
+        Add a new ApiKey. Required Access Level: ModifyAccessTokens
 
         :param api_key_payload: (required)
         :type api_key_payload: ApiKeyPayload
@@ -1288,7 +1288,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """Add ApiKey
 
-        Add a new ApiKey. Required Access Level: Security
+        Add a new ApiKey. Required Access Level: ModifyAccessTokens
 
         :param api_key_payload: (required)
         :type api_key_payload: ApiKeyPayload
@@ -1426,7 +1426,7 @@ class SecurityApi:
     ) -> None:
         """Delete SMTP Credential
 
-        Delete your existing SMTP Credentials. Required Access Level: Security
+        Delete your existing SMTP Credentials. Required Access Level: ModifyAccessTokens
 
         :param name: Name of the SMTP Credential (required)
         :type name: str
@@ -1497,7 +1497,7 @@ class SecurityApi:
     ) -> ApiResponse[None]:
         """Delete SMTP Credential
 
-        Delete your existing SMTP Credentials. Required Access Level: Security
+        Delete your existing SMTP Credentials. Required Access Level: ModifyAccessTokens
 
         :param name: Name of the SMTP Credential (required)
         :type name: str
@@ -1568,7 +1568,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """Delete SMTP Credential
 
-        Delete your existing SMTP Credentials. Required Access Level: Security
+        Delete your existing SMTP Credentials. Required Access Level: ModifyAccessTokens
 
         :param name: Name of the SMTP Credential (required)
         :type name: str
@@ -1970,7 +1970,7 @@ class SecurityApi:
     ) -> SmtpCredentials:
         """Update SMTP Credential
 
-        Update your existing SMTP Credentials. Required Access Level: Security
+        Update your existing SMTP Credentials. Required Access Level: ModifyAccessTokens
 
         :param name: Name of the SMTP Credential (required)
         :type name: str
@@ -2041,7 +2041,7 @@ class SecurityApi:
     ) -> ApiResponse[SmtpCredentials]:
         """Update SMTP Credential
 
-        Update your existing SMTP Credentials. Required Access Level: Security
+        Update your existing SMTP Credentials. Required Access Level: ModifyAccessTokens
 
         :param name: Name of the SMTP Credential (required)
         :type name: str
@@ -2112,7 +2112,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """Update SMTP Credential
 
-        Update your existing SMTP Credentials. Required Access Level: Security
+        Update your existing SMTP Credentials. Required Access Level: ModifyAccessTokens
 
         :param name: Name of the SMTP Credential (required)
         :type name: str
@@ -2515,7 +2515,7 @@ class SecurityApi:
     ) -> NewSmtpCredentials:
         """Add SMTP Credential
 
-        Add new SMTP Credential. Required Access Level: Security
+        Add new SMTP Credential. Required Access Level: ModifyAccessTokens
 
         :param smtp_credentials_payload: (required)
         :type smtp_credentials_payload: SmtpCredentialsPayload
@@ -2582,7 +2582,7 @@ class SecurityApi:
     ) -> ApiResponse[NewSmtpCredentials]:
         """Add SMTP Credential
 
-        Add new SMTP Credential. Required Access Level: Security
+        Add new SMTP Credential. Required Access Level: ModifyAccessTokens
 
         :param smtp_credentials_payload: (required)
         :type smtp_credentials_payload: SmtpCredentialsPayload
@@ -2649,7 +2649,7 @@ class SecurityApi:
     ) -> RESTResponseType:
         """Add SMTP Credential
 
-        Add new SMTP Credential. Required Access Level: Security
+        Add new SMTP Credential. Required Access Level: ModifyAccessTokens
 
         :param smtp_credentials_payload: (required)
         :type smtp_credentials_payload: SmtpCredentialsPayload

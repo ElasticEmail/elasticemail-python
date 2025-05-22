@@ -33,6 +33,10 @@ class TemplateType(str, Enum):
     TEMPLATEEDITOR = 'TemplateEditor'
     FORMTEMPLATE = 'FormTemplate'
     LANDINGPAGETEMPLATE = 'LandingPageTemplate'
+    PAYMENTCONFIRMATIONTEMPLATE = 'PaymentConfirmationTemplate'
+    LANDINGPAGEPRODUCTTEMPLATE = 'LandingPageProductTemplate'
+    LANDINGPAGECHECKOUTTEMPLATE = 'LandingPageCheckoutTemplate'
+    LANDINGPAGEPAYMENTCONFIRMATIONTEMPLATE = 'LandingPagePaymentConfirmationTemplate'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

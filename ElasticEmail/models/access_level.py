@@ -79,6 +79,12 @@ class AccessLevel(str, Enum):
     VIEWTEMPLATEEDITOR = 'ViewTemplateEditor'
     VIEWAITOOLS = 'ViewAITools'
     MODIFYSUBSCRIPTIONANTISPAM = 'ModifySubscriptionAntiSpam'
+    VIEWLANDINGPAGESCHECKOUT = 'ViewLandingPagesCheckout'
+    MODIFYLANDINGPAGESCHECKOUT = 'ModifyLandingPagesCheckout'
+    VIEWHTMLEDITOR = 'ViewHTMLEditor'
+    MODIFYACCESSTOKENS = 'ModifyAccessTokens'
+    VIEWPAIDNEWSLETTERS = 'ViewPaidNewsletters'
+    MODIFYPAIDNEWSLETTERS = 'ModifyPaidNewsletters'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

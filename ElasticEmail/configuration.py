@@ -389,6 +389,15 @@ conf = ElasticEmail.Configuration(
                     'apikey',
                 ),
             }
+        if 'ApiKeyAuthCustomBranding' in self.api_key:
+            auth['ApiKeyAuthCustomBranding'] = {
+                'type': 'api_key',
+                'in': 'header',
+                'key': 'X-Auth-Token',
+                'value': self.get_api_key_with_prefix(
+                    'ApiKeyAuthCustomBranding',
+                ),
+            }
         return auth
 
     def to_debug_report(self):
@@ -400,7 +409,7 @@ conf = ElasticEmail.Configuration(
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: 4.0.0\n"\
-               "SDK Package Version: 4.1.3".\
+               "SDK Package Version: 4.0.26".\
                format(env=sys.platform, pyversion=sys.version)
 
     def get_host_settings(self):
