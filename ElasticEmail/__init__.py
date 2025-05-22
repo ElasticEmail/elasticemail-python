@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "4.0.26"
+__version__ = "4.1.4"
 
 # import apis into sdk package
 from ElasticEmail.api.campaigns_api import CampaignsApi
