@@ -1,95 +1,26 @@
 # Add List
 
-This guide will walk you through the process of adding a new list of contacts to your account using the Python library. 
-
-*Required Access Level: ModifyContacts*
-
-## What's a list?
-When using Elastic Email, you send emails to contacts – recipients who receive your emails. Contacts can be grouped by created segments or lists. Segments add contacts automatically when specfied conditions are met, and contacts on lists are managed manually.
-
-## Preparation
-Install Python 3.
-
-Install ElasticEmail library.
-
-Eg. run in terminal `pip install ElasticEmail` to install from PyPi repository.
-
-Create a new Python file `snippet.py` and open it in editor of your preference eg. PyCharm (https://www.jetbrains.com/pycharm/download/)
-
-## Let's dig into the code
-
-Put the below code to your file.
-
-Load libraries using below code:
+This example is aligned with the current SDK and can be run directly from `examples/functions/addList.py`.
 
 ```python
 import ElasticEmail
-from ElasticEmail.apis.tags import lists_api
-from ElasticEmail.model.list_payload import ListPayload
-from pprint import pprint
-```
-
-Generate and use your API key (remember to check a required access level).
-
-Defining the host is optional and defaults to https://api.elasticemail.com/v4
-
-```python
-configuration = ElasticEmail.Configuration()
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
-```
-
-Pass configuration to an api client and make it instance available under `api_client` name:
-```
-with ElasticEmail.ApiClient(configuration) as api_client:
-```
-
-Create an instance of ListsApi that will be used to create a new list.
-
-```python
-    api_instance = lists_api.ListsApi(api_client)
-```
-
-Create an object with details about a new list. Only `ListName` is required. 
-
-You can also define if to allow unsubscription from list and pass an emails array of existing contacts on your account to add them to list during list creation. 
-
-> Find out more by checking our API's documentation: https://elasticemail.com/developers/api-documentation/rest-api#operation/listsPost
-
-
-```python
-    list_payload = ListPayload(
-        ListName="Best contacts",
-        AllowUnsubscribe=True,
-        Emails=[
-            "johnsmith@domain.com",
-        ],
-    )
-```
-
-Use try & except block to call `lists_post` method from the API to create a list: 
-
-```python
-    try:
-        api_response = api_instance.lists_post(body = list_payload)
-        pprint(api_response)
-    except ElasticEmail.ApiException as e:
-        print("Exception when calling ListsApi->lists_post: %s\n" % e)
-```
-
-
-## The whole code to copy and paste:
-
-```python
-import ElasticEmail
-from ElasticEmail.apis.tags import lists_api
-from ElasticEmail.model.list_payload import ListPayload
+from ElasticEmail.models.list_payload import ListPayload
 from pprint import pprint
 
+# Defining the host is optional and defaults to https://api.elasticemail.com/v4
 configuration = ElasticEmail.Configuration()
+
+# Configure API key authorization: apikey
 configuration.api_key['apikey'] = 'YOUR_API_KEY'
 
+"""
+Add list
+Example api call that creates a new contacts list.
+Emails – An array of existing contact emails that should be added to this list. Leave empty for all contacts
+"""
 with ElasticEmail.ApiClient(configuration) as api_client:
-    api_instance = lists_api.ListsApi(api_client)
+    # Create an instance of the API class
+    api_instance = ElasticEmail.ListsApi(api_client)
 
     list_payload = ListPayload(
         ListName="Best contacts",
@@ -97,16 +28,20 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         Emails=[
             "johnsmith@domain.com",
         ],
-    )
+    )  # ListPayload |
 
     try:
-        api_response = api_instance.lists_post(body = list_payload)
+        api_response = api_instance.lists_post(list_payload=list_payload)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
-        print("Exception when calling ListsApi->lists_post: %s\n" % e)
+        if e.status == 400:
+            print("List already exists. Skipping.")
+        else:
+            print("Exception when calling ListsApi->lists_post: %s\n" % e)
 ```
 
-## Run the code
-```
-python3 snippet.py
+Run with:
+
+```bash
+py -3 addList.py
 ```
