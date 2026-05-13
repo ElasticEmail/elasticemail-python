@@ -15,10 +15,10 @@
 
 import unittest
 
-from ElasticEmail.models.message_attachment import MessageAttachment
+from ElasticEmail.models.webhook_create_payload import WebhookCreatePayload
 
-class TestMessageAttachment(unittest.TestCase):
-    """MessageAttachment unit test stubs"""
+class TestWebhookCreatePayload(unittest.TestCase):
+    """WebhookCreatePayload unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,30 +26,35 @@ class TestMessageAttachment(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> MessageAttachment:
-        """Test MessageAttachment
+    def make_instance(self, include_optional) -> WebhookCreatePayload:
+        """Test WebhookCreatePayload
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `MessageAttachment`
+        # uncomment below to create an instance of `WebhookCreatePayload`
         """
-        model = MessageAttachment()
+        model = WebhookCreatePayload()
         if include_optional:
-            return MessageAttachment(
-                binary_content = 'YQ==',
-                name = '',
-                content_type = '',
-                size = 56
+            return WebhookCreatePayload(
+                name = 'attachment.txt',
+                url = 'http://address.for.notification.com',
+                notify_once_per_email = True,
+                notification_for_sent = True,
+                notification_for_opened = True,
+                notification_for_clicked = True,
+                notification_for_unsubscribed = True,
+                notification_for_abuse_report = True,
+                notification_for_error = True
             )
         else:
-            return MessageAttachment(
-                binary_content = 'YQ==',
-                name = '',
+            return WebhookCreatePayload(
+                name = 'attachment.txt',
+                url = 'http://address.for.notification.com',
         )
         """
 
-    def testMessageAttachment(self):
-        """Test MessageAttachment"""
+    def testWebhookCreatePayload(self):
+        """Test WebhookCreatePayload"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

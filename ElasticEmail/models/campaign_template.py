@@ -30,7 +30,7 @@ class CampaignTemplate(BaseModel):
     """ # noqa: E501
     poolname: Optional[StrictStr] = Field(default=None, description="Name of your custom IP Pool to be used in the sending process", alias="Poolname")
     var_from: StrictStr = Field(description="Your e-mail with an optional name (e.g.: John Doe <email@domain.com>)", alias="From")
-    reply_to: Optional[StrictStr] = Field(default=None, description="To what address should the recipients reply to (e.g. John Doe <email@domain.com>)", alias="ReplyTo")
+    reply_to: Optional[StrictStr] = Field(default=None, description="To what addresses should the recipients reply to (e.g. John Doe <email@domain.com>)", alias="ReplyTo")
     subject: Optional[StrictStr] = Field(default=None, description="Default subject of email.", alias="Subject")
     template_name: Optional[StrictStr] = Field(default=None, description="Name of template.", alias="TemplateName")
     attach_files: Optional[List[StrictStr]] = Field(default=None, description="Names of previously uploaded files that should be sent as downloadable attachments", alias="AttachFiles")

@@ -109,3 +109,6 @@ from ElasticEmail.models.utm import Utm
 from ElasticEmail.models.verification_file_result import VerificationFileResult
 from ElasticEmail.models.verification_file_result_details import VerificationFileResultDetails
 from ElasticEmail.models.verification_status import VerificationStatus
+from ElasticEmail.models.webhook import Webhook
+from ElasticEmail.models.webhook_create_payload import WebhookCreatePayload
+from ElasticEmail.models.webhook_update_payload import WebhookUpdatePayload

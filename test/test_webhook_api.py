@@ -15,43 +15,53 @@
 
 import unittest
 
-from ElasticEmail.models.message_attachment import MessageAttachment
+from ElasticEmail.api.webhook_api import WebhookApi
 
-class TestMessageAttachment(unittest.TestCase):
-    """MessageAttachment unit test stubs"""
 
-    def setUp(self):
+class TestWebhookApi(unittest.TestCase):
+    """WebhookApi unit test stubs"""
+
+    def setUp(self) -> None:
+        self.api = WebhookApi()
+
+    def tearDown(self) -> None:
         pass
 
-    def tearDown(self):
+    def test_webhook_by_publicid_delete(self) -> None:
+        """Test case for webhook_by_publicid_delete
+
+        Delete Webhook
+        """
         pass
 
-    def make_instance(self, include_optional) -> MessageAttachment:
-        """Test MessageAttachment
-            include_optional is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `MessageAttachment`
-        """
-        model = MessageAttachment()
-        if include_optional:
-            return MessageAttachment(
-                binary_content = 'YQ==',
-                name = '',
-                content_type = '',
-                size = 56
-            )
-        else:
-            return MessageAttachment(
-                binary_content = 'YQ==',
-                name = '',
-        )
-        """
+    def test_webhook_by_publicid_get(self) -> None:
+        """Test case for webhook_by_publicid_get
 
-    def testMessageAttachment(self):
-        """Test MessageAttachment"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        Load Webhook
+        """
+        pass
+
+    def test_webhook_by_publicid_put(self) -> None:
+        """Test case for webhook_by_publicid_put
+
+        Update Webhook
+        """
+        pass
+
+    def test_webhook_get(self) -> None:
+        """Test case for webhook_get
+
+        Load Webhooks
+        """
+        pass
+
+    def test_webhook_post(self) -> None:
+        """Test case for webhook_post
+
+        Add Webhook
+        """
+        pass
+
 
 if __name__ == '__main__':
     unittest.main()

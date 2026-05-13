@@ -18,20 +18,25 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBytes, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class MessageAttachment(BaseModel):
+class WebhookCreatePayload(BaseModel):
     """
-    MessageAttachment
+    Create webhook payload
     """ # noqa: E501
-    binary_content: Union[StrictBytes, StrictStr] = Field(description="File's content as byte array (or a Base64 string)", alias="BinaryContent")
-    name: StrictStr = Field(description="Display name of the file", alias="Name")
-    content_type: Optional[StrictStr] = Field(default=None, description="MIME content type", alias="ContentType")
-    size: Optional[StrictInt] = Field(default=None, description="Size of the attachement in B", alias="Size")
-    __properties: ClassVar[List[str]] = ["BinaryContent", "Name", "ContentType", "Size"]
+    name: StrictStr = Field(description="Filename", alias="Name")
+    url: StrictStr = Field(description="URL of notification.", alias="URL")
+    notify_once_per_email: Optional[StrictBool] = Field(default=None, alias="NotifyOncePerEmail")
+    notification_for_sent: Optional[StrictBool] = Field(default=None, alias="NotificationForSent")
+    notification_for_opened: Optional[StrictBool] = Field(default=None, alias="NotificationForOpened")
+    notification_for_clicked: Optional[StrictBool] = Field(default=None, alias="NotificationForClicked")
+    notification_for_unsubscribed: Optional[StrictBool] = Field(default=None, alias="NotificationForUnsubscribed")
+    notification_for_abuse_report: Optional[StrictBool] = Field(default=None, alias="NotificationForAbuseReport")
+    notification_for_error: Optional[StrictBool] = Field(default=None, alias="NotificationForError")
+    __properties: ClassVar[List[str]] = ["Name", "URL", "NotifyOncePerEmail", "NotificationForSent", "NotificationForOpened", "NotificationForClicked", "NotificationForUnsubscribed", "NotificationForAbuseReport", "NotificationForError"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +56,7 @@ class MessageAttachment(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of MessageAttachment from a JSON string"""
+        """Create an instance of WebhookCreatePayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -76,7 +81,7 @@ class MessageAttachment(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of MessageAttachment from a dict"""
+        """Create an instance of WebhookCreatePayload from a dict"""
         if obj is None:
             return None
 
@@ -84,10 +89,15 @@ class MessageAttachment(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "BinaryContent": obj.get("BinaryContent"),
             "Name": obj.get("Name"),
-            "ContentType": obj.get("ContentType"),
-            "Size": obj.get("Size")
+            "URL": obj.get("URL"),
+            "NotifyOncePerEmail": obj.get("NotifyOncePerEmail"),
+            "NotificationForSent": obj.get("NotificationForSent"),
+            "NotificationForOpened": obj.get("NotificationForOpened"),
+            "NotificationForClicked": obj.get("NotificationForClicked"),
+            "NotificationForUnsubscribed": obj.get("NotificationForUnsubscribed"),
+            "NotificationForAbuseReport": obj.get("NotificationForAbuseReport"),
+            "NotificationForError": obj.get("NotificationForError")
         })
         return _obj
 

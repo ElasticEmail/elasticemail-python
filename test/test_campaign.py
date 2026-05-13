@@ -40,7 +40,7 @@ class TestCampaign(unittest.TestCase):
                     ElasticEmail.models.campaign_template.CampaignTemplate(
                         poolname = 'My Custom Pool', 
                         from = 'John Doe <email@domain.com>', 
-                        reply_to = 'John Doe <email@domain.com>', 
+                        reply_to = 'John Doe <email@domain.com>,John Doe2 <email2@domain.com>', 
                         subject = 'Hello!', 
                         template_name = 'Template01', 
                         attach_files = ["preuploaded.jpg"], 
@@ -75,7 +75,8 @@ class TestCampaign(unittest.TestCase):
                     trigger_count = 56, 
                     split_options = ElasticEmail.models.split_options.SplitOptions(
                         optimize_for = 'Opens', 
-                        optimize_period_minutes = 30, ), )
+                        optimize_period_minutes = 30, ), 
+                    send_at_local_time = True, )
             )
         else:
             return Campaign(

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **poolname** | **str** | Name of your custom IP Pool to be used in the sending process | [optional] 
 **var_from** | **str** | Your e-mail with an optional name (e.g.: John Doe &lt;email@domain.com&gt;) | 
-**reply_to** | **str** | To what address should the recipients reply to (e.g. John Doe &lt;email@domain.com&gt;) | [optional] 
+**reply_to** | **str** | To what addresses should the recipients reply to (e.g. John Doe &lt;email@domain.com&gt;) | [optional] 
 **subject** | **str** | Default subject of email. | [optional] 
 **template_name** | **str** | Name of template. | [optional] 
 **attach_files** | **List[str]** | Names of previously uploaded files that should be sent as downloadable attachments | [optional] 
