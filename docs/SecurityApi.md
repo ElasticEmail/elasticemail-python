@@ -133,7 +133,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ElasticEmail.SecurityApi(api_client)
     name = 'name_example' # str | Name of the ApiKey
-    subaccount = 'subaccount_example' # str | Email of the subaccount of which ApiKey should be loaded (optional)
+    subaccount = 'subaccount_example' # str | Email of the subaccount of which ApiKey should be loaded. The default API key created for the subaccount has a 48-hour expiration period. (optional)
 
     try:
         # Load ApiKey
@@ -152,7 +152,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| Name of the ApiKey | 
- **subaccount** | **str**| Email of the subaccount of which ApiKey should be loaded | [optional] 
+ **subaccount** | **str**| Email of the subaccount of which ApiKey should be loaded. The default API key created for the subaccount has a 48-hour expiration period. | [optional] 
 
 ### Return type
 
@@ -295,7 +295,7 @@ configuration.api_key['apikey'] = os.environ["API_KEY"]
 with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ElasticEmail.SecurityApi(api_client)
-    subaccount = 'subaccount_example' # str | Email of the subaccount of which ApiKeys should be loaded (optional)
+    subaccount = 'subaccount_example' # str | Email of the subaccount of which ApiKeys should be loaded. The default API key created for the subaccount has a 48-hour expiration period. (optional)
 
     try:
         # List ApiKeys
@@ -313,7 +313,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subaccount** | **str**| Email of the subaccount of which ApiKeys should be loaded | [optional] 
+ **subaccount** | **str**| Email of the subaccount of which ApiKeys should be loaded. The default API key created for the subaccount has a 48-hour expiration period. | [optional] 
 
 ### Return type
 

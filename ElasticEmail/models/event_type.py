@@ -29,12 +29,15 @@ class EventType(str, Enum):
     """
     SUBMISSION = 'Submission'
     FAILEDATTEMPT = 'FailedAttempt'
-    BOUNCE = 'Bounce'
+    ERROR = 'Error'
     SENT = 'Sent'
     OPEN = 'Open'
     CLICK = 'Click'
     UNSUBSCRIBE = 'Unsubscribe'
     COMPLAINT = 'Complaint'
+    BOUNCE = 'Bounce'
+    TRANSACTIONALUNSUBSCRIBE = 'TransactionalUnsubscribe'
+    SUPPRESS = 'Suppress'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
