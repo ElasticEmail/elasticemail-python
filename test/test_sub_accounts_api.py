@@ -27,6 +27,13 @@ class TestSubAccountsApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_subaccounts_by_email_apikey_get(self) -> None:
+        """Test case for subaccounts_by_email_apikey_get
+
+        Get SubAccount ApiKey
+        """
+        pass
+
     def test_subaccounts_by_email_credits_patch(self) -> None:
         """Test case for subaccounts_by_email_credits_patch
 

@@ -18,9 +18,11 @@ import pprint
 import re  # noqa: F401
 import json
 
+from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from ElasticEmail.models.certificate_validation_status import CertificateValidationStatus
+from ElasticEmail.models.dkim_record import DKIMRecord
 from ElasticEmail.models.domain_owner import DomainOwner
 from ElasticEmail.models.tracking_type import TrackingType
 from ElasticEmail.models.tracking_validation_status import TrackingValidationStatus
@@ -42,14 +44,17 @@ class DomainDetail(BaseModel):
     type: Optional[TrackingType] = Field(default=TrackingType.NONE, alias="Type")
     tracking_status: Optional[TrackingValidationStatus] = Field(default=TrackingValidationStatus.VALIDATED, alias="TrackingStatus")
     certificate_status: Optional[CertificateValidationStatus] = Field(default=CertificateValidationStatus.ERROROCCURED, alias="CertificateStatus")
+    certificate_expiry_date: Optional[datetime] = Field(default=None, alias="CertificateExpiryDate")
     certificate_validation_error: Optional[StrictStr] = Field(default=None, alias="CertificateValidationError")
     tracking_type_user_request: Optional[TrackingType] = Field(default=TrackingType.NONE, alias="TrackingTypeUserRequest")
     verp: Optional[StrictBool] = Field(default=None, alias="VERP")
     custom_bounces_domain: Optional[StrictStr] = Field(default=None, alias="CustomBouncesDomain")
     is_custom_bounces_domain_default: Optional[StrictBool] = Field(default=None, alias="IsCustomBouncesDomainDefault")
+    was_ever_verified: Optional[StrictBool] = Field(default=None, alias="WasEverVerified")
     is_marked_for_deletion: Optional[StrictBool] = Field(default=None, alias="IsMarkedForDeletion")
     ownership: Optional[DomainOwner] = Field(default=DomainOwner.CURRENT, alias="Ownership")
-    __properties: ClassVar[List[str]] = ["Domain", "DefaultDomain", "Spf", "Dkim", "MX", "DMARC", "IsRewriteDomainValid", "Verify", "Type", "TrackingStatus", "CertificateStatus", "CertificateValidationError", "TrackingTypeUserRequest", "VERP", "CustomBouncesDomain", "IsCustomBouncesDomainDefault", "IsMarkedForDeletion", "Ownership"]
+    dkim_record: Optional[DKIMRecord] = Field(default=None, alias="DKIMRecord")
+    __properties: ClassVar[List[str]] = ["Domain", "DefaultDomain", "Spf", "Dkim", "MX", "DMARC", "IsRewriteDomainValid", "Verify", "Type", "TrackingStatus", "CertificateStatus", "CertificateExpiryDate", "CertificateValidationError", "TrackingTypeUserRequest", "VERP", "CustomBouncesDomain", "IsCustomBouncesDomainDefault", "WasEverVerified", "IsMarkedForDeletion", "Ownership", "DKIMRecord"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,6 +95,14 @@ class DomainDetail(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of dkim_record
+        if self.dkim_record:
+            _dict['DKIMRecord'] = self.dkim_record.to_dict()
+        # set to None if certificate_expiry_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.certificate_expiry_date is None and "certificate_expiry_date" in self.model_fields_set:
+            _dict['CertificateExpiryDate'] = None
+
         return _dict
 
     @classmethod
@@ -113,13 +126,16 @@ class DomainDetail(BaseModel):
             "Type": obj.get("Type") if obj.get("Type") is not None else TrackingType.NONE,
             "TrackingStatus": obj.get("TrackingStatus") if obj.get("TrackingStatus") is not None else TrackingValidationStatus.VALIDATED,
             "CertificateStatus": obj.get("CertificateStatus") if obj.get("CertificateStatus") is not None else CertificateValidationStatus.ERROROCCURED,
+            "CertificateExpiryDate": obj.get("CertificateExpiryDate"),
             "CertificateValidationError": obj.get("CertificateValidationError"),
             "TrackingTypeUserRequest": obj.get("TrackingTypeUserRequest") if obj.get("TrackingTypeUserRequest") is not None else TrackingType.NONE,
             "VERP": obj.get("VERP"),
             "CustomBouncesDomain": obj.get("CustomBouncesDomain"),
             "IsCustomBouncesDomainDefault": obj.get("IsCustomBouncesDomainDefault"),
+            "WasEverVerified": obj.get("WasEverVerified"),
             "IsMarkedForDeletion": obj.get("IsMarkedForDeletion"),
-            "Ownership": obj.get("Ownership") if obj.get("Ownership") is not None else DomainOwner.CURRENT
+            "Ownership": obj.get("Ownership") if obj.get("Ownership") is not None else DomainOwner.CURRENT,
+            "DKIMRecord": DKIMRecord.from_dict(obj["DKIMRecord"]) if obj.get("DKIMRecord") is not None else None
         })
         return _obj
 

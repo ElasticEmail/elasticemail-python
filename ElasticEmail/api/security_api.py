@@ -320,7 +320,7 @@ class SecurityApi:
     def security_apikeys_by_name_get(
         self,
         name: Annotated[StrictStr, Field(description="Name of the ApiKey")],
-        subaccount: Annotated[Optional[StrictStr], Field(description="Email of the subaccount of which ApiKey should be loaded")] = None,
+        subaccount: Annotated[Optional[StrictStr], Field(description="Email of the subaccount of which ApiKey should be loaded. The default API key created for the subaccount has a 48-hour expiration period.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -340,7 +340,7 @@ class SecurityApi:
 
         :param name: Name of the ApiKey (required)
         :type name: str
-        :param subaccount: Email of the subaccount of which ApiKey should be loaded
+        :param subaccount: Email of the subaccount of which ApiKey should be loaded. The default API key created for the subaccount has a 48-hour expiration period.
         :type subaccount: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -391,7 +391,7 @@ class SecurityApi:
     def security_apikeys_by_name_get_with_http_info(
         self,
         name: Annotated[StrictStr, Field(description="Name of the ApiKey")],
-        subaccount: Annotated[Optional[StrictStr], Field(description="Email of the subaccount of which ApiKey should be loaded")] = None,
+        subaccount: Annotated[Optional[StrictStr], Field(description="Email of the subaccount of which ApiKey should be loaded. The default API key created for the subaccount has a 48-hour expiration period.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -411,7 +411,7 @@ class SecurityApi:
 
         :param name: Name of the ApiKey (required)
         :type name: str
-        :param subaccount: Email of the subaccount of which ApiKey should be loaded
+        :param subaccount: Email of the subaccount of which ApiKey should be loaded. The default API key created for the subaccount has a 48-hour expiration period.
         :type subaccount: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -462,7 +462,7 @@ class SecurityApi:
     def security_apikeys_by_name_get_without_preload_content(
         self,
         name: Annotated[StrictStr, Field(description="Name of the ApiKey")],
-        subaccount: Annotated[Optional[StrictStr], Field(description="Email of the subaccount of which ApiKey should be loaded")] = None,
+        subaccount: Annotated[Optional[StrictStr], Field(description="Email of the subaccount of which ApiKey should be loaded. The default API key created for the subaccount has a 48-hour expiration period.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -482,7 +482,7 @@ class SecurityApi:
 
         :param name: Name of the ApiKey (required)
         :type name: str
-        :param subaccount: Email of the subaccount of which ApiKey should be loaded
+        :param subaccount: Email of the subaccount of which ApiKey should be loaded. The default API key created for the subaccount has a 48-hour expiration period.
         :type subaccount: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -886,7 +886,7 @@ class SecurityApi:
     @validate_call
     def security_apikeys_get(
         self,
-        subaccount: Annotated[Optional[StrictStr], Field(description="Email of the subaccount of which ApiKeys should be loaded")] = None,
+        subaccount: Annotated[Optional[StrictStr], Field(description="Email of the subaccount of which ApiKeys should be loaded. The default API key created for the subaccount has a 48-hour expiration period.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -904,7 +904,7 @@ class SecurityApi:
 
         List all your existing ApiKeys. Required Access Level: ViewAccessTokens
 
-        :param subaccount: Email of the subaccount of which ApiKeys should be loaded
+        :param subaccount: Email of the subaccount of which ApiKeys should be loaded. The default API key created for the subaccount has a 48-hour expiration period.
         :type subaccount: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -953,7 +953,7 @@ class SecurityApi:
     @validate_call
     def security_apikeys_get_with_http_info(
         self,
-        subaccount: Annotated[Optional[StrictStr], Field(description="Email of the subaccount of which ApiKeys should be loaded")] = None,
+        subaccount: Annotated[Optional[StrictStr], Field(description="Email of the subaccount of which ApiKeys should be loaded. The default API key created for the subaccount has a 48-hour expiration period.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -971,7 +971,7 @@ class SecurityApi:
 
         List all your existing ApiKeys. Required Access Level: ViewAccessTokens
 
-        :param subaccount: Email of the subaccount of which ApiKeys should be loaded
+        :param subaccount: Email of the subaccount of which ApiKeys should be loaded. The default API key created for the subaccount has a 48-hour expiration period.
         :type subaccount: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1020,7 +1020,7 @@ class SecurityApi:
     @validate_call
     def security_apikeys_get_without_preload_content(
         self,
-        subaccount: Annotated[Optional[StrictStr], Field(description="Email of the subaccount of which ApiKeys should be loaded")] = None,
+        subaccount: Annotated[Optional[StrictStr], Field(description="Email of the subaccount of which ApiKeys should be loaded. The default API key created for the subaccount has a 48-hour expiration period.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1038,7 +1038,7 @@ class SecurityApi:
 
         List all your existing ApiKeys. Required Access Level: ViewAccessTokens
 
-        :param subaccount: Email of the subaccount of which ApiKeys should be loaded
+        :param subaccount: Email of the subaccount of which ApiKeys should be loaded. The default API key created for the subaccount has a 48-hour expiration period.
         :type subaccount: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

@@ -47,13 +47,21 @@ class TestDomainDetail(unittest.TestCase):
                 type = 'None',
                 tracking_status = 'Validated',
                 certificate_status = 'ErrorOccured',
+                certificate_expiry_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 certificate_validation_error = '',
                 tracking_type_user_request = 'None',
                 verp = True,
                 custom_bounces_domain = '',
                 is_custom_bounces_domain_default = True,
+                was_ever_verified = True,
                 is_marked_for_deletion = True,
-                ownership = 'Current'
+                ownership = 'Current',
+                dkim_record = ElasticEmail.models.dkim_record.DKIMRecord(
+                    selector = '', 
+                    public_key = '', 
+                    host_name = '', 
+                    record_value = '', 
+                    domain = 'example.com', )
             )
         else:
             return DomainDetail(

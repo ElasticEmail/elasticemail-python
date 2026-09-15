@@ -27,6 +27,13 @@ class TestCampaignsApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_campaigns_automation_by_name_trigger_post(self) -> None:
+        """Test case for campaigns_automation_by_name_trigger_post
+
+        Trigger Automation for Contact
+        """
+        pass
+
     def test_campaigns_by_name_delete(self) -> None:
         """Test case for campaigns_by_name_delete
 

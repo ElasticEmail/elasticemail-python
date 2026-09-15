@@ -38,6 +38,7 @@ from ElasticEmail.models.contact_source import ContactSource
 from ElasticEmail.models.contact_status import ContactStatus
 from ElasticEmail.models.contact_update_payload import ContactUpdatePayload
 from ElasticEmail.models.contacts_list import ContactsList
+from ElasticEmail.models.dkim_record import DKIMRecord
 from ElasticEmail.models.delivery_optimization_type import DeliveryOptimizationType
 from ElasticEmail.models.domain_data import DomainData
 from ElasticEmail.models.domain_detail import DomainDetail
@@ -109,3 +110,6 @@ from ElasticEmail.models.utm import Utm
 from ElasticEmail.models.verification_file_result import VerificationFileResult
 from ElasticEmail.models.verification_file_result_details import VerificationFileResultDetails
 from ElasticEmail.models.verification_status import VerificationStatus
+from ElasticEmail.models.webhook import Webhook
+from ElasticEmail.models.webhook_create_payload import WebhookCreatePayload
+from ElasticEmail.models.webhook_update_payload import WebhookUpdatePayload

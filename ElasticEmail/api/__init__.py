@@ -16,4 +16,5 @@ from ElasticEmail.api.sub_accounts_api import SubAccountsApi
 from ElasticEmail.api.suppressions_api import SuppressionsApi
 from ElasticEmail.api.templates_api import TemplatesApi
 from ElasticEmail.api.verifications_api import VerificationsApi
+from ElasticEmail.api.webhook_api import WebhookApi
 

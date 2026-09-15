@@ -38,7 +38,7 @@ class TestCampaignTemplate(unittest.TestCase):
             return CampaignTemplate(
                 poolname = 'My Custom Pool',
                 var_from = 'John Doe <email@domain.com>',
-                reply_to = 'John Doe <email@domain.com>',
+                reply_to = 'John Doe <email@domain.com>,John Doe2 <email2@domain.com>',
                 subject = 'Hello!',
                 template_name = 'Template01',
                 attach_files = ["preuploaded.jpg"],
