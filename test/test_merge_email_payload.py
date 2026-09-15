@@ -40,7 +40,7 @@ class TestMergeEmailPayload(unittest.TestCase):
                     binary_content = 'YQ==', 
                     name = '', 
                     content_type = '', 
-                    size = 100, ),
+                    size = 56, ),
                 content = ElasticEmail.models.email_content.EmailContent(
                     body = [
                         ElasticEmail.models.body_part.BodyPart(
@@ -53,13 +53,13 @@ class TestMergeEmailPayload(unittest.TestCase):
                         ElasticEmail.models.message_attachment.MessageAttachment(
                             binary_content = 'YQ==', 
                             name = '', 
-                            size = 100, )
+                            size = 56, )
                         ], 
                     headers = {"city":"New York","age":"34"}, 
                     postback = '', 
                     envelope_from = 'John Doe <email@domain.com>', 
                     from = 'John Doe <email@domain.com>', 
-                    reply_to = 'John Doe <email@domain.com>', 
+                    reply_to = 'John Doe <email@domain.com>,John Doe2 <email2@domain.com>', 
                     subject = 'Hello!', 
                     template_name = 'Template01', 
                     attach_files = ["preuploaded.jpg"], 
@@ -82,7 +82,7 @@ class TestMergeEmailPayload(unittest.TestCase):
                     binary_content = 'YQ==', 
                     name = '', 
                     content_type = '', 
-                    size = 100, ),
+                    size = 56, ),
                 content = ElasticEmail.models.email_content.EmailContent(
                     body = [
                         ElasticEmail.models.body_part.BodyPart(
@@ -95,13 +95,13 @@ class TestMergeEmailPayload(unittest.TestCase):
                         ElasticEmail.models.message_attachment.MessageAttachment(
                             binary_content = 'YQ==', 
                             name = '', 
-                            size = 100, )
+                            size = 56, )
                         ], 
                     headers = {"city":"New York","age":"34"}, 
                     postback = '', 
                     envelope_from = 'John Doe <email@domain.com>', 
                     from = 'John Doe <email@domain.com>', 
-                    reply_to = 'John Doe <email@domain.com>', 
+                    reply_to = 'John Doe <email@domain.com>,John Doe2 <email2@domain.com>', 
                     subject = 'Hello!', 
                     template_name = 'Template01', 
                     attach_files = ["preuploaded.jpg"], 

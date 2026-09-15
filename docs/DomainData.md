@@ -18,13 +18,16 @@ Name | Type | Description | Notes
 **type** | [**TrackingType**](TrackingType.md) |  | [optional] [default to TrackingType.NONE]
 **tracking_status** | [**TrackingValidationStatus**](TrackingValidationStatus.md) |  | [optional] [default to TrackingValidationStatus.VALIDATED]
 **certificate_status** | [**CertificateValidationStatus**](CertificateValidationStatus.md) |  | [optional] [default to CertificateValidationStatus.ERROROCCURED]
+**certificate_expiry_date** | **datetime** |  | [optional] 
 **certificate_validation_error** | **str** |  | [optional] 
 **tracking_type_user_request** | [**TrackingType**](TrackingType.md) |  | [optional] [default to TrackingType.NONE]
 **verp** | **bool** |  | [optional] 
 **custom_bounces_domain** | **str** |  | [optional] 
 **is_custom_bounces_domain_default** | **bool** |  | [optional] 
+**was_ever_verified** | **bool** |  | [optional] 
 **is_marked_for_deletion** | **bool** |  | [optional] 
 **ownership** | [**DomainOwner**](DomainOwner.md) |  | [optional] [default to DomainOwner.CURRENT]
+**dkim_record** | [**DKIMRecord**](DKIMRecord.md) |  | [optional] 
 
 ## Example
 

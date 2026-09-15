@@ -31,6 +31,7 @@ class CertificateValidationStatus(str, Enum):
     CERTNOTSET = 'CertNotSet'
     VALID = 'Valid'
     NOTVALID = 'NotValid'
+    INPROGRESS = 'InProgress'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

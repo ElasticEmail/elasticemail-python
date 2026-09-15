@@ -30,7 +30,7 @@ class MessageAttachment(BaseModel):
     binary_content: Union[StrictBytes, StrictStr] = Field(description="File's content as byte array (or a Base64 string)", alias="BinaryContent")
     name: StrictStr = Field(description="Display name of the file", alias="Name")
     content_type: Optional[StrictStr] = Field(default=None, description="MIME content type", alias="ContentType")
-    size: Optional[StrictInt] = Field(default=None, description="Size of your attachment (in bytes).", alias="Size")
+    size: Optional[StrictInt] = Field(default=None, description="Size of the attachement in B", alias="Size")
     __properties: ClassVar[List[str]] = ["BinaryContent", "Name", "ContentType", "Size"]
 
     model_config = ConfigDict(

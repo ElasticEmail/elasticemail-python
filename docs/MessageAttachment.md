@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **binary_content** | **bytearray** | File&#39;s content as byte array (or a Base64 string) | 
 **name** | **str** | Display name of the file | 
 **content_type** | **str** | MIME content type | [optional] 
-**size** | **int** | Size of your attachment (in bytes). | [optional] 
+**size** | **int** | Size of the attachement in B | [optional] 
 
 ## Example
 

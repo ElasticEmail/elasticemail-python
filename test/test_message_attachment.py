@@ -39,7 +39,7 @@ class TestMessageAttachment(unittest.TestCase):
                 binary_content = 'YQ==',
                 name = '',
                 content_type = '',
-                size = 100
+                size = 56
             )
         else:
             return MessageAttachment(

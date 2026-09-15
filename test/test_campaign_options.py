@@ -44,7 +44,8 @@ class TestCampaignOptions(unittest.TestCase):
                 trigger_count = 56,
                 split_options = ElasticEmail.models.split_options.SplitOptions(
                     optimize_for = 'Opens', 
-                    optimize_period_minutes = 30, )
+                    optimize_period_minutes = 30, ),
+                send_at_local_time = True
             )
         else:
             return CampaignOptions(

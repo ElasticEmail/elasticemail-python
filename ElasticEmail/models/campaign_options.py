@@ -37,7 +37,8 @@ class CampaignOptions(BaseModel):
     trigger_frequency: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="How often (in minutes) to send the campaign", alias="TriggerFrequency")
     trigger_count: Optional[StrictInt] = Field(default=None, description="How many times send the campaign", alias="TriggerCount")
     split_options: Optional[SplitOptions] = Field(default=None, alias="SplitOptions")
-    __properties: ClassVar[List[str]] = ["DeliveryOptimization", "TrackOpens", "TrackClicks", "ScheduleFor", "TriggerFrequency", "TriggerCount", "SplitOptions"]
+    send_at_local_time: Optional[StrictBool] = Field(default=None, description="Send email at local time of contact.", alias="SendAtLocalTime")
+    __properties: ClassVar[List[str]] = ["DeliveryOptimization", "TrackOpens", "TrackClicks", "ScheduleFor", "TriggerFrequency", "TriggerCount", "SplitOptions", "SendAtLocalTime"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,6 +97,11 @@ class CampaignOptions(BaseModel):
         if self.schedule_for is None and "schedule_for" in self.model_fields_set:
             _dict['ScheduleFor'] = None
 
+        # set to None if send_at_local_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.send_at_local_time is None and "send_at_local_time" in self.model_fields_set:
+            _dict['SendAtLocalTime'] = None
+
         return _dict
 
     @classmethod
@@ -114,7 +120,8 @@ class CampaignOptions(BaseModel):
             "ScheduleFor": obj.get("ScheduleFor"),
             "TriggerFrequency": obj.get("TriggerFrequency"),
             "TriggerCount": obj.get("TriggerCount"),
-            "SplitOptions": SplitOptions.from_dict(obj["SplitOptions"]) if obj.get("SplitOptions") is not None else None
+            "SplitOptions": SplitOptions.from_dict(obj["SplitOptions"]) if obj.get("SplitOptions") is not None else None,
+            "SendAtLocalTime": obj.get("SendAtLocalTime")
         })
         return _obj
 

@@ -4,6 +4,7 @@ All URIs are relative to *https://api.elasticemail.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**campaigns_automation_by_name_trigger_post**](CampaignsApi.md#campaigns_automation_by_name_trigger_post) | **POST** /campaigns/automation/{name}/trigger | Trigger Automation for Contact
 [**campaigns_by_name_delete**](CampaignsApi.md#campaigns_by_name_delete) | **DELETE** /campaigns/{name} | Delete Campaign
 [**campaigns_by_name_get**](CampaignsApi.md#campaigns_by_name_get) | **GET** /campaigns/{name} | Load Campaign
 [**campaigns_by_name_pause_put**](CampaignsApi.md#campaigns_by_name_pause_put) | **PUT** /campaigns/{name}/pause | Pause Campaign
@@ -11,6 +12,84 @@ Method | HTTP request | Description
 [**campaigns_get**](CampaignsApi.md#campaigns_get) | **GET** /campaigns | Load Campaigns
 [**campaigns_post**](CampaignsApi.md#campaigns_post) | **POST** /campaigns | Add Campaign
 
+
+# **campaigns_automation_by_name_trigger_post**
+> campaigns_automation_by_name_trigger_post(name, contact_email)
+
+Trigger Automation for Contact
+
+Manually trigger an Automation for a contact. Required Access Level: ModifyAutomations
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+import ElasticEmail
+from ElasticEmail.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.elasticemail.com/v4
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ElasticEmail.Configuration(
+    host = "https://api.elasticemail.com/v4"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with ElasticEmail.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ElasticEmail.CampaignsApi(api_client)
+    name = 'name_example' # str | 
+    contact_email = 'contact_email_example' # str | 
+
+    try:
+        # Trigger Automation for Contact
+        api_instance.campaigns_automation_by_name_trigger_post(name, contact_email)
+    except Exception as e:
+        print("Exception when calling CampaignsApi->campaigns_automation_by_name_trigger_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **str**|  | 
+ **contact_email** | **str**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[apikey](../README.md#apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **campaigns_by_name_delete**
 > campaigns_by_name_delete(name)
