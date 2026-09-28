@@ -448,7 +448,7 @@ The SDK follows the Elastic Email API v4. Package versions and release notes are
 <summary>Build details</summary>
 
 - API version: 4.0.0
-- SDK version: 4.2.0
+- SDK version: 4.2.1
 - Generator version: 7.11.0
 - Build package: `org.openapitools.codegen.languages.PythonClientCodegen`
 

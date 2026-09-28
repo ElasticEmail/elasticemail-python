@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ElasticEmail"
-version = "4.2.0"
+version = "4.2.1"
 description = "Elastic Email REST API"
 authors = ["OpenAPI Generator Community <support@elasticemail.com>"]
 license = "MIT"

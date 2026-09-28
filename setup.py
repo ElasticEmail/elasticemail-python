@@ -13,7 +13,7 @@ from setuptools import setup, find_packages  # noqa: H301
 from os import path
 
 NAME = "ElasticEmail"
-VERSION = "4.2.0"
+VERSION = "4.2.1"
 # To install the library, run the following
 #
 # python setup.py install
@@ -22,8 +22,10 @@ VERSION = "4.2.0"
 # http://pypi.python.org/pypi/setuptools
 
 REQUIRES = [
-  "urllib3 >= 1.25.3",
-  "python-dateutil",
+  "urllib3 >= 1.25.3, < 3.0.0",
+  "python-dateutil >= 2.8.2",
+  "pydantic >= 2",
+  "typing-extensions >= 4.7.1",
 ]
 
 here = path.abspath(path.dirname(__file__))
@@ -38,9 +40,9 @@ setup(
     description="Elastic Email REST API",
     author="Elastic Email",
     author_email="support@elasticemail.com",
-    url="",
+    url="https://github.com/ElasticEmail/elasticemail-python",
     keywords=["OpenAPI", "OpenAPI-Generator", "Elastic Email REST API"],
-    python_requires=">=3.6",
+    python_requires=">=3.8",
     install_requires=REQUIRES,
     packages=find_packages(exclude=["test", "tests"]),
     include_package_data=True,
