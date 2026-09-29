@@ -1,6 +1,90 @@
 # Load Template
 
-This example is aligned with the current SDK and can be run directly from `examples/functions/loadTemplate.py`.
+This guide will walk you through steps of loading existing template details using the Python library. 
+
+*Required Access Level: ViewTemplates*
+
+## What's a template?
+When using Elastic Email you send emails to your contacts. A single template is a body of  email prepared and saved under given name. Till it's deleted it can be reused to send any number of emails.
+
+## Preparation
+Install Python 3.
+
+Install ElasticEmail library.
+
+Eg. run in terminal `pip install ElasticEmail` to install from PyPi repository.
+
+Create a new Python file `snippet.py` and open it in editor of your preference eg. PyCharm (https://www.jetbrains.com/pycharm/download/)
+
+## Let's dig into the code
+
+Put the below code to your file.
+
+Load libraries using below code:
+
+```python
+import ElasticEmail
+from pprint import pprint
+```
+
+Generate and use your API key (remember to check a required access level).
+
+Defining the host is optional and defaults to https://api.elasticemail.com/v4
+
+```python
+configuration = ElasticEmail.Configuration()
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+```
+
+Pass configuration to an api client and make it instance available under `api_client` name:
+```
+with ElasticEmail.ApiClient(configuration) as api_client:
+```
+
+Create an instance of TemplatesApi that will be used to load existing template on your account.
+
+```python
+    api_instance = ElasticEmail.TemplatesApi(api_client)
+```
+
+To load a template you need to specfiy it's name:
+
+> Find out more by checking our API's documentation: https://elasticemail.com/developers/api-documentation/rest-api#operation/templatesByNameGet
+
+
+```python
+    name = "hello_template"
+```
+
+Use try & except block to call `templates_by_name_get` method from the API to load a template: 
+
+```python
+    try:
+        # Load Template
+        api_response = api_instance.templates_by_name_get(name)
+        pprint(api_response)
+    except ElasticEmail.ApiException as e:
+        try:
+            available = api_instance.templates_get(
+                scope_type=[
+                    ElasticEmail.TemplateScope("Personal"),
+                    ElasticEmail.TemplateScope("Global"),
+                ],
+                limit=1,
+                offset=0,
+            )
+            if available:
+                fallback_name = available[0].name
+                api_response = api_instance.templates_by_name_get(fallback_name)
+                pprint(api_response)
+                raise SystemExit(0)
+        except ElasticEmail.ApiException:
+            pass
+        print(f"No template found to load ({e.status}). Skipping.")
+```
+
+
+## The whole code to copy and paste:
 
 ```python
 import ElasticEmail
@@ -46,8 +130,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print(f"No template found to load ({e.status}). Skipping.")
 ```
 
-Run with:
-
-```bash
-py -3 loadTemplate.py
+## Run the code
+```
+python3 snippet.py
 ```
