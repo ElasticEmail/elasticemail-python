@@ -76,6 +76,9 @@ import ElasticEmail
 
 ## Quick start
 
+> [!IMPORTANT]
+> Elastic Email only sends from verified domains. Before your first send, [verify your sending domain](https://help.elasticemail.com/en/articles/4934400-how-to-verify-your-domain) and use an address on that domain as the sender.
+
 ### Configure the client
 
 ```python
@@ -122,7 +125,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print(f"Elastic Email API error {e.status}: {e.body}")
 ```
 
-The sender field is `var_from` because `from` is a reserved word in Python. The address must use a domain you've verified in your Elastic Email account.
+The sender field is `var_from` because `from` is a reserved word in Python. The address must use a domain you've [verified in your Elastic Email account](https://help.elasticemail.com/en/articles/4934400-how-to-verify-your-domain).
 
 ### Send from a template with merge fields
 
