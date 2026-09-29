@@ -1,10 +1,9 @@
 import ElasticEmail
-from ElasticEmail.apis.tags import emails_api
-from ElasticEmail.model.email_content import EmailContent
-from ElasticEmail.model.body_part import BodyPart
-from ElasticEmail.model.body_content_type import BodyContentType
-from ElasticEmail.model.email_recipient import EmailRecipient
-from ElasticEmail.model.email_message_data import EmailMessageData
+from ElasticEmail.models.email_content import EmailContent
+from ElasticEmail.models.body_part import BodyPart
+from ElasticEmail.models.body_content_type import BodyContentType
+from ElasticEmail.models.email_recipient import EmailRecipient
+from ElasticEmail.models.email_message_data import EmailMessageData
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
@@ -19,7 +18,7 @@ Example api call that sends bulk merge email.
 """
 with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = emails_api.EmailsApi(api_client)
+    api_instance = ElasticEmail.EmailsApi(api_client)
     email_message_data = EmailMessageData(
         Recipients=[
             EmailRecipient(

@@ -24,9 +24,8 @@ Load libraries using below code:
 
 ```python
 import ElasticEmail
-from ElasticEmail.apis.tags import contacts_api
-from ElasticEmail.model.contact_status import ContactStatus
-from ElasticEmail.model.contact_payload import ContactPayload
+from ElasticEmail.models.contact_status import ContactStatus
+from ElasticEmail.models.contact_payload import ContactPayload
 from pprint import pprint
 ```
 
@@ -47,7 +46,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 Create an instance of ContactsApi that will be used to add contacts.
 
 ```python
-    api_instance = contacts_api.ContactsApi(api_client)
+    api_instance = ElasticEmail.ContactsApi(api_client)
 ```
 
 Create an array with new contacts.
@@ -83,7 +82,8 @@ Use try & except block to call `contacts_post` method from the API to add contac
 
 ```python
     try:
-        api_response = api_instance.contacts_post(body = contact_payload, query_params = {'listnames': list_names})
+        # Add Contact
+        api_response = api_instance.contacts_post(contact_payload=contact_payload, listnames=list_names)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling ContactsApi->contacts_post: %s\n" % e)
@@ -94,16 +94,25 @@ Use try & except block to call `contacts_post` method from the API to add contac
 
 ```python
 import ElasticEmail
-from ElasticEmail.apis.tags import contacts_api
-from ElasticEmail.model.contact_status import ContactStatus
-from ElasticEmail.model.contact_payload import ContactPayload
+from ElasticEmail.models.contact_status import ContactStatus
+from ElasticEmail.models.contact_payload import ContactPayload
 from pprint import pprint
 
+# Defining the host is optional and defaults to https://api.elasticemail.com/v4
 configuration = ElasticEmail.Configuration()
+
+# Configure API key authorization: apikey
 configuration.api_key['apikey'] = 'YOUR_API_KEY'
 
+"""
+Add contacts
+Example api call that adds new contacts.
+Pass array with contact details to add up to 1000 contacts.
+Specify a list name in options or add to all contacts.
+"""
 with ElasticEmail.ApiClient(configuration) as api_client:
-    api_instance = contacts_api.ContactsApi(api_client)
+    # Create an instance of the API class
+    api_instance = ElasticEmail.ContactsApi(api_client)
     contact_payload = [
         ContactPayload(
             Email="johnsmith@domain.com",
@@ -111,14 +120,15 @@ with ElasticEmail.ApiClient(configuration) as api_client:
             FirstName="John",
             LastName="Smith",
         ),
-    ]
+    ]  # [ContactPayload]
 
     list_names = [
         "New list",
-    ]
+    ]  # [str] | Names of lists to which the uploaded contacts should be added to (optional)
 
     try:
-        api_response = api_instance.contacts_post(body = contact_payload, query_params = {'listnames': list_names})
+        # Add Contact
+        api_response = api_instance.contacts_post(contact_payload=contact_payload, listnames=list_names)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling ContactsApi->contacts_post: %s\n" % e)

@@ -1,10 +1,8 @@
 import ElasticEmail
-from ElasticEmail.apis.tags import templates_api
-from ElasticEmail.model.template import Template
-from ElasticEmail.model.template_payload import TemplatePayload
-from ElasticEmail.model.body_part import BodyPart
-from ElasticEmail.model.body_content_type import BodyContentType
-from ElasticEmail.model.template_scope import TemplateScope
+from ElasticEmail.models.template_payload import TemplatePayload
+from ElasticEmail.models.body_part import BodyPart
+from ElasticEmail.models.body_content_type import BodyContentType
+from ElasticEmail.models.template_scope import TemplateScope
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
@@ -20,7 +18,7 @@ TemplateScope: "Personal" or "Global"
 """
 with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = templates_api.TemplatesApi(api_client)
+    api_instance = ElasticEmail.TemplatesApi(api_client)
 
     template_payload = TemplatePayload(
         Name="My new template",
@@ -36,7 +34,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     )  # TemplatePayload |
 
     try:
-        api_response = api_instance.templates_post(body = template_payload)
+        api_response = api_instance.templates_post(template_payload=template_payload)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling TemplatesApi->templates_post: %s\n" % e)

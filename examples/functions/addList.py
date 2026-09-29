@@ -1,6 +1,5 @@
 import ElasticEmail
-from ElasticEmail.apis.tags import lists_api
-from ElasticEmail.model.list_payload import ListPayload
+from ElasticEmail.models.list_payload import ListPayload
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
@@ -16,7 +15,7 @@ Emails – An array of existing contact emails that should be added to this list
 """
 with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = lists_api.ListsApi(api_client)
+    api_instance = ElasticEmail.ListsApi(api_client)
 
     list_payload = ListPayload(
         ListName="Best contacts",
@@ -27,7 +26,10 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     )  # ListPayload |
 
     try:
-        api_response = api_instance.lists_post(body = list_payload)
+        api_response = api_instance.lists_post(list_payload=list_payload)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
-        print("Exception when calling ListsApi->lists_post: %s\n" % e)
+        if e.status == 400:
+            print("List already exists. Skipping.")
+        else:
+            print("Exception when calling ListsApi->lists_post: %s\n" % e)

@@ -24,8 +24,7 @@ Load libraries using below code:
 
 ```python
 import ElasticEmail
-from ElasticEmail.apis.tags import lists_api
-from ElasticEmail.model.list_payload import ListPayload
+from ElasticEmail.models.list_payload import ListPayload
 from pprint import pprint
 ```
 
@@ -46,7 +45,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 Create an instance of ListsApi that will be used to create a new list.
 
 ```python
-    api_instance = lists_api.ListsApi(api_client)
+    api_instance = ElasticEmail.ListsApi(api_client)
 ```
 
 Create an object with details about a new list. Only `ListName` is required. 
@@ -70,10 +69,13 @@ Use try & except block to call `lists_post` method from the API to create a list
 
 ```python
     try:
-        api_response = api_instance.lists_post(body = list_payload)
+        api_response = api_instance.lists_post(list_payload=list_payload)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
-        print("Exception when calling ListsApi->lists_post: %s\n" % e)
+        if e.status == 400:
+            print("List already exists. Skipping.")
+        else:
+            print("Exception when calling ListsApi->lists_post: %s\n" % e)
 ```
 
 
@@ -81,15 +83,23 @@ Use try & except block to call `lists_post` method from the API to create a list
 
 ```python
 import ElasticEmail
-from ElasticEmail.apis.tags import lists_api
-from ElasticEmail.model.list_payload import ListPayload
+from ElasticEmail.models.list_payload import ListPayload
 from pprint import pprint
 
+# Defining the host is optional and defaults to https://api.elasticemail.com/v4
 configuration = ElasticEmail.Configuration()
+
+# Configure API key authorization: apikey
 configuration.api_key['apikey'] = 'YOUR_API_KEY'
 
+"""
+Add list
+Example api call that creates a new contacts list.
+Emails – An array of existing contact emails that should be added to this list. Leave empty for all contacts
+"""
 with ElasticEmail.ApiClient(configuration) as api_client:
-    api_instance = lists_api.ListsApi(api_client)
+    # Create an instance of the API class
+    api_instance = ElasticEmail.ListsApi(api_client)
 
     list_payload = ListPayload(
         ListName="Best contacts",
@@ -97,13 +107,16 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         Emails=[
             "johnsmith@domain.com",
         ],
-    )
+    )  # ListPayload |
 
     try:
-        api_response = api_instance.lists_post(body = list_payload)
+        api_response = api_instance.lists_post(list_payload=list_payload)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
-        print("Exception when calling ListsApi->lists_post: %s\n" % e)
+        if e.status == 400:
+            print("List already exists. Skipping.")
+        else:
+            print("Exception when calling ListsApi->lists_post: %s\n" % e)
 ```
 
 ## Run the code

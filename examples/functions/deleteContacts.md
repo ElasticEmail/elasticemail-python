@@ -24,8 +24,7 @@ Load libraries using below code:
 
 ```python
 import ElasticEmail
-from ElasticEmail.apis.tags import contacts_api
-from ElasticEmail.model.emails_payload import EmailsPayload
+from ElasticEmail.models.emails_payload import EmailsPayload
 ```
 
 Generate and use your API key (remember to check a required access level).
@@ -45,7 +44,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 Create an instance of ContactsApi that will be used to delete contacts.
 
 ```python
-    api_instance = contacts_api.ContactsApi(api_client)
+    api_instance = ElasticEmail.ContactsApi(api_client)
 ```
 
 Create an object with an array of contacts to delete.
@@ -62,6 +61,7 @@ Use try & except block to call `contacts_delete_post` method from the API to del
 
 ```python
     try:
+        # Delete Contacts Bulk
         api_instance.contacts_delete_post(emails_payload)
         print("Contacts deleted.")
     except ElasticEmail.ApiException as e:
@@ -73,20 +73,28 @@ Use try & except block to call `contacts_delete_post` method from the API to del
 
 ```python
 import ElasticEmail
-from ElasticEmail.apis.tags import contacts_api
-from ElasticEmail.model.emails_payload import EmailsPayload
+from ElasticEmail.models.emails_payload import EmailsPayload
 
+# Defining the host is optional and defaults to https://api.elasticemail.com/v4
 configuration = ElasticEmail.Configuration()
+
+# Configure API key authorization: apikey
 configuration.api_key['apikey'] = 'YOUR_API_KEY'
 
+"""
+Delete contact
+Example api call that deletes given contact(s).
+"""
 with ElasticEmail.ApiClient(configuration) as api_client:
-    api_instance = contacts_api.ContactsApi(api_client)
+    # Create an instance of the API class
+    api_instance = ElasticEmail.ContactsApi(api_client)
 
     emails_payload = EmailsPayload(
         Emails=["johnsmith@domain.com"],
-    )
+    )  # EmailsPayload | Provide either rule or a list of emails, not both.
 
     try:
+        # Delete Contacts Bulk
         api_instance.contacts_delete_post(emails_payload)
         print("Contacts deleted.")
     except ElasticEmail.ApiException as e:

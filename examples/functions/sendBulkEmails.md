@@ -25,12 +25,11 @@ Load libraries using below code:
 
 ```python
 import ElasticEmail
-from ElasticEmail.apis.tags import emails_api
-from ElasticEmail.model.email_content import EmailContent
-from ElasticEmail.model.body_part import BodyPart
-from ElasticEmail.model.body_content_type import BodyContentType
-from ElasticEmail.model.email_recipient import EmailRecipient
-from ElasticEmail.model.email_message_data import EmailMessageData
+from ElasticEmail.models.email_content import EmailContent
+from ElasticEmail.models.body_part import BodyPart
+from ElasticEmail.models.body_content_type import BodyContentType
+from ElasticEmail.models.email_recipient import EmailRecipient
+from ElasticEmail.models.email_message_data import EmailMessageData
 from pprint import pprint
 ```
 
@@ -51,7 +50,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 Create an instance of EmailsApi that will be used to send a bulk email.
 
 ```python
-    api_instance = emails_api.EmailsApi(api_client)
+    api_instance = ElasticEmail.EmailsApi(api_client)
 ```
 
 First you need to specify email details:
@@ -99,6 +98,7 @@ Use try & except block to call `emails_post` method from the API to send an emai
 
 ```python
     try:
+        # Send Bulk Emails
         api_response = api_instance.emails_post(email_message_data)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
@@ -110,20 +110,26 @@ Use try & except block to call `emails_post` method from the API to send an emai
 
 ```python
 import ElasticEmail
-from ElasticEmail.apis.tags import emails_api
-from ElasticEmail.model.email_content import EmailContent
-from ElasticEmail.model.body_part import BodyPart
-from ElasticEmail.model.body_content_type import BodyContentType
-from ElasticEmail.model.email_recipient import EmailRecipient
-from ElasticEmail.model.email_message_data import EmailMessageData
+from ElasticEmail.models.email_content import EmailContent
+from ElasticEmail.models.body_part import BodyPart
+from ElasticEmail.models.body_content_type import BodyContentType
+from ElasticEmail.models.email_recipient import EmailRecipient
+from ElasticEmail.models.email_message_data import EmailMessageData
 from pprint import pprint
 
+# Defining the host is optional and defaults to https://api.elasticemail.com/v4
 configuration = ElasticEmail.Configuration()
+
+# Configure API key authorization: apikey
 configuration.api_key['apikey'] = 'YOUR_API_KEY'
 
+"""
+Send bulk emails
+Example api call that sends bulk merge email.
+"""
 with ElasticEmail.ApiClient(configuration) as api_client:
-    api_instance = emails_api.EmailsApi(api_client)
-    
+    # Create an instance of the API class
+    api_instance = ElasticEmail.EmailsApi(api_client)
     email_message_data = EmailMessageData(
         Recipients=[
             EmailRecipient(
@@ -150,9 +156,10 @@ with ElasticEmail.ApiClient(configuration) as api_client:
             ReplyTo="myemail@domain.com",
             Subject="Example email",
         ),
-    )
+    ) # EmailMessageData | Email data
 
     try:
+        # Send Bulk Emails
         api_response = api_instance.emails_post(email_message_data)
         pprint(api_response)
     except ElasticEmail.ApiException as e:

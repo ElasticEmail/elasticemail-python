@@ -1,6 +1,5 @@
 import ElasticEmail
-from ElasticEmail.apis.tags import contacts_api
-from ElasticEmail.model.emails_payload import EmailsPayload
+from ElasticEmail.models.emails_payload import EmailsPayload
 
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
 configuration = ElasticEmail.Configuration()
@@ -14,7 +13,7 @@ Example api call that deletes given contact(s).
 """
 with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = contacts_api.ContactsApi(api_client)
+    api_instance = ElasticEmail.ContactsApi(api_client)
 
     emails_payload = EmailsPayload(
         Emails=["johnsmith@domain.com"],

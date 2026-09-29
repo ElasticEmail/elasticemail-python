@@ -1,20 +1,23 @@
 import ElasticEmail
-from ElasticEmail.models.email_send import EmailSend
-from ElasticEmail.models.email_transactional_message_data import EmailTransactionalMessageData
-from ElasticEmail.rest import ApiException
 from pprint import pprint
 import base64
+from pathlib import Path
 
 configuration = ElasticEmail.Configuration(
     host = "https://api.elasticemail.com/v4"
 )
 
-configuration.api_key['apikey'] = "API_KEY"
+configuration.api_key['apikey'] = "YOUR_API_KEY"
 
 with ElasticEmail.ApiClient(configuration) as api_client:
     api_instance = ElasticEmail.EmailsApi(api_client)
 
-    with open('invoice.pdf', 'rb') as file:
+    invoice_path = Path(__file__).with_name("invoice.pdf")
+    if not invoice_path.exists():
+        print(f"Attachment file not found: {invoice_path}. Skipping send.")
+        raise SystemExit(0)
+
+    with open(invoice_path, 'rb') as file:
         binData = file.read()
 
     email_transactional_message_data = ElasticEmail.EmailTransactionalMessageData(

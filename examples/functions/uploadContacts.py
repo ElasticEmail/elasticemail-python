@@ -1,5 +1,4 @@
 import ElasticEmail
-from ElasticEmail.apis.tags import contacts_api
 
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
 configuration = ElasticEmail.Configuration()
@@ -20,19 +19,15 @@ john@domain.com
 """
 with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = contacts_api.ContactsApi(api_client)
-
-    query_params = {
-        'listName': "example list",  # str | Name of an existing list to add these contacts to (optional)
-        'encodingName': "utf-8",  # str | In what encoding the file is uploaded (optional)
-    }
-
-    body = dict(
-        file = open('./files/contacts.csv', 'rb'),
-    )
+    api_instance = ElasticEmail.ContactsApi(api_client)
 
     try:
-        api_instance.contacts_import_post(query_params=query_params, body=body)
-        print("Contacts uploaded.")
+        with open('./files/contacts.csv', 'rb') as contacts_file:
+            api_instance.contacts_import_post(
+                list_name="example list",
+                encoding_name="utf-8",
+                file=contacts_file.read(),
+            )
+            print("Contacts uploaded.")
     except ElasticEmail.ApiException as e:
         print("Exception when calling ContactsApi->contacts_import_post: %s\n" % e)

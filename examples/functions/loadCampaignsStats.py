@@ -1,5 +1,4 @@
 import ElasticEmail
-from ElasticEmail.apis.tags import statistics_api
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
@@ -14,15 +13,10 @@ Example api call that loads a list of your campaigns' stats.
 """
 with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = statistics_api.StatisticsApi(api_client)
-
-    query_params = {
-        'limit': 100,  # int | Maximum number of returned items. (optional)
-        'offset': 0  # int | How many items should be returned ahead. (optional)
-    }
+    api_instance = ElasticEmail.StatisticsApi(api_client)
 
     try:
-        api_response = api_instance.statistics_campaigns_get(query_params = query_params)
+        api_response = api_instance.statistics_campaigns_get(limit=100, offset=0)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling StatisticsApi->statistics_campaigns_get: %s\n" % e)

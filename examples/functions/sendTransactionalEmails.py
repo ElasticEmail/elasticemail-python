@@ -1,10 +1,9 @@
 import ElasticEmail
-from ElasticEmail.apis.tags import emails_api
-from ElasticEmail.model.email_content import EmailContent
-from ElasticEmail.model.body_part import BodyPart
-from ElasticEmail.model.body_content_type import BodyContentType
-from ElasticEmail.model.transactional_recipient import TransactionalRecipient
-from ElasticEmail.model.email_transactional_message_data import EmailTransactionalMessageData
+from ElasticEmail.models.email_content import EmailContent
+from ElasticEmail.models.body_part import BodyPart
+from ElasticEmail.models.body_content_type import BodyContentType
+from ElasticEmail.models.transactional_recipient import TransactionalRecipient
+from ElasticEmail.models.email_transactional_message_data import EmailTransactionalMessageData
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
@@ -20,8 +19,7 @@ Limit of 50 maximum recipients.
 """
 with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = emails_api.EmailsApi(api_client)
-
+    api_instance = ElasticEmail.EmailsApi(api_client)
     email_transactional_message_data = EmailTransactionalMessageData(
         Recipients=TransactionalRecipient(
             To=[

@@ -25,7 +25,6 @@ Load libraries using below code:
 
 ```python
 import ElasticEmail
-from ElasticEmail.apis.tags import statistics_api
 from pprint import pprint
 ```
 
@@ -46,7 +45,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 Create an instance of StatisticsApi that will be used to get basic send statistics.
 
 ```python
-    api_instance = statistics_api.StatisticsApi(api_client)
+    api_instance = ElasticEmail.StatisticsApi(api_client)
 ```
 
 Channels statistics reponse is paginated you need to specfiy pagination options:
@@ -55,10 +54,7 @@ Channels statistics reponse is paginated you need to specfiy pagination options:
 
 Eg. to return second page of elements paginated 20 elements per page specify pagination options as follows
 ```python
-    query_params = {
-        'limit': 20,
-        'offset': 20
-    }
+    api_response = api_instance.statistics_channels_get(limit=20, offset=20)
 ```
 
 > Find out more by checking our API's documentation: https://elasticemail.com/developers/api-documentation/rest-api#operation/statisticsChannelsGet
@@ -66,20 +62,17 @@ Eg. to return second page of elements paginated 20 elements per page specify pag
 Let's fetch first 100 channels:
 
 ```python
-    query_params = {
-        'limit': 100,
-        'offset': 0 
-    }
+    api_response = api_instance.statistics_channels_get(limit=100, offset=0)
 ```
 
 Use try & except block to call `statistics_channels_get` method from the API to fetch statistics: 
 
 ```python
     try:
-        api_response = api_instance.statistics_channels_get(query_params = query_params)
+        api_response = api_instance.statistics_channels_get(limit=100, offset=0)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
-        print("Exception when calling StatisticsApi->statistics_campaigns_get: %s\n" % e)
+        print("Exception when calling StatisticsApi->statistics_channels_get: %s\n" % e)
 ```
 
 
@@ -87,22 +80,24 @@ Use try & except block to call `statistics_channels_get` method from the API to 
 
 ```python
 import ElasticEmail
-from ElasticEmail.apis.tags import statistics_api
 from pprint import pprint
 
+# Defining the host is optional and defaults to https://api.elasticemail.com/v4
 configuration = ElasticEmail.Configuration()
+
+# Configure API key authorization: apikey
 configuration.api_key['apikey'] = 'YOUR_API_KEY'
 
+"""
+Load channels stats
+Example api call that loads a list of your channels' stats.
+"""
 with ElasticEmail.ApiClient(configuration) as api_client:
-    api_instance = statistics_api.StatisticsApi(api_client)
-
-    query_params = {
-        'limit': 100,
-        'offset': 0 
-    }
+    # Create an instance of the API class
+    api_instance = ElasticEmail.StatisticsApi(api_client)
 
     try:
-        api_response = api_instance.statistics_channels_get(query_params = query_params)
+        api_response = api_instance.statistics_channels_get(limit=100, offset=0)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
         print("Exception when calling StatisticsApi->statistics_channels_get: %s\n" % e)

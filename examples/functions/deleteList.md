@@ -24,7 +24,6 @@ Load libraries using below code:
 
 ```python
 import ElasticEmail
-from ElasticEmail.apis.tags import lists_api
 ```
 
 Generate and use your API key (remember to check a required access level).
@@ -44,7 +43,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 Create an instance of ListsApi that will be used to delete list.
 
 ```python
-    api_instance = lists_api.ListsApi(api_client)
+    api_instance = ElasticEmail.ListsApi(api_client)
 ```
 
 The only thing needed is a list name.
@@ -60,7 +59,7 @@ Use try & except block to call `lists_by_name_delete` method from the API to del
 
 ```python
     try:
-        api_instance.lists_by_name_delete({'name': name})
+        api_instance.lists_by_name_delete(name)
         print("List deleted.")
     except ElasticEmail.ApiException as e:
         print("Exception when calling ListsApi->lists_by_name_delete: %s\n" % e)
@@ -71,18 +70,25 @@ Use try & except block to call `lists_by_name_delete` method from the API to del
 
 ```python
 import ElasticEmail
-from ElasticEmail.apis.tags import lists_api
 
+# Defining the host is optional and defaults to https://api.elasticemail.com/v4
 configuration = ElasticEmail.Configuration()
+
+# Configure API key authorization: apikey
 configuration.api_key['apikey'] = 'YOUR_API_KEY'
 
+"""
+Delete list
+Example api call that loads given contacts list.
+"""
 with ElasticEmail.ApiClient(configuration) as api_client:
-    api_instance = lists_api.ListsApi(api_client)
+    # Create an instance of the API class
+    api_instance = ElasticEmail.ListsApi(api_client)
 
-    name = "Best contacts"
+    name = "Best contacts"  # str | Name of your list.
 
     try:
-        api_instance.lists_by_name_delete({'name': name})
+        api_instance.lists_by_name_delete(name)
         print("List deleted.")
     except ElasticEmail.ApiException as e:
         print("Exception when calling ListsApi->lists_by_name_delete: %s\n" % e)

@@ -24,7 +24,6 @@ Load libraries using below code:
 
 ```python
 import ElasticEmail
-from ElasticEmail.apis.tags import templates_api
 ```
 
 Generate and use your API key (remember to check a required access level).
@@ -44,7 +43,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 Create an instance of TemplatesApi that will be used to delete existing template from your account.
 
 ```python
-    api_instance = templates_api.TemplatesApi(api_client)
+    api_instance = ElasticEmail.TemplatesApi(api_client)
 ```
 
 To delete a template you need to specfiy it's name:
@@ -53,14 +52,15 @@ To delete a template you need to specfiy it's name:
 
 
 ```python
-    name = "My template"
+    name = "My new template"
 ```
 
 Use try & except block to call `templates_by_name_delete` method from the API to delete a template: 
 
 ```python
     try:
-        api_instance.templates_by_name_delete({'name': name})
+        # Delete Template
+        api_instance.templates_by_name_delete(name)
         print("Template deleted.")
     except ElasticEmail.ApiException as e:
         print("Exception when calling TemplatesApi->templates_by_name_delete: %s\n" % e)
@@ -71,18 +71,26 @@ Use try & except block to call `templates_by_name_delete` method from the API to
 
 ```python
 import ElasticEmail
-from ElasticEmail.apis.tags import templates_api
 
+# Defining the host is optional and defaults to https://api.elasticemail.com/v4
 configuration = ElasticEmail.Configuration()
+
+# Configure API key authorization: apikey
 configuration.api_key['apikey'] = 'YOUR_API_KEY'
 
+"""
+Delete template
+Example api call that deletes existing template.
+"""
 with ElasticEmail.ApiClient(configuration) as api_client:
-    api_instance = templates_api.TemplatesApi(api_client)
+    # Create an instance of the API class
+    api_instance = ElasticEmail.TemplatesApi(api_client)
 
-    name = "My template"
+    name = "My new template"  # str | Name of template.
 
     try:
-        api_instance.templates_by_name_delete({'name': name})
+        # Delete Template
+        api_instance.templates_by_name_delete(name)
         print("Template deleted.")
     except ElasticEmail.ApiException as e:
         print("Exception when calling TemplatesApi->templates_by_name_delete: %s\n" % e)
