@@ -1,6 +1,82 @@
 # Load List
 
-This example is aligned with the current SDK and can be run directly from `examples/functions/loadList.py`.
+This guide will walk you through the process of loading details about contacts list on your account using the Python library. 
+
+*Required Access Level: ViewContacts*
+
+## What's a list?
+When using Elastic Email, you send emails to contacts – recipients who receive your emails. Contacts can be grouped by created segments or lists. Segments add contacts automatically when specfied conditions are met, and contacts on lists are managed manually.
+
+## Preparation
+Install Python 3.
+
+Install ElasticEmail library.
+
+Eg. run in terminal `pip install ElasticEmail` to install from PyPi repository.
+
+Create a new Python file `snippet.py` and open it in editor of your preference eg. PyCharm (https://www.jetbrains.com/pycharm/download/)
+
+## Let's dig into the code
+
+Put the below code to your file.
+
+Load libraries using below code:
+
+```python
+import ElasticEmail
+from pprint import pprint
+```
+
+Generate and use your API key (remember to check a required access level).
+
+Defining the host is optional and defaults to https://api.elasticemail.com/v4
+
+```python
+configuration = ElasticEmail.Configuration()
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+```
+
+Pass configuration to an api client and make it instance available under `api_client` name:
+```
+with ElasticEmail.ApiClient(configuration) as api_client:
+```
+
+Create an instance of ListsApi that will be used to load list.
+
+```python
+    api_instance = ElasticEmail.ListsApi(api_client)
+```
+
+The only thing needed is a list name.
+
+> Find out more by checking our API's documentation: https://elasticemail.com/developers/api-documentation/rest-api#operation/listsByNameGet
+
+
+```python
+    name = "Best contacts"
+```
+
+Use try & except block to call `lists_by_name_get` method from the API to fetch a list: 
+
+```python
+    try:
+        api_response = api_instance.lists_by_name_get(name)
+        pprint(api_response)
+    except ElasticEmail.ApiException as e:
+        try:
+            available = api_instance.lists_get(limit=1, offset=0)
+            if available:
+                fallback_name = available[0].list_name
+                api_response = api_instance.lists_by_name_get(fallback_name)
+                pprint(api_response)
+                raise SystemExit(0)
+        except ElasticEmail.ApiException:
+            pass
+        print(f"No list found to load ({e.status}). Skipping.")
+```
+
+
+## The whole code to copy and paste:
 
 ```python
 import ElasticEmail
@@ -10,7 +86,7 @@ from pprint import pprint
 configuration = ElasticEmail.Configuration()
 
 # Configure API key authorization: apikey
-configuration.api_key['apikey'] = '6E313A3326A5C0A3D0C5F32916BE6EE3E858AA4C068829DEF4B6D21E0A12971AD60B3F92330DFDD1F193916BDE8444AF'
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
 
 """
 Load list
@@ -38,8 +114,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print(f"No list found to load ({e.status}). Skipping.")
 ```
 
-Run with:
-
-```bash
-py -3 loadList.py
+## Run the code
+```
+python3 snippet.py
 ```
