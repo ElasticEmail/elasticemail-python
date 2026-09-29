@@ -29,7 +29,4 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         api_response = api_instance.lists_post(list_payload=list_payload)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
-        if e.status == 400:
-            print("List already exists. Skipping.")
-        else:
-            print("Exception when calling ListsApi->lists_post: %s\n" % e)
+        print("Exception when calling ListsApi->lists_post: %s\n" % e)

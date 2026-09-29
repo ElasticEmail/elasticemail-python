@@ -63,16 +63,7 @@ Use try & except block to call `lists_by_name_get` method from the API to fetch 
         api_response = api_instance.lists_by_name_get(name)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
-        try:
-            available = api_instance.lists_get(limit=1, offset=0)
-            if available:
-                fallback_name = available[0].list_name
-                api_response = api_instance.lists_by_name_get(fallback_name)
-                pprint(api_response)
-                raise SystemExit(0)
-        except ElasticEmail.ApiException:
-            pass
-        print(f"No list found to load ({e.status}). Skipping.")
+        print("Exception when calling ListsApi->lists_by_name_get: %s\n" % e)
 ```
 
 
@@ -102,16 +93,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         api_response = api_instance.lists_by_name_get(name)
         pprint(api_response)
     except ElasticEmail.ApiException as e:
-        try:
-            available = api_instance.lists_get(limit=1, offset=0)
-            if available:
-                fallback_name = available[0].list_name
-                api_response = api_instance.lists_by_name_get(fallback_name)
-                pprint(api_response)
-                raise SystemExit(0)
-        except ElasticEmail.ApiException:
-            pass
-        print(f"No list found to load ({e.status}). Skipping.")
+        print("Exception when calling ListsApi->lists_by_name_get: %s\n" % e)
 ```
 
 ## Run the code
