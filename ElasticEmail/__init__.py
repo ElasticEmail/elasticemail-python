@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "4.2.1"
+__version__ = "4.3.0"
 
 # import apis into sdk package
 from ElasticEmail.api.campaigns_api import CampaignsApi
@@ -144,4 +144,5 @@ from ElasticEmail.models.verification_file_result_details import VerificationFil
 from ElasticEmail.models.verification_status import VerificationStatus
 from ElasticEmail.models.webhook import Webhook
 from ElasticEmail.models.webhook_create_payload import WebhookCreatePayload
+from ElasticEmail.models.webhook_delivery_method import WebhookDeliveryMethod
 from ElasticEmail.models.webhook_update_payload import WebhookUpdatePayload

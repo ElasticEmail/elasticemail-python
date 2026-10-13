@@ -48,7 +48,10 @@ class TestWebhook(unittest.TestCase):
                 notification_for_unsubscribed = True,
                 notification_for_abuse_report = True,
                 notification_for_error = True,
-                is_enabled = True
+                is_enabled = True,
+                signing_enabled = True,
+                delivery_method = 'Get',
+                signing_secret = ''
             )
         else:
             return Webhook(

@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from ElasticEmail.models.webhook_delivery_method import WebhookDeliveryMethod
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -36,7 +37,9 @@ class WebhookCreatePayload(BaseModel):
     notification_for_unsubscribed: Optional[StrictBool] = Field(default=None, alias="NotificationForUnsubscribed")
     notification_for_abuse_report: Optional[StrictBool] = Field(default=None, alias="NotificationForAbuseReport")
     notification_for_error: Optional[StrictBool] = Field(default=None, alias="NotificationForError")
-    __properties: ClassVar[List[str]] = ["Name", "URL", "NotifyOncePerEmail", "NotificationForSent", "NotificationForOpened", "NotificationForClicked", "NotificationForUnsubscribed", "NotificationForAbuseReport", "NotificationForError"]
+    enable_signing: Optional[StrictBool] = Field(default=None, description="Sign every request with HMAC-SHA256. Can be set only when the webhook is created. Default: false.", alias="EnableSigning")
+    delivery_method: Optional[WebhookDeliveryMethod] = Field(default=WebhookDeliveryMethod.GET, alias="DeliveryMethod")
+    __properties: ClassVar[List[str]] = ["Name", "URL", "NotifyOncePerEmail", "NotificationForSent", "NotificationForOpened", "NotificationForClicked", "NotificationForUnsubscribed", "NotificationForAbuseReport", "NotificationForError", "EnableSigning", "DeliveryMethod"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,6 +80,11 @@ class WebhookCreatePayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if enable_signing (nullable) is None
+        # and model_fields_set contains the field
+        if self.enable_signing is None and "enable_signing" in self.model_fields_set:
+            _dict['EnableSigning'] = None
+
         return _dict
 
     @classmethod
@@ -97,7 +105,9 @@ class WebhookCreatePayload(BaseModel):
             "NotificationForClicked": obj.get("NotificationForClicked"),
             "NotificationForUnsubscribed": obj.get("NotificationForUnsubscribed"),
             "NotificationForAbuseReport": obj.get("NotificationForAbuseReport"),
-            "NotificationForError": obj.get("NotificationForError")
+            "NotificationForError": obj.get("NotificationForError"),
+            "EnableSigning": obj.get("EnableSigning"),
+            "DeliveryMethod": obj.get("DeliveryMethod") if obj.get("DeliveryMethod") is not None else WebhookDeliveryMethod.GET
         })
         return _obj
 

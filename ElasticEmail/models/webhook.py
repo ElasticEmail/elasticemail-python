@@ -21,6 +21,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from ElasticEmail.models.webhook_delivery_method import WebhookDeliveryMethod
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -41,7 +42,10 @@ class Webhook(BaseModel):
     notification_for_abuse_report: Optional[StrictBool] = Field(default=None, alias="NotificationForAbuseReport")
     notification_for_error: Optional[StrictBool] = Field(default=None, alias="NotificationForError")
     is_enabled: Optional[StrictBool] = Field(default=None, alias="IsEnabled")
-    __properties: ClassVar[List[str]] = ["WebhookID", "Name", "DateCreated", "DateUpdated", "URL", "NotifyOncePerEmail", "NotificationForSent", "NotificationForOpened", "NotificationForClicked", "NotificationForUnsubscribed", "NotificationForAbuseReport", "NotificationForError", "IsEnabled"]
+    signing_enabled: Optional[StrictBool] = Field(default=None, description="Requests carry an HMAC-SHA256 signature. Chosen when the webhook is created and can't be changed.", alias="SigningEnabled")
+    delivery_method: Optional[WebhookDeliveryMethod] = Field(default=WebhookDeliveryMethod.GET, alias="DeliveryMethod")
+    signing_secret: Optional[StrictStr] = Field(default=None, description="Signing secret - returned only once, when a webhook is created with signing or its secret is rotated. Store it safely.", alias="SigningSecret")
+    __properties: ClassVar[List[str]] = ["WebhookID", "Name", "DateCreated", "DateUpdated", "URL", "NotifyOncePerEmail", "NotificationForSent", "NotificationForOpened", "NotificationForClicked", "NotificationForUnsubscribed", "NotificationForAbuseReport", "NotificationForError", "IsEnabled", "SigningEnabled", "DeliveryMethod", "SigningSecret"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -116,7 +120,10 @@ class Webhook(BaseModel):
             "NotificationForUnsubscribed": obj.get("NotificationForUnsubscribed"),
             "NotificationForAbuseReport": obj.get("NotificationForAbuseReport"),
             "NotificationForError": obj.get("NotificationForError"),
-            "IsEnabled": obj.get("IsEnabled")
+            "IsEnabled": obj.get("IsEnabled"),
+            "SigningEnabled": obj.get("SigningEnabled"),
+            "DeliveryMethod": obj.get("DeliveryMethod") if obj.get("DeliveryMethod") is not None else WebhookDeliveryMethod.GET,
+            "SigningSecret": obj.get("SigningSecret")
         })
         return _obj
 

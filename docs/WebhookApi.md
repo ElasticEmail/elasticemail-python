@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**webhook_by_publicid_delete**](WebhookApi.md#webhook_by_publicid_delete) | **DELETE** /webhook/{publicid} | Delete Webhook
 [**webhook_by_publicid_get**](WebhookApi.md#webhook_by_publicid_get) | **GET** /webhook/{publicid} | Load Webhook
 [**webhook_by_publicid_put**](WebhookApi.md#webhook_by_publicid_put) | **PUT** /webhook/{publicid} | Update Webhook
+[**webhook_by_publicid_secret_rotate_post**](WebhookApi.md#webhook_by_publicid_secret_rotate_post) | **POST** /webhook/{publicid}/secret/rotate | Rotate Webhook Secret
 [**webhook_get**](WebhookApi.md#webhook_get) | **GET** /webhook | Load Webhooks
 [**webhook_post**](WebhookApi.md#webhook_post) | **POST** /webhook | Add Webhook
 
@@ -238,6 +239,85 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **webhook_by_publicid_secret_rotate_post**
+> Webhook webhook_by_publicid_secret_rotate_post(publicid)
+
+Rotate Webhook Secret
+
+Replace the signing secret of a webhook created with signing. The old secret stops being used at once - there is no grace period.             The new secret is returned only in this response. Notifications your endpoint rejects while it still has the old secret are retried and signed with the new one. Required Access Level: ModifyWebNotifications
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+import ElasticEmail
+from ElasticEmail.models.webhook import Webhook
+from ElasticEmail.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.elasticemail.com/v4
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ElasticEmail.Configuration(
+    host = "https://api.elasticemail.com/v4"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with ElasticEmail.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ElasticEmail.WebhookApi(api_client)
+    publicid = 'publicid_example' # str | 
+
+    try:
+        # Rotate Webhook Secret
+        api_response = api_instance.webhook_by_publicid_secret_rotate_post(publicid)
+        print("The response of WebhookApi->webhook_by_publicid_secret_rotate_post:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WebhookApi->webhook_by_publicid_secret_rotate_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **publicid** | **str**|  | 
+
+### Return type
+
+[**Webhook**](Webhook.md)
+
+### Authorization
+
+[apikey](../README.md#apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 ### HTTP response details

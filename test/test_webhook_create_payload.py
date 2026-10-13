@@ -44,7 +44,9 @@ class TestWebhookCreatePayload(unittest.TestCase):
                 notification_for_clicked = True,
                 notification_for_unsubscribed = True,
                 notification_for_abuse_report = True,
-                notification_for_error = True
+                notification_for_error = True,
+                enable_signing = True,
+                delivery_method = 'Get'
             )
         else:
             return WebhookCreatePayload(

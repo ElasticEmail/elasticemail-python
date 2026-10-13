@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **notification_for_unsubscribed** | **bool** |  | [optional] 
 **notification_for_abuse_report** | **bool** |  | [optional] 
 **notification_for_error** | **bool** |  | [optional] 
+**enable_signing** | **bool** | Sign every request with HMAC-SHA256. Can be set only when the webhook is created. Default: false. | [optional] 
+**delivery_method** | [**WebhookDeliveryMethod**](WebhookDeliveryMethod.md) |  | [optional] [default to WebhookDeliveryMethod.GET]
 
 ## Example
 

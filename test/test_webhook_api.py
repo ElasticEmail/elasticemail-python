@@ -48,6 +48,13 @@ class TestWebhookApi(unittest.TestCase):
         """
         pass
 
+    def test_webhook_by_publicid_secret_rotate_post(self) -> None:
+        """Test case for webhook_by_publicid_secret_rotate_post
+
+        Rotate Webhook Secret
+        """
+        pass
+
     def test_webhook_get(self) -> None:
         """Test case for webhook_get
 
