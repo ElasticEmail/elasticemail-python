@@ -32,6 +32,7 @@ The official Python client library for the [Elastic Email](https://elasticemail.
 ## Features
 
 - **Transactional and bulk email.** Send single messages, bulk campaigns or CSV merge-file sends.
+- **Safe retries.** Pass an optional `Idempotency-Key` to a send, so a retried request returns the first result instead of sending the email twice.
 - **Contacts, lists and segments.** Add, update, import, export and bulk-delete contacts.
 - **Campaigns and automations.** Create, update, pause and trigger automations for a contact.
 - **Templates, files and attachments.** Manage templates and uploaded files.
@@ -126,6 +127,23 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 ```
 
 The sender field is `var_from` because `from` is a reserved word in Python. The address must use a domain you've [verified in your Elastic Email account](https://help.elasticemail.com/en/articles/4934400-how-to-verify-your-domain).
+
+### Retry a send safely (Idempotency-Key)
+
+```python
+import uuid
+
+# One key per logical send. Reuse it only when you retry this same send.
+idempotency_key = str(uuid.uuid4())
+
+with ElasticEmail.ApiClient(configuration) as api_client:
+    emails = ElasticEmail.EmailsApi(api_client)
+    # After a timeout or connection error, call this again with the same message and the same key.
+    result = emails.emails_transactional_post(message, idempotency_key=idempotency_key)
+    print(f"TransactionID: {result.transaction_id}")
+```
+
+If the same key arrives again with the same request within 24 hours, Elastic Email returns the stored response of the first one (same `TransactionID` and `MessageID`, plus an `Idempotency-Replayed: true` response header) and doesn't send or charge again. Retry with an identical body: the same key with a different body gets `422`, and a retry while the first request is still running gets `409`. A `503` means the key couldn't be checked, so wait for the `Retry-After` seconds and retry with the same key. `emails_post` and `emails_mergefile_post` take the same `idempotency_key` argument, and sends without a key work as before.
 
 ### Send from a template with merge fields
 
@@ -479,7 +497,7 @@ The SDK follows the Elastic Email API v4. Package versions and release notes are
 <summary>Build details</summary>
 
 - API version: 4.0.0
-- SDK version: 4.3.0
+- SDK version: 4.4.0
 - Generator version: 7.11.0
 - Build package: `org.openapitools.codegen.languages.PythonClientCodegen`
 

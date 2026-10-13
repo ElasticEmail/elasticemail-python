@@ -190,7 +190,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **emails_mergefile_post**
-> EmailSend emails_mergefile_post(merge_email_payload)
+> EmailSend emails_mergefile_post(merge_email_payload, idempotency_key=idempotency_key)
 
 Send Bulk Emails CSV
 
@@ -229,10 +229,11 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ElasticEmail.EmailsApi(api_client)
     merge_email_payload = ElasticEmail.MergeEmailPayload() # MergeEmailPayload | Email data
+    idempotency_key = '6f1c2a7e-3b4d-4e8f-9a1b-2c3d4e5f6a7b' # str | Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request. (optional)
 
     try:
         # Send Bulk Emails CSV
-        api_response = api_instance.emails_mergefile_post(merge_email_payload)
+        api_response = api_instance.emails_mergefile_post(merge_email_payload, idempotency_key=idempotency_key)
         print("The response of EmailsApi->emails_mergefile_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -247,6 +248,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **merge_email_payload** | [**MergeEmailPayload**](MergeEmailPayload.md)| Email data | 
+ **idempotency_key** | **str**| Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request. | [optional] 
 
 ### Return type
 
@@ -266,11 +268,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad request, e.g. the Idempotency-Key header is not 1 to 255 printable ASCII characters. |  -  |
+**409** | A request with the same Idempotency-Key is still in progress. Retry once it has completed. |  -  |
+**422** | The Idempotency-Key was already used with a different request. |  -  |
+**503** | The Idempotency-Key could not be confirmed, so the request was not executed. Retry after the time given in Retry-After. |  * Retry-After - Seconds to wait before retrying. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **emails_post**
-> EmailSend emails_post(email_message_data)
+> EmailSend emails_post(email_message_data, idempotency_key=idempotency_key)
 
 Send Bulk Emails
 
@@ -309,10 +315,11 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ElasticEmail.EmailsApi(api_client)
     email_message_data = ElasticEmail.EmailMessageData() # EmailMessageData | Email data
+    idempotency_key = '6f1c2a7e-3b4d-4e8f-9a1b-2c3d4e5f6a7b' # str | Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request. (optional)
 
     try:
         # Send Bulk Emails
-        api_response = api_instance.emails_post(email_message_data)
+        api_response = api_instance.emails_post(email_message_data, idempotency_key=idempotency_key)
         print("The response of EmailsApi->emails_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -327,6 +334,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **email_message_data** | [**EmailMessageData**](EmailMessageData.md)| Email data | 
+ **idempotency_key** | **str**| Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request. | [optional] 
 
 ### Return type
 
@@ -346,11 +354,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad request, e.g. the Idempotency-Key header is not 1 to 255 printable ASCII characters. |  -  |
+**409** | A request with the same Idempotency-Key is still in progress. Retry once it has completed. |  -  |
+**422** | The Idempotency-Key was already used with a different request. |  -  |
+**503** | The Idempotency-Key could not be confirmed, so the request was not executed. Retry after the time given in Retry-After. |  * Retry-After - Seconds to wait before retrying. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **emails_transactional_post**
-> EmailSend emails_transactional_post(email_transactional_message_data)
+> EmailSend emails_transactional_post(email_transactional_message_data, idempotency_key=idempotency_key)
 
 Send Transactional Email
 
@@ -389,10 +401,11 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ElasticEmail.EmailsApi(api_client)
     email_transactional_message_data = ElasticEmail.EmailTransactionalMessageData() # EmailTransactionalMessageData | Email data
+    idempotency_key = '6f1c2a7e-3b4d-4e8f-9a1b-2c3d4e5f6a7b' # str | Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request. (optional)
 
     try:
         # Send Transactional Email
-        api_response = api_instance.emails_transactional_post(email_transactional_message_data)
+        api_response = api_instance.emails_transactional_post(email_transactional_message_data, idempotency_key=idempotency_key)
         print("The response of EmailsApi->emails_transactional_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -407,6 +420,7 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **email_transactional_message_data** | [**EmailTransactionalMessageData**](EmailTransactionalMessageData.md)| Email data | 
+ **idempotency_key** | **str**| Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request. | [optional] 
 
 ### Return type
 
@@ -426,6 +440,10 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad request, e.g. the Idempotency-Key header is not 1 to 255 printable ASCII characters. |  -  |
+**409** | A request with the same Idempotency-Key is still in progress. Retry once it has completed. |  -  |
+**422** | The Idempotency-Key was already used with a different request. |  -  |
+**503** | The Idempotency-Key could not be confirmed, so the request was not executed. Retry after the time given in Retry-After. |  * Retry-After - Seconds to wait before retrying. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -17,7 +17,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBool, StrictStr
+from pydantic import Field, StrictBool, StrictStr, field_validator
 from typing import Optional
 from typing_extensions import Annotated
 from ElasticEmail.models.email_data import EmailData
@@ -741,6 +741,7 @@ class EmailsApi:
     def emails_mergefile_post(
         self,
         merge_email_payload: Annotated[MergeEmailPayload, Field(description="Email data")],
+        idempotency_key: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True, max_length=255)]], Field(description="Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -760,6 +761,8 @@ class EmailsApi:
 
         :param merge_email_payload: Email data (required)
         :type merge_email_payload: MergeEmailPayload
+        :param idempotency_key: Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request.
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -784,6 +787,7 @@ class EmailsApi:
 
         _param = self._emails_mergefile_post_serialize(
             merge_email_payload=merge_email_payload,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -792,6 +796,10 @@ class EmailsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "EmailSend",
+            '400': None,
+            '409': None,
+            '422': None,
+            '503': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -808,6 +816,7 @@ class EmailsApi:
     def emails_mergefile_post_with_http_info(
         self,
         merge_email_payload: Annotated[MergeEmailPayload, Field(description="Email data")],
+        idempotency_key: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True, max_length=255)]], Field(description="Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -827,6 +836,8 @@ class EmailsApi:
 
         :param merge_email_payload: Email data (required)
         :type merge_email_payload: MergeEmailPayload
+        :param idempotency_key: Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request.
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -851,6 +862,7 @@ class EmailsApi:
 
         _param = self._emails_mergefile_post_serialize(
             merge_email_payload=merge_email_payload,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -859,6 +871,10 @@ class EmailsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "EmailSend",
+            '400': None,
+            '409': None,
+            '422': None,
+            '503': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -875,6 +891,7 @@ class EmailsApi:
     def emails_mergefile_post_without_preload_content(
         self,
         merge_email_payload: Annotated[MergeEmailPayload, Field(description="Email data")],
+        idempotency_key: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True, max_length=255)]], Field(description="Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -894,6 +911,8 @@ class EmailsApi:
 
         :param merge_email_payload: Email data (required)
         :type merge_email_payload: MergeEmailPayload
+        :param idempotency_key: Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request.
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -918,6 +937,7 @@ class EmailsApi:
 
         _param = self._emails_mergefile_post_serialize(
             merge_email_payload=merge_email_payload,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -926,6 +946,10 @@ class EmailsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "EmailSend",
+            '400': None,
+            '409': None,
+            '422': None,
+            '503': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -937,6 +961,7 @@ class EmailsApi:
     def _emails_mergefile_post_serialize(
         self,
         merge_email_payload,
+        idempotency_key,
         _request_auth,
         _content_type,
         _headers,
@@ -960,6 +985,8 @@ class EmailsApi:
         # process the path parameters
         # process the query parameters
         # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
         # process the body parameter
         if merge_email_payload is not None:
@@ -1015,6 +1042,7 @@ class EmailsApi:
     def emails_post(
         self,
         email_message_data: Annotated[EmailMessageData, Field(description="Email data")],
+        idempotency_key: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True, max_length=255)]], Field(description="Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1034,6 +1062,8 @@ class EmailsApi:
 
         :param email_message_data: Email data (required)
         :type email_message_data: EmailMessageData
+        :param idempotency_key: Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request.
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1058,6 +1088,7 @@ class EmailsApi:
 
         _param = self._emails_post_serialize(
             email_message_data=email_message_data,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1066,6 +1097,10 @@ class EmailsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "EmailSend",
+            '400': None,
+            '409': None,
+            '422': None,
+            '503': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1082,6 +1117,7 @@ class EmailsApi:
     def emails_post_with_http_info(
         self,
         email_message_data: Annotated[EmailMessageData, Field(description="Email data")],
+        idempotency_key: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True, max_length=255)]], Field(description="Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1101,6 +1137,8 @@ class EmailsApi:
 
         :param email_message_data: Email data (required)
         :type email_message_data: EmailMessageData
+        :param idempotency_key: Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request.
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1125,6 +1163,7 @@ class EmailsApi:
 
         _param = self._emails_post_serialize(
             email_message_data=email_message_data,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1133,6 +1172,10 @@ class EmailsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "EmailSend",
+            '400': None,
+            '409': None,
+            '422': None,
+            '503': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1149,6 +1192,7 @@ class EmailsApi:
     def emails_post_without_preload_content(
         self,
         email_message_data: Annotated[EmailMessageData, Field(description="Email data")],
+        idempotency_key: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True, max_length=255)]], Field(description="Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1168,6 +1212,8 @@ class EmailsApi:
 
         :param email_message_data: Email data (required)
         :type email_message_data: EmailMessageData
+        :param idempotency_key: Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request.
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1192,6 +1238,7 @@ class EmailsApi:
 
         _param = self._emails_post_serialize(
             email_message_data=email_message_data,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1200,6 +1247,10 @@ class EmailsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "EmailSend",
+            '400': None,
+            '409': None,
+            '422': None,
+            '503': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1211,6 +1262,7 @@ class EmailsApi:
     def _emails_post_serialize(
         self,
         email_message_data,
+        idempotency_key,
         _request_auth,
         _content_type,
         _headers,
@@ -1234,6 +1286,8 @@ class EmailsApi:
         # process the path parameters
         # process the query parameters
         # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
         # process the body parameter
         if email_message_data is not None:
@@ -1289,6 +1343,7 @@ class EmailsApi:
     def emails_transactional_post(
         self,
         email_transactional_message_data: Annotated[EmailTransactionalMessageData, Field(description="Email data")],
+        idempotency_key: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True, max_length=255)]], Field(description="Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1308,6 +1363,8 @@ class EmailsApi:
 
         :param email_transactional_message_data: Email data (required)
         :type email_transactional_message_data: EmailTransactionalMessageData
+        :param idempotency_key: Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request.
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1332,6 +1389,7 @@ class EmailsApi:
 
         _param = self._emails_transactional_post_serialize(
             email_transactional_message_data=email_transactional_message_data,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1340,6 +1398,10 @@ class EmailsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "EmailSend",
+            '400': None,
+            '409': None,
+            '422': None,
+            '503': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1356,6 +1418,7 @@ class EmailsApi:
     def emails_transactional_post_with_http_info(
         self,
         email_transactional_message_data: Annotated[EmailTransactionalMessageData, Field(description="Email data")],
+        idempotency_key: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True, max_length=255)]], Field(description="Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1375,6 +1438,8 @@ class EmailsApi:
 
         :param email_transactional_message_data: Email data (required)
         :type email_transactional_message_data: EmailTransactionalMessageData
+        :param idempotency_key: Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request.
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1399,6 +1464,7 @@ class EmailsApi:
 
         _param = self._emails_transactional_post_serialize(
             email_transactional_message_data=email_transactional_message_data,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1407,6 +1473,10 @@ class EmailsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "EmailSend",
+            '400': None,
+            '409': None,
+            '422': None,
+            '503': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1423,6 +1493,7 @@ class EmailsApi:
     def emails_transactional_post_without_preload_content(
         self,
         email_transactional_message_data: Annotated[EmailTransactionalMessageData, Field(description="Email data")],
+        idempotency_key: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True, max_length=255)]], Field(description="Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1442,6 +1513,8 @@ class EmailsApi:
 
         :param email_transactional_message_data: Email data (required)
         :type email_transactional_message_data: EmailTransactionalMessageData
+        :param idempotency_key: Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request.
+        :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1466,6 +1539,7 @@ class EmailsApi:
 
         _param = self._emails_transactional_post_serialize(
             email_transactional_message_data=email_transactional_message_data,
+            idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1474,6 +1548,10 @@ class EmailsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "EmailSend",
+            '400': None,
+            '409': None,
+            '422': None,
+            '503': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1485,6 +1563,7 @@ class EmailsApi:
     def _emails_transactional_post_serialize(
         self,
         email_transactional_message_data,
+        idempotency_key,
         _request_auth,
         _content_type,
         _headers,
@@ -1508,6 +1587,8 @@ class EmailsApi:
         # process the path parameters
         # process the query parameters
         # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
         # process the body parameter
         if email_transactional_message_data is not None:
