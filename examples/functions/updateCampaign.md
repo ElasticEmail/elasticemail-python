@@ -25,6 +25,8 @@ Put the below code to your file.
 Load libraries using below code:
 
 ```python
+import os
+import sys
 import ElasticEmail
 from ElasticEmail.models.campaign import Campaign
 from ElasticEmail.models.campaign_recipient import CampaignRecipient
@@ -33,13 +35,16 @@ from ElasticEmail.models.campaign_template import CampaignTemplate
 from pprint import pprint
 ```
 
-Generate and use your API key (remember to check a required access level).
+Read your API key from the `ELASTICEMAIL_API_KEY` environment variable and stop with a clear message if it isn't set (remember to check a required access level).
 
 Defining the host is optional and defaults to https://api.elasticemail.com/v4
 
 ```python
 configuration = ElasticEmail.Configuration()
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+api_key = os.environ.get('ELASTICEMAIL_API_KEY')
+if not api_key:
+    sys.exit('Set the ELASTICEMAIL_API_KEY environment variable to your Elastic Email API key.')
+configuration.api_key['apikey'] = api_key
 ```
 
 Pass configuration to an api client and make it instance available under `api_client` name:
@@ -101,6 +106,8 @@ Use try & except block to call `campaigns_by_name_put` method from the API to up
 ## The whole code to copy and paste:
 
 ```python
+import os
+import sys
 import ElasticEmail
 from ElasticEmail.models.campaign import Campaign
 from ElasticEmail.models.campaign_recipient import CampaignRecipient
@@ -111,8 +118,11 @@ from pprint import pprint
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
 configuration = ElasticEmail.Configuration()
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# Read the API key from the ELASTICEMAIL_API_KEY environment variable
+api_key = os.environ.get('ELASTICEMAIL_API_KEY')
+if not api_key:
+    sys.exit('Set the ELASTICEMAIL_API_KEY environment variable to your Elastic Email API key.')
+configuration.api_key['apikey'] = api_key
 
 """
 Update Campaign
@@ -152,6 +162,8 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 ```
 
 ## Run the code
+Set your API key in the environment, then run the file:
 ```
+export ELASTICEMAIL_API_KEY=...
 python3 snippet.py
 ```

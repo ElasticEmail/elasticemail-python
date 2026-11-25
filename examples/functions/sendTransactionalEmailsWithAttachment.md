@@ -28,13 +28,16 @@ Put the below code to your file.
 Load libraries using below code:
 
 ```python
+import os
+import sys
+import uuid
 import ElasticEmail
 from pprint import pprint
 import base64
 from pathlib import Path
 ```
 
-Generate and use your API key (remember to check a required access level).
+Read your API key from the `ELASTICEMAIL_API_KEY` environment variable and stop with a clear message if it isn't set (remember to check a required access level).
 
 Defining the host is optional and defaults to https://api.elasticemail.com/v4
 
@@ -43,7 +46,10 @@ configuration = ElasticEmail.Configuration(
     host = "https://api.elasticemail.com/v4"
 )
 
-configuration.api_key['apikey'] = "YOUR_API_KEY"
+api_key = os.environ.get('ELASTICEMAIL_API_KEY')
+if not api_key:
+    sys.exit('Set the ELASTICEMAIL_API_KEY environment variable to your Elastic Email API key.')
+configuration.api_key['apikey'] = api_key
 ```
 
 Pass configuration to an api client and make it instance available under `api_client` name:
@@ -113,13 +119,20 @@ Next you need to specify email details:
     )
 ```
 
-Use try & except block to call `emails_transactional_post` method from the API to send an email: 
+Create an idempotency key for this send. If the request times out, retry it with the same data and the same key, and the email won't be delivered twice.
+
+```python
+    idempotency_key = str(uuid.uuid4())
+```
+
+Use try & except block to call `emails_transactional_post` method from the API to send an email, passing the idempotency key, and print the `TransactionID` next to the key: 
 
 ```python
     try:
-        api_response = api_instance.emails_transactional_post(email_transactional_message_data)
+        api_response = api_instance.emails_transactional_post(email_transactional_message_data, idempotency_key=idempotency_key)
         print("The response of EmailsApi->emails_transactional_post:\n")
         pprint(api_response)
+        print(f"TransactionID: {api_response.transaction_id}, Idempotency-Key: {idempotency_key}")
     except Exception as e:
         print("Exception when calling EmailsApi->emails_transactional_post: %s\n" % e)
 ```
@@ -128,6 +141,9 @@ Use try & except block to call `emails_transactional_post` method from the API t
 ## The whole code to copy and paste:
 
 ```python
+import os
+import sys
+import uuid
 import ElasticEmail
 from pprint import pprint
 import base64
@@ -137,7 +153,10 @@ configuration = ElasticEmail.Configuration(
     host = "https://api.elasticemail.com/v4"
 )
 
-configuration.api_key['apikey'] = "YOUR_API_KEY"
+api_key = os.environ.get('ELASTICEMAIL_API_KEY')
+if not api_key:
+    sys.exit('Set the ELASTICEMAIL_API_KEY environment variable to your Elastic Email API key.')
+configuration.api_key['apikey'] = api_key
 
 with ElasticEmail.ApiClient(configuration) as api_client:
     api_instance = ElasticEmail.EmailsApi(api_client)
@@ -181,16 +200,20 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         ),
     )
 
+    idempotency_key = str(uuid.uuid4())
 
     try:
-        api_response = api_instance.emails_transactional_post(email_transactional_message_data)
+        api_response = api_instance.emails_transactional_post(email_transactional_message_data, idempotency_key=idempotency_key)
         print("The response of EmailsApi->emails_transactional_post:\n")
         pprint(api_response)
+        print(f"TransactionID: {api_response.transaction_id}, Idempotency-Key: {idempotency_key}")
     except Exception as e:
         print("Exception when calling EmailsApi->emails_transactional_post: %s\n" % e)
 ```
 
 ## Run the code
+Set your API key in the environment, then run the file:
 ```
+export ELASTICEMAIL_API_KEY=...
 python3 snippet.py
 ```

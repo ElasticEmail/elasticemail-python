@@ -1,3 +1,6 @@
+import os
+import sys
+import uuid
 import ElasticEmail
 from ElasticEmail.models.email_content import EmailContent
 from ElasticEmail.models.body_part import BodyPart
@@ -9,8 +12,11 @@ from pprint import pprint
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
 configuration = ElasticEmail.Configuration()
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# Read the API key from the ELASTICEMAIL_API_KEY environment variable
+api_key = os.environ.get('ELASTICEMAIL_API_KEY')
+if not api_key:
+    sys.exit('Set the ELASTICEMAIL_API_KEY environment variable to your Elastic Email API key.')
+configuration.api_key['apikey'] = api_key
 
 """
 Send bulk emails
@@ -47,9 +53,14 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         ),
     ) # EmailMessageData | Email data
 
+    # One key per send. Reuse it only to retry this send with the same data.
+    idempotency_key = str(uuid.uuid4())
+
+
     try:
         # Send Bulk Emails
-        api_response = api_instance.emails_post(email_message_data)
+        api_response = api_instance.emails_post(email_message_data, idempotency_key=idempotency_key)
         pprint(api_response)
+        print(f"TransactionID: {api_response.transaction_id}, Idempotency-Key: {idempotency_key}")
     except ElasticEmail.ApiException as e:
         print("Exception when calling EmailsApi->emails_post: %s\n" % e)

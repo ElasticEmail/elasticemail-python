@@ -192,10 +192,10 @@ with ElasticEmail.ApiClient(configuration) as api_client:
     )
 
     # Returned only now: store it, e.g. as ELASTICEMAIL_WEBHOOK_SECRET.
-    print(webhook.SigningSecret)
+    print(webhook.signing_secret)
 ```
 
-`SigningSecret` is returned only when the webhook is created and when you rotate it with `webhook_by_publicid_secret_rotate_post`, so store it right away. Each signed request carries `X-ElasticEmail-Timestamp` and `X-ElasticEmail-Signature: v1=<hex>`, where the signature is `hex(HMAC-SHA256(secret, "{timestamp}\n{METHOD}\n{path and query}\n{raw body}"))`. Verify it against the raw body before you parse the JSON, reject timestamps more than 5 minutes old, and compare in constant time. The [webhooks guide](https://github.com/ElasticEmail/elasticemail-examples/blob/main/docs/webhooks.md) and the [examples repository](https://github.com/ElasticEmail/elasticemail-examples) have ready-made handlers.
+`signing_secret` (`SigningSecret` in the JSON response) is returned only when the webhook is created and when you rotate it with `webhook_by_publicid_secret_rotate_post`, so store it right away. Each signed request carries `X-ElasticEmail-Timestamp` and `X-ElasticEmail-Signature: v1=<hex>`, where the signature is `hex(HMAC-SHA256(secret, "{timestamp}\n{METHOD}\n{path and query}\n{raw body}"))`. Verify it against the raw body before you parse the JSON, reject timestamps more than 5 minutes old, and compare in constant time. The [webhooks guide](https://github.com/ElasticEmail/elasticemail-examples/blob/main/docs/webhooks.md) and the [examples repository](https://github.com/ElasticEmail/elasticemail-examples) have ready-made handlers.
 
 ## More examples
 
@@ -214,6 +214,7 @@ Function ||
 [addList](examples/functions/addList.py) | [readme](examples/functions/addList.md)
 [addTemplate](examples/functions/addTemplate.py) | [readme](examples/functions/addTemplate.md)
 [deleteCampaign](examples/functions/deleteCampaign.py) | [readme](examples/functions/deleteCampaign.md)
+[deleteContact](examples/functions/deleteContact.py) | [readme](examples/functions/deleteContact.md)
 [deleteContacts](examples/functions/deleteContacts.py) | [readme](examples/functions/deleteContacts.md)
 [deleteList](examples/functions/deleteList.py) | [readme](examples/functions/deleteList.md)
 [deleteTemplate](examples/functions/deleteTemplate.py) | [readme](examples/functions/deleteTemplate.md)
@@ -226,6 +227,7 @@ Function ||
 [loadTemplate](examples/functions/loadTemplate.py) | [readme](examples/functions/loadTemplate.md)
 [sendBulkEmails](examples/functions/sendBulkEmails.py) | [readme](examples/functions/sendBulkEmails.md)
 [sendTransactionalEmails](examples/functions/sendTransactionalEmails.py) | [readme](examples/functions/sendTransactionalEmails.md)
+[sendTransactionalEmailsWithAttachment](examples/functions/sendTransactionalEmailsWithAttachment.py) | [readme](examples/functions/sendTransactionalEmailsWithAttachment.md)
 [updateCampaign](examples/functions/updateCampaign.py) | [readme](examples/functions/updateCampaign.md)
 [uploadContacts](examples/functions/uploadContacts.py) | [readme](examples/functions/uploadContacts.md)
 

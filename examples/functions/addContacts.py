@@ -1,3 +1,5 @@
+import os
+import sys
 import ElasticEmail
 from ElasticEmail.models.contact_status import ContactStatus
 from ElasticEmail.models.contact_payload import ContactPayload
@@ -6,8 +8,11 @@ from pprint import pprint
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
 configuration = ElasticEmail.Configuration()
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# Read the API key from the ELASTICEMAIL_API_KEY environment variable
+api_key = os.environ.get('ELASTICEMAIL_API_KEY')
+if not api_key:
+    sys.exit('Set the ELASTICEMAIL_API_KEY environment variable to your Elastic Email API key.')
+configuration.api_key['apikey'] = api_key
 
 """
 Add contacts

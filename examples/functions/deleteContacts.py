@@ -1,15 +1,20 @@
+import os
+import sys
 import ElasticEmail
 from ElasticEmail.models.emails_payload import EmailsPayload
 
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
 configuration = ElasticEmail.Configuration()
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# Read the API key from the ELASTICEMAIL_API_KEY environment variable
+api_key = os.environ.get('ELASTICEMAIL_API_KEY')
+if not api_key:
+    sys.exit('Set the ELASTICEMAIL_API_KEY environment variable to your Elastic Email API key.')
+configuration.api_key['apikey'] = api_key
 
 """
-Delete contact
-Example api call that deletes given contact(s).
+Delete contacts
+Example api call that deletes contacts in bulk, by a list of email addresses.
 """
 with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class

@@ -23,17 +23,22 @@ Put the below code to your file.
 Load libraries using below code:
 
 ```python
+import os
+import sys
 import ElasticEmail
 from ElasticEmail.models.emails_payload import EmailsPayload
 ```
 
-Generate and use your API key (remember to check a required access level).
+Read your API key from the `ELASTICEMAIL_API_KEY` environment variable and stop with a clear message if it isn't set (remember to check a required access level).
 
 Defining the host is optional and defaults to https://api.elasticemail.com/v4
 
 ```python
 configuration = ElasticEmail.Configuration()
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+api_key = os.environ.get('ELASTICEMAIL_API_KEY')
+if not api_key:
+    sys.exit('Set the ELASTICEMAIL_API_KEY environment variable to your Elastic Email API key.')
+configuration.api_key['apikey'] = api_key
 ```
 
 Pass configuration to an api client and make it instance available under `api_client` name:
@@ -47,9 +52,9 @@ Create an instance of ContactsApi that will be used to delete contacts.
     api_instance = ElasticEmail.ContactsApi(api_client)
 ```
 
-Create an object with an array of contacts to delete.
+Create an object with an array of email addresses of the contacts to delete. To delete a single contact, see [deleteContact](deleteContact.md).
 
-> Find out more by checking our API's documentation: https://elasticemail.com/developers/api-documentation/rest-api#operation/contactsByEmailDelete
+> Find out more by checking our API's documentation: https://elasticemail.com/developers/api-documentation/rest-api#operation/contactsDeletePost
 
 ```python
     emails_payload = EmailsPayload(
@@ -72,18 +77,23 @@ Use try & except block to call `contacts_delete_post` method from the API to del
 ## The whole code to copy and paste:
 
 ```python
+import os
+import sys
 import ElasticEmail
 from ElasticEmail.models.emails_payload import EmailsPayload
 
 # Defining the host is optional and defaults to https://api.elasticemail.com/v4
 configuration = ElasticEmail.Configuration()
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# Read the API key from the ELASTICEMAIL_API_KEY environment variable
+api_key = os.environ.get('ELASTICEMAIL_API_KEY')
+if not api_key:
+    sys.exit('Set the ELASTICEMAIL_API_KEY environment variable to your Elastic Email API key.')
+configuration.api_key['apikey'] = api_key
 
 """
-Delete contact
-Example api call that deletes given contact(s).
+Delete contacts
+Example api call that deletes contacts in bulk, by a list of email addresses.
 """
 with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -102,6 +112,8 @@ with ElasticEmail.ApiClient(configuration) as api_client:
 ```
 
 ## Run the code
+Set your API key in the environment, then run the file:
 ```
+export ELASTICEMAIL_API_KEY=...
 python3 snippet.py
 ```
