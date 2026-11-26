@@ -23,6 +23,7 @@ Send transactional emails
 Example api call that sends transactional email.
 Limit of 50 maximum recipients.
 """
+# README:BEGIN quickstart
 with ElasticEmail.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ElasticEmail.EmailsApi(api_client)
@@ -62,3 +63,4 @@ with ElasticEmail.ApiClient(configuration) as api_client:
         print(f"TransactionID: {api_response.transaction_id}, Idempotency-Key: {idempotency_key}")
     except ElasticEmail.ApiException as e:
         print("Exception when calling EmailsApi->emails_transactional_post: %s\n" % e)
+# README:END quickstart

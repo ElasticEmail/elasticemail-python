@@ -1,9 +1,12 @@
+<!-- BEGIN GENERATED:logo -->
 <div align="center">
 
 <img src=".github/ee-logo.png" alt="Elastic Email" width="96" />
+<!-- END GENERATED:logo -->
 
 # Elastic Email Python SDK
 
+<!-- BEGIN GENERATED:header -->
 The official Python client library for the [Elastic Email](https://elasticemail.com) REST API v4.
 
 [![PyPI](https://img.shields.io/pypi/v/ElasticEmail?logo=pypi&logoColor=white&label=PyPI&color=3775A9)](https://pypi.org/project/ElasticEmail/)
@@ -28,6 +31,7 @@ The official Python client library for the [Elastic Email](https://elasticemail.
 </div>
 
 ---
+<!-- END GENERATED:header -->
 
 ## Features
 
@@ -58,9 +62,11 @@ You'll also need an Elastic Email **API key**. You can create one in your [API s
 
 Install the [`ElasticEmail`](https://pypi.org/project/ElasticEmail/) package from PyPI:
 
+<!-- BEGIN GENERATED:install -->
 ```bash
 pip install ElasticEmail
 ```
+<!-- END GENERATED:install -->
 
 Or with Poetry or uv:
 
@@ -242,12 +248,15 @@ Function ||
 
 ## API limits
 
+<!-- BEGIN GENERATED:api-limits -->
 - Up to **20 concurrent connections** per account. The API doesn't return `429`; a `5xx` under load means slow down and retry with backoff
 - A request with no response for about **50 seconds** fails with a gateway error (`5xx`)
 - Up to **50 recipients** per `POST /emails/transactional` and **1000 contacts or suppressions** per upload (`413` above that). For more recipients, send one bulk `POST /emails`
+<!-- END GENERATED:api-limits -->
 
 ## API reference
 
+<!-- BEGIN GENERATED:api-reference -->
 All URIs are relative to `https://api.elasticemail.com/v4`. The SDK covers **115 endpoints** across 16 API classes: `CampaignsApi`, `ContactsApi`, `DomainsApi`, `EmailsApi`, `EventsApi`, `FilesApi`, `InboundRouteApi`, `ListsApi`, `SecurityApi`, `SegmentsApi`, `StatisticsApi`, `SubAccountsApi`, `SuppressionsApi`, `TemplatesApi`, `VerificationsApi` and `WebhookApi`.
 
 <details>
@@ -376,9 +385,11 @@ Class | Method | HTTP request | Description
 
 
 </details>
+<!-- END GENERATED:api-reference -->
 
 ## Models
 
+<!-- BEGIN GENERATED:models -->
 <details>
 <summary><strong>Show all 99 models</strong></summary>
 
@@ -484,6 +495,7 @@ Class | Method | HTTP request | Description
 
 
 </details>
+<!-- END GENERATED:models -->
 
 ## Tests
 
@@ -494,6 +506,7 @@ pytest
 
 ## Versioning
 
+<!-- BEGIN GENERATED:versioning -->
 The SDK follows the Elastic Email API v4. Package versions and release notes are listed on [PyPI](https://pypi.org/project/ElasticEmail/#history) and in [GitHub Releases](https://github.com/ElasticEmail/elasticemail-python/releases).
 
 <details>
@@ -505,9 +518,11 @@ The SDK follows the Elastic Email API v4. Package versions and release notes are
 - Build package: `org.openapitools.codegen.languages.PythonClientCodegen`
 
 </details>
+<!-- END GENERATED:versioning -->
 
 ## Contributing
 
+<!-- BEGIN GENERATED:contributing -->
 Contributions are welcome! Most of this SDK is generated from the Elastic Email OpenAPI specification, so please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
 - 🐛 [Report a bug](https://github.com/ElasticEmail/elasticemail-python/issues/new?template=bug_report.md)
@@ -515,9 +530,11 @@ Contributions are welcome! Most of this SDK is generated from the Elastic Email 
 - 🔒 [Report a security issue](SECURITY.md)
 
 This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md).
+<!-- END GENERATED:contributing -->
 
 ## Support
 
+<!-- BEGIN GENERATED:support -->
 > [!IMPORTANT]
 > The fastest way to get help is the **chat widget on [elasticemail.com](https://elasticemail.com)**. Our support team can help with your account, sending, deliverability and API questions.
 
@@ -525,7 +542,10 @@ This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.
 - 📚 [API documentation](https://elasticemail.com/developers/api-documentation/rest-api)
 - 🧪 [Examples repository](https://github.com/ElasticEmail/elasticemail-examples)
 - 🐛 [GitHub issues](https://github.com/ElasticEmail/elasticemail-python/issues), for bugs in this SDK only
+<!-- END GENERATED:support -->
 
 ## License
 
+<!-- BEGIN GENERATED:license -->
 Released under the [MIT License](LICENSE). Copyright © 2021–2026 Elastic Email.
+<!-- END GENERATED:license -->
